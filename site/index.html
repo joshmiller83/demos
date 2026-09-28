@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Josh Miller Demos</title>
+    <meta name="description" content="Functional front-end demos by Josh Miller." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #5c5c5c;
+        --rule: #e3e3e3;
+        --accent: #12719e;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111;
+          --text: #eee;
+          --muted: #a8a8a8;
+          --rule: #333;
+          --accent: #73bfe2;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 18px/1.6 Lato, system-ui, sans-serif;
+      }
+      main {
+        max-width: 44rem;
+        margin: 0 auto;
+        padding: 4rem 16px;
+      }
+      h1 {
+        font-size: 2.25rem;
+        margin: 0 0 0.5rem;
+      }
+      .intro {
+        color: var(--muted);
+        margin: 0 0 3rem;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border-top: 1px solid var(--rule);
+      }
+      li {
+        border-bottom: 1px solid var(--rule);
+        padding: 1.25rem 0;
+      }
+      a {
+        color: var(--accent);
+      }
+      .demo-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+      .demo-desc {
+        margin: 0.25rem 0 0;
+        color: var(--muted);
+      }
+      footer {
+        margin-top: 3rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Demos</h1>
+      <p class="intro">Working front-end pieces from past projects, isolated so you can use them in the browser.</p>
+      <ul>
+        <li>
+          <a class="demo-title" href="/lyndon-search/">Search results component</a>
+          <p class="demo-desc">
+            A Stencil web component from Urban Institute's Lyndon design system. It has faceted filtering, keyword search, and pagination, and
+            here it runs against a mock Drupal Search API.
+          </p>
+        </li>
+      </ul>
+      <footer>
+        Josh Miller · <a href="https://portfolio.joshnliz.com">portfolio</a> · <a href="https://drupal.joshnliz.com">Drupal modules</a> ·
+        <a href="https://github.com/joshmiller83/demos">source</a>
+      </footer>
+    </main>
+  </body>
+</html>

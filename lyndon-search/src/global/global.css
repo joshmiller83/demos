@@ -1,0 +1,64 @@
+/**
+ * @file
+ * Root CSS file to add Tailwind Configuration.
+ *
+ * This file adds Tailwind to the project via @tailwind.
+ * Custom rules and overrides for each section are applied between.
+ */
+
+/**
+ * Font Imports
+ *
+ * Lato - Google Fonts
+ *
+*/
+/* purgecss start ignore */
+/* We break up the weights like this so aggregation works in Drupal. */
+@import url('//fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('//fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+/* 400 weight is default. */
+@import url('//fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('//fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+/* Jost - free stand-in for the licensed futura-pt Typekit kit. */
+@import url('//fonts.googleapis.com/css2?family=Jost:wght@300;400;600;700&display=swap');
+/* purgecss end ignore */
+
+/**
+ * PostCSS only allows imports at the top of the file. So they have to come before the @tailwind directives.
+ *
+ * This is a workaround to allow us to use @layer/@apply in the global css files.
+ * @layer is a tailwind directive that allows us to group css rules together it is not the css layer directive.
+ */
+/* purgecss start ignore */
+@import '_icon.css';
+@import '_base.css';
+@import '_button.css';
+@import '_misc.css';
+@import '_typography.css';
+@import '_form.css';
+@import '_tabular.css';
+/* purgecss end ignore */
+
+/**
+ * Tailwind Base
+ *
+ * This injects Tailwind's base styles and any base styles registered by
+ * plugins. Add custom base from _base.css.
+*/
+@tailwind base;
+
+/**
+ * Tailwind Components
+ *
+ * This injects Tailwind's component classes and any component classes
+ * registered by plugins. Add custom global component css.
+ */
+@tailwind components;
+
+/**
+ * Tailwind Utilities
+ *
+ * This injects Tailwind's utility classes and any utility classes registered
+ * by plugins.
+ */
+@tailwind utilities;

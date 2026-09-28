@@ -1,0 +1,113 @@
+/**
+ * Custom Base
+ *
+ * Add extra base styles.
+ */
+@layer base {
+  a {
+    @apply text-blue-500;
+  }
+
+  a:hover {
+    text-decoration: underline 1.25px;
+    text-underline-offset: 0.125em;
+  }
+
+  body {
+    @apply text-base font-sans font-normal leading-normal normal-case text-black;
+  }
+
+  code {
+    @apply text-base font-mono font-normal leading-normal normal-case text-pink-500;
+  }
+
+  p,
+  :not(.list, .flex, .hydrated, .toolbar-menu, .links) > li {
+    @apply mb-4 text-lg font-sans font-normal leading-normal normal-case text-gray-900;
+  }
+
+  :not(.list, .flex, .hydrated, .toolbar-menu, .links) > li {
+    @apply ml-6;
+  }
+
+  hr {
+    @apply border-gray-500;
+  }
+
+  h1 {
+    @apply text-4xl font-sans font-bold leading-tight normal-case;
+  }
+
+  h2 {
+    @apply mt-8 text-3xl font-sans font-bold leading-snug normal-case;
+  }
+
+  h3 {
+    @apply mt-8 text-2xl font-sans font-light leading-normal uppercase;
+  }
+
+  h4 {
+    @apply mt-8 text-xl font-sans font-bold leading-normal;
+  }
+
+  h5 {
+    @apply mt-8 text-lg font-sans font-bold leading-normal normal-case;
+  }
+
+  h6 {
+    @apply mt-8 text-base font-sans font-bold leading-normal normal-case;
+  }
+
+  b,
+  strong {
+    @apply font-bold;
+  }
+
+  i,
+  em {
+    @apply italic;
+  }
+
+  ul:not(.list, .flex, .hydrated, .toolbar-menu, .links),
+  ol:not(.list, .flex, .hydrated) {
+    @apply p-0;
+    list-style: disc;
+  }
+
+  ol:not(.list, .flex, .hydrated) {
+    list-style: decimal;
+  }
+
+  button {
+    @apply py-3 px-4 inline-flex text-center whitespace-no-wrap align-middle font-sans text-lg font-bold uppercase no-underline bg-blue-500 text-white;
+  }
+  button:hover {
+    @apply bg-blue-700;
+  }
+
+  /* Base Media Queries */
+  @screen md {
+    p,
+    :not(.list, .flex, .hydrated, .toolbar-menu, .links) > li {
+      @apply text-xl leading-relaxed;
+    }
+    h1 {
+      @apply text-5xl leading-tight;
+    }
+    h2 {
+      @apply text-4xl leading-tight;
+    }
+    h3 {
+      @apply text-3xl leading-snug;
+    }
+    h4 {
+      @apply text-2xl leading-snug;
+    }
+    h5 {
+      @apply text-xl leading-normal;
+    }
+    h6 {
+      @apply text-lg leading-normal;
+    }
+  }
+}

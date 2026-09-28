@@ -1,0 +1,250 @@
+/**
+ * @file
+ * CSS for Titles.
+ *
+ * This file adds link styling via Tailwind @apply directives.
+ */
+@tailwind base;
+@import '../../global/_typography.css';
+
+:host {
+  display: block;
+}
+
+:host lbj-icon {
+  @apply inline-block align-text-bottom mr-3;
+}
+
+:host hr {
+  @apply flex-auto border-t border-gray-600 ml-3;
+}
+
+/* Expose part styles for consumers to target (control color and width only) */
+:host::part(accent) {
+  @apply flex-auto border-t border-gray-600 ml-3;
+}
+
+:host([variant='eyebrow']) {
+  color: var(--heading-color, var(--neutral-800));
+}
+
+:host([variant='eyebrow-with-background']) {
+  @apply text-sm bg-primary-b-500 text-white font-serif-alt font-normal leading-normal uppercase inline-block;
+}
+
+:host([variant='subtitle']) {
+  @apply text-gray-900;
+}
+
+:host([variant='hero-text']) ::slotted(strong) {
+  @apply text-black;
+}
+
+:host([variant='highlight-eyebrow']) {
+  @apply text-3xl font-sans-alt font-light uppercase bg-secondary-b-100 inline-flex;
+  font-variant-ligatures: none;
+}
+
+:host([variant='highlight-eyebrow']) lbj-icon {
+  @apply bg-secondary-b-500 p-4.5 mr-4;
+}
+
+:host([variant='highlight-eyebrow']) .title {
+  @apply inline-flex pr-5.5;
+}
+
+:host([variant='heading-block']) .title {
+  @apply relative pb-4.5;
+}
+
+:host([variant='heading-block']) .title::after {
+  @apply absolute bottom-0 left-0 border-b-5 border-primary-c w-23;
+  content: '';
+}
+
+@screen lg {
+  :host([variant='heading-block']) .title::after {
+    @apply w-40;
+  }
+}
+
+.title {
+  @apply items-center;
+}
+
+.title--block {
+  @apply block w-full;
+}
+
+.title--flex {
+  @apply flex w-full;
+}
+
+.card-heading {
+  @apply text-2xl leading-7 normal-case font-bold relative pt-1.75;
+}
+
+.card-heading::before {
+  @apply absolute top-0 h-full border-solid border-primary-b-500 border-l-6 bottom-1.75;
+  content: '';
+  left: -1.25rem;
+}
+
+/* Stripe color */
+.stripe {
+  @apply relative pb-px;
+  padding-bottom: 2px;
+}
+
+.stripe:after {
+  @apply absolute left-0 w-full bottom-0 border-b-4 border-solid;
+  bottom: 2px;
+  content: '';
+}
+
+.display .stripe:after {
+  @apply border-b-10;
+}
+
+.heading-1 .stripe:after {
+  bottom: 8px;
+}
+
+.display .stripe:after,
+.hero-text .stripe:after,
+.heading-2 .stripe:after {
+  bottom: 6px;
+}
+
+.heading-3 .stripe:after {
+  bottom: 4px;
+}
+
+.heading-4 .stripe:after {
+  bottom: 3px;
+}
+
+.side-heading .stripe:after {
+  bottom: 7px;
+}
+
+.stripe--light-primary-a:after {
+  @apply border-primary-a-500 border-opacity-50;
+}
+
+.stripe--dark-primary-a:after {
+  @apply border-primary-a-500;
+}
+
+.stripe--tertiary-a:after {
+  @apply border-tertiary-a-500 border-opacity-50;
+}
+
+.stripe--secondary-b:after {
+  @apply border-secondary-b-500 border-opacity-50;
+}
+
+.stripe--neutral:after {
+  @apply border-neutral-700 border-opacity-50;
+}
+
+/* Deprecated, use stripe--light-primary-a instead. */
+.stripe--light-blue:after {
+  @apply border-blue-500 border-opacity-50;
+}
+
+/* Deprecated, use stripe--dark-primary-a instead. */
+.stripe--dark-blue:after {
+  @apply border-blue-500;
+}
+
+/* Deprecated, use stripe--tertiary-a instead. */
+.stripe--green:after {
+  @apply border-green-500 border-opacity-50;
+}
+
+/* Deprecated, use stripe--secondary-b instead. */
+.stripe--yellow:after {
+  @apply border-yellow-500 border-opacity-50;
+}
+
+/* Deprecated, use stripe--neutral instead. */
+.stripe--gray:after {
+  @apply border-gray-700 border-opacity-50;
+}
+
+span.highlight {
+  @apply bg-secondary-b-300 inline-block pr-0.5 pl-0.5;
+}
+
+.banner {
+  @apply text-2xl font-light;
+}
+
+/********************/
+/* Vertical Stripe */
+.v-stripe {
+  @apply relative h-full;
+}
+
+/* Alternate vertical stripe style */
+.v-stripe:has(.v-stripe--secondary-b-alt) {
+  @apply pl-8;
+}
+
+/* Light Blue */
+.v-stripe--light-primary-a::before {
+  content: '';
+  border-color: var(--primary-a-100);
+  @apply absolute bottom-0 top-0 border-4 border-solid;
+  left: -25px;
+}
+
+/* Dark Blue or STRIPE_DARK_PRIMARY_A */
+.v-stripe--dark-blue::before,
+.v-stripe--dark-primary-a::before {
+  content: '';
+  border-color: var(--primary-a-500);
+  @apply absolute bottom-0 top-0 border-4 border-solid;
+  left: -25px;
+}
+
+/* Green or STRIPE_TERTIARY_A */
+.v-stripe--tertiary-a::before {
+  content: '';
+  border-color: var(--tertiary-a-500);
+  @apply absolute bottom-0 top-0 border-4 border-solid;
+  left: -25px;
+}
+
+/* Yellow or STRIPE_SECONDARY_B */
+.v-stripe--secondary-b::before {
+  content: '';
+  border-color: var(--secondary-b-500);
+  @apply absolute bottom-0 top-0 border-4 border-solid;
+  left: -25px;
+}
+
+/* Yellow alt */
+.v-stripe--secondary-b-alt::before {
+  content: '';
+  border-color: var(--secondary-b-500);
+  @apply absolute bottom-0 top-0 border border-solid;
+  left: 0;
+}
+
+/* Grey or STRIPE_NEUTRAL */
+.v-stripe--neutral::before {
+  content: '';
+  border-color: var(--neutral-700);
+  @apply absolute bottom-0 top-0 border-4 border-solid;
+  left: -25px;
+}
+
+/* Black or STRIPE_DAR */
+.v-stripe--dark::before {
+  content: '';
+  border-color: var(--primary-C);
+  @apply absolute bottom-0 top-0 border-4 border-solid;
+  left: -25px;
+}

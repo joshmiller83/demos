@@ -1,0 +1,240 @@
+.bg-transparent {
+  background-color: transparent;
+}
+.bg-current {
+  background-color: currentColor;
+}
+.bg-primary-a-100 {
+  background-color: #cfe8f3;
+}
+.bg-primary-a-200 {
+  background-color: #a2d4ec;
+}
+.bg-primary-a-300 {
+  background-color: #73bfe2;
+}
+.bg-primary-a-500 {
+  background-color: #1696d2;
+}
+.bg-primary-a-700 {
+  background-color: #12719e;
+}
+.bg-primary-a-800 {
+  background-color: #0a4c6a;
+}
+.bg-primary-a-900 {
+  background-color: #062635;
+}
+.bg-primary-b-100 {
+  background-color: #f5f5f5;
+}
+.bg-primary-b-200 {
+  background-color: #ececec;
+}
+.bg-primary-b-300 {
+  background-color: #e3e3e3;
+}
+.bg-primary-b-400 {
+  background-color: #dcdbdb;
+}
+.bg-primary-b-500 {
+  background-color: #d2d2d2;
+}
+.bg-primary-b-600 {
+  background-color: #adabac;
+}
+.bg-primary-b-700 {
+  background-color: #9d9d9d;
+}
+.bg-primary-b-800 {
+  background-color: #696969;
+}
+.bg-primary-b-900 {
+  background-color: #353535;
+}
+.bg-primary-c {
+  background-color: #000;
+}
+.bg-primary-d {
+  background-color: #fff;
+}
+.bg-secondary-a-500 {
+  background-color: #ee008b;
+}
+.bg-secondary-b-50 {
+  background-color: #fffaec;
+}
+.bg-secondary-b-100 {
+  background-color: #feedd2;
+}
+.bg-secondary-b-200 {
+  background-color: #fff2cf;
+}
+.bg-secondary-b-300 {
+  background-color: #f6e05e;
+}
+.bg-secondary-b-500 {
+  background-color: #fdbf11;
+}
+.bg-tertiary-a-500 {
+  background-color: #55b748;
+}
+.bg-tertiary-b-500 {
+  background-color: #5d80a3;
+}
+.bg-neutral-100 {
+  background-color: #f5f5f5;
+}
+.bg-neutral-200 {
+  background-color: #ececec;
+}
+.bg-neutral-300 {
+  background-color: #e3e3e3;
+}
+.bg-neutral-400 {
+  background-color: #dcdbdb;
+}
+.bg-neutral-500 {
+  background-color: #d2d2d2;
+}
+.bg-neutral-600 {
+  background-color: #adabac;
+}
+.bg-neutral-700 {
+  background-color: #9d9d9d;
+}
+.bg-neutral-800 {
+  background-color: #696969;
+}
+.bg-neutral-900 {
+  background-color: #353535;
+}
+.bg-gradient-100 {
+  background-color: #cfe8f300;
+}
+.bg-gradient-200 {
+  background-color: #cfe8f333;
+}
+.bg-gradient-300 {
+  background-color: #bedce9;
+}
+.bg-status-success-700 {
+  background-color: #2f855a;
+}
+.bg-status-warn-300 {
+  background-color: #f6e05e;
+}
+.bg-status-warn-500 {
+  background-color: #fdbf11;
+}
+.bg-status-fail-500 {
+  background-color: #c53030;
+}
+.bg-black {
+  background-color: #000;
+}
+.bg-white {
+  background-color: #fff;
+}
+.bg-white-gradient-100 {
+  background-color: #ffffff00;
+}
+.bg-white-gradient-200 {
+  background-color: #ffffff66;
+}
+.bg-white-gradient-300 {
+  background-color: #ffffffe6;
+}
+.bg-blue-100 {
+  background-color: #cfe8f3;
+}
+.bg-blue-200 {
+  background-color: #a2d4ec;
+}
+.bg-blue-300 {
+  background-color: #73bfe2;
+}
+.bg-blue-500 {
+  background-color: #1696d2;
+}
+.bg-blue-700 {
+  background-color: #12719e;
+}
+.bg-blue-800 {
+  background-color: #0a4c6a;
+}
+.bg-blue-900 {
+  background-color: #062635;
+}
+.bg-magenta-500 {
+  background-color: #ee008b;
+}
+.bg-green-500 {
+  background-color: #55b748;
+}
+.bg-green-700 {
+  background-color: #2f855a;
+}
+.bg-yellow-300 {
+  background-color: #f6e05e;
+}
+.bg-yellow-500 {
+  background-color: #fdbf11;
+}
+.bg-red-500 {
+  background-color: #c53030;
+}
+.bg-gray-100 {
+  background-color: #f5f5f5;
+}
+.bg-gray-200 {
+  background-color: #ececec;
+}
+.bg-gray-300 {
+  background-color: #e3e3e3;
+}
+.bg-gray-400 {
+  background-color: #dcdbdb;
+}
+.bg-gray-500 {
+  background-color: #d2d2d2;
+}
+.bg-gray-600 {
+  background-color: #adabac;
+}
+.bg-gray-700 {
+  background-color: #9d9d9d;
+}
+.bg-gray-800 {
+  background-color: #696969;
+}
+.bg-gray-900 {
+  background-color: #353535;
+}
+.bg-pink-100 {
+  background-color: #fff5f7;
+}
+.bg-pink-200 {
+  background-color: #fed7e2;
+}
+.bg-pink-300 {
+  background-color: #fbb6ce;
+}
+.bg-pink-400 {
+  background-color: #f687b3;
+}
+.bg-pink-500 {
+  background-color: #ed64a6;
+}
+.bg-pink-600 {
+  background-color: #d53f8c;
+}
+.bg-pink-700 {
+  background-color: #b83280;
+}
+.bg-pink-800 {
+  background-color: #97266d;
+}
+.bg-pink-900 {
+  background-color: #702459;
+}

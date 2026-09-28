@@ -1,0 +1,16 @@
+{
+  "name": "demos",
+  "private": true,
+  "description": "Functional front-end demos served at demos.joshnliz.com",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "workspaces": [
+    "lyndon-search"
+  ],
+  "scripts": {
+    "build": "node scripts/assemble.mjs",
+    "serve": "npx --yes http-server _site -p 8080 -c-1"
+  }
+}

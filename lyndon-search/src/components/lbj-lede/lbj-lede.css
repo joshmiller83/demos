@@ -1,0 +1,35 @@
+@tailwind base;
+@import '../../global/generated-bg-colors.css';
+
+:host {
+  display: block;
+}
+
+.lede__headline-link {
+  @apply text-black;
+}
+
+.lede__headline-link:hover {
+  text-decoration: underline 1.25px;
+  text-underline-offset: 0.125em;
+}
+slot[name='date'] lbj-title {
+  @apply pt-2;
+}
+.file-types {
+  @apply inline-flex flex-wrap;
+}
+
+.file-type {
+  @apply inline-flex px-2 py-1 rounded text-white mr-2 text-xs mt-2;
+}
+
+.headline-container {
+  @apply flex items-baseline;
+}
+
+.lede-icon {
+  @apply mr-2;
+  width: 0.75rem;
+  height: 0.75rem;
+}

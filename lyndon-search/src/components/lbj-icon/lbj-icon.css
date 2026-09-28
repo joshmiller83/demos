@@ -1,0 +1,162 @@
+@import '../../global/generated-bg-colors.css';
+
+:host {
+  @apply inline-block;
+}
+
+:host svg {
+  @apply block;
+}
+
+:host([name='linkedin']) .icon-black:hover,
+:host([name='linkedin']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='linkedin']) .icon-black:hover,
+:host([name='linkedin']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='threads']) .icon-black:hover,
+:host([name='threads']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='bluesky']) .icon-black:hover,
+:host([name='bluesky']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='x']) .icon-black:hover,
+:host([name='x']) .icon-white:hover,
+:host([name='twitter']) .icon-black:hover,
+:host([name='twitter']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='github']) .icon-black:hover,
+:host([name='github']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='reddit']) .icon-black:hover,
+:host([name='reddit']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='facebook']) .icon-black:hover,
+:host([name='facebook']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='email']) .icon-black:hover,
+:host([name='email']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='youtube']) .icon-black:hover,
+:host([name='youtube']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+
+:host([name='instagram']) .icon-black:hover,
+:host([name='instagram']) .icon-white:hover {
+  @apply text-primary-a-500;
+}
+.icon-primary-c {
+  @apply text-primary-c;
+}
+
+.icon-primary-a {
+  @apply text-primary-a-500;
+}
+
+.icon-primary-b {
+  @apply text-primary-b-800;
+}
+
+.icon-primary-b-500 {
+  @apply text-primary-b-500;
+}
+
+.icon-current {
+  @apply fill-current;
+}
+
+.icon-transparent {
+  @apply text-transparent;
+}
+
+.icon-primary-d {
+  @apply text-primary-d;
+}
+
+.icon-full svg {
+  @apply h-full w-full;
+}
+
+.icon-xs svg {
+  @apply h-3 w-3;
+}
+
+.icon-sm svg {
+  @apply h-4 w-4;
+}
+
+.icon-md svg {
+  @apply h-6 w-6;
+}
+
+.icon-lg svg {
+  @apply h-8 w-8;
+}
+
+.icon-xl svg {
+  @apply h-12 w-12;
+}
+
+.icon-xxl svg {
+  @apply h-16 w-16;
+}
+
+/* Deprecated, use icon-primary-c instead. */
+.icon-black {
+  @apply text-black;
+}
+
+/* Deprecated, use icon-primary-a instead. */
+.icon-blue {
+  @apply text-primary-a-500;
+}
+
+/* Deprecated, use icon-primary-b instead. */
+.icon-gray {
+  @apply text-gray-800;
+}
+
+/* Deprecated, use icon-primary-d instead. */
+.icon-white {
+  @apply text-white;
+}
+
+.bg-icon {
+  line-height: 1em;
+  padding: 0 0.65em 0.1em 0.65em;
+  font-size: 0.7em;
+  border-radius: 0.2em;
+}
+
+:host(.social-icon) {
+  .svg-icon {
+    @apply transition-all duration-150 ease-in-out;
+
+    &:hover {
+      @apply text-primary-a-700;
+    }
+  }
+}
+
+.dropdown__arrow {
+  @apply rotate-90;
+}

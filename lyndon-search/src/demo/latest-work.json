@@ -1,0 +1,743 @@
+{
+  "types": {
+    "research_report": "Research Report",
+    "brief": "Brief",
+    "blog_post": "Blog Post",
+    "data_tool": "Data Tool",
+    "fact_sheet": "Fact Sheet",
+    "event": "Event"
+  },
+  "data": [
+    {
+      "type": "index--latest_work",
+      "id": "sample-1",
+      "attributes": {
+        "drupal_internal__nid": 1000,
+        "title": "Mapping Housing Cost Burdens Across Midsize Cities",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "June 18, 2024",
+        "path": {
+          "alias": "#mapping-housing-cost-burdens-across-midsize-cities"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-2",
+      "attributes": {
+        "drupal_internal__nid": 1001,
+        "title": "What Rising Rents Mean for Families With Young Children",
+        "eyebrow": "Blog Post",
+        "content_type": "blog_post",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "June 9, 2024",
+        "path": {
+          "alias": "#what-rising-rents-mean-for-families-with-young-children"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-3",
+      "attributes": {
+        "drupal_internal__nid": 1002,
+        "title": "A Framework for Measuring Neighborhood Opportunity",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "May 24, 2024",
+        "path": {
+          "alias": "#a-framework-for-measuring-neighborhood-opportunity"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-4",
+      "attributes": {
+        "drupal_internal__nid": 1003,
+        "title": "Five Questions About Local Eviction Data",
+        "eyebrow": "Blog Post",
+        "content_type": "blog_post",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "May 12, 2024",
+        "path": {
+          "alias": "#five-questions-about-local-eviction-data"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-5",
+      "attributes": {
+        "drupal_internal__nid": 1004,
+        "title": "Wealth Gaps Among Older Adults: A Data Snapshot",
+        "eyebrow": "Fact Sheet",
+        "content_type": "fact_sheet",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "April 23, 2024",
+        "path": {
+          "alias": "#wealth-gaps-among-older-adults-a-data-snapshot"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-6",
+      "attributes": {
+        "drupal_internal__nid": 1005,
+        "title": "Community Voices in Transportation Planning",
+        "eyebrow": "Event",
+        "content_type": "event",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "April 8, 2024",
+        "path": {
+          "alias": "#community-voices-in-transportation-planning"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-7",
+      "attributes": {
+        "drupal_internal__nid": 1006,
+        "title": "Tracking Emergency Rental Assistance Outcomes",
+        "eyebrow": "Data Tool",
+        "content_type": "data_tool",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "March 28, 2024",
+        "path": {
+          "alias": "#tracking-emergency-rental-assistance-outcomes"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-8",
+      "attributes": {
+        "drupal_internal__nid": 1007,
+        "title": "How Credit Scores Shape Access to Homeownership",
+        "eyebrow": "Brief",
+        "content_type": "brief",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "March 10, 2024",
+        "path": {
+          "alias": "#how-credit-scores-shape-access-to-homeownership"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-9",
+      "attributes": {
+        "drupal_internal__nid": 1008,
+        "title": "Lessons From a Guaranteed Income Pilot",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771,
+          5790
+        ],
+        "field_display_date": "February 25, 2024",
+        "path": {
+          "alias": "#lessons-from-a-guaranteed-income-pilot"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-10",
+      "attributes": {
+        "drupal_internal__nid": 1009,
+        "title": "Why Broadband Access Is a Workforce Issue",
+        "eyebrow": "Blog Post",
+        "content_type": "blog_post",
+        "field_research_areas": [
+          5771,
+          5790
+        ],
+        "field_display_date": "February 15, 2024",
+        "path": {
+          "alias": "#why-broadband-access-is-a-workforce-issue"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-11",
+      "attributes": {
+        "drupal_internal__nid": 1010,
+        "title": "Understanding Child Care Deserts",
+        "eyebrow": "Fact Sheet",
+        "content_type": "fact_sheet",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "January 29, 2024",
+        "path": {
+          "alias": "#understanding-child-care-deserts"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-12",
+      "attributes": {
+        "drupal_internal__nid": 1011,
+        "title": "Designing Equitable Public Health Outreach",
+        "eyebrow": "Brief",
+        "content_type": "brief",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "January 16, 2024",
+        "path": {
+          "alias": "#designing-equitable-public-health-outreach"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-13",
+      "attributes": {
+        "drupal_internal__nid": 1012,
+        "title": "Small Business Lending in Underserved Neighborhoods",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "January 7, 2024",
+        "path": {
+          "alias": "#small-business-lending-in-underserved-neighborhoods"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-14",
+      "attributes": {
+        "drupal_internal__nid": 1013,
+        "title": "A Conversation on Place-Based Investment",
+        "eyebrow": "Event",
+        "content_type": "event",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "December 22, 2023",
+        "path": {
+          "alias": "#a-conversation-on-place-based-investment"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-15",
+      "attributes": {
+        "drupal_internal__nid": 1014,
+        "title": "County-Level Debt in Collections Explorer",
+        "eyebrow": "Data Tool",
+        "content_type": "data_tool",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "December 10, 2023",
+        "path": {
+          "alias": "#county-level-debt-in-collections-explorer"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-16",
+      "attributes": {
+        "drupal_internal__nid": 1015,
+        "title": "Measuring the Reach of Summer Youth Employment Programs",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771,
+          5790
+        ],
+        "field_display_date": "November 21, 2023",
+        "path": {
+          "alias": "#measuring-the-reach-of-summer-youth-employment-programs"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-17",
+      "attributes": {
+        "drupal_internal__nid": 1016,
+        "title": "What We Learned From Listening Sessions With Tenants",
+        "eyebrow": "Blog Post",
+        "content_type": "blog_post",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "November 6, 2023",
+        "path": {
+          "alias": "#what-we-learned-from-listening-sessions-with-tenants"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-18",
+      "attributes": {
+        "drupal_internal__nid": 1017,
+        "title": "School Funding Formulas and Student Need",
+        "eyebrow": "Brief",
+        "content_type": "brief",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "October 26, 2023",
+        "path": {
+          "alias": "#school-funding-formulas-and-student-need"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-19",
+      "attributes": {
+        "drupal_internal__nid": 1018,
+        "title": "Health Insurance Coverage Trends, 2019 to 2023",
+        "eyebrow": "Fact Sheet",
+        "content_type": "fact_sheet",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "October 8, 2023",
+        "path": {
+          "alias": "#health-insurance-coverage-trends-2019-to-2023"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-20",
+      "attributes": {
+        "drupal_internal__nid": 1019,
+        "title": "Reentry Housing Options After Incarceration",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "September 24, 2023",
+        "path": {
+          "alias": "#reentry-housing-options-after-incarceration"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-21",
+      "attributes": {
+        "drupal_internal__nid": 1020,
+        "title": "Land Use Reform and Housing Supply",
+        "eyebrow": "Brief",
+        "content_type": "brief",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "September 14, 2023",
+        "path": {
+          "alias": "#land-use-reform-and-housing-supply"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-22",
+      "attributes": {
+        "drupal_internal__nid": 1021,
+        "title": "Four Ways Cities Are Using Participatory Budgeting",
+        "eyebrow": "Blog Post",
+        "content_type": "blog_post",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "August 28, 2023",
+        "path": {
+          "alias": "#four-ways-cities-are-using-participatory-budgeting"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-23",
+      "attributes": {
+        "drupal_internal__nid": 1022,
+        "title": "Neighborhood Change Indicators Dashboard",
+        "eyebrow": "Data Tool",
+        "content_type": "data_tool",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "August 15, 2023",
+        "path": {
+          "alias": "#neighborhood-change-indicators-dashboard"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-24",
+      "attributes": {
+        "drupal_internal__nid": 1023,
+        "title": "Food Insecurity Among College Students",
+        "eyebrow": "Fact Sheet",
+        "content_type": "fact_sheet",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "August 6, 2023",
+        "path": {
+          "alias": "#food-insecurity-among-college-students"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-25",
+      "attributes": {
+        "drupal_internal__nid": 1024,
+        "title": "Webinar: Using Administrative Data Responsibly",
+        "eyebrow": "Event",
+        "content_type": "event",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "July 21, 2023",
+        "path": {
+          "alias": "#webinar-using-administrative-data-responsibly"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-26",
+      "attributes": {
+        "drupal_internal__nid": 1025,
+        "title": "Retirement Savings Gaps by Race and Ethnicity",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "July 9, 2023",
+        "path": {
+          "alias": "#retirement-savings-gaps-by-race-and-ethnicity"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-27",
+      "attributes": {
+        "drupal_internal__nid": 1026,
+        "title": "How Transit Access Affects Job Search",
+        "eyebrow": "Blog Post",
+        "content_type": "blog_post",
+        "field_research_areas": [
+          5771,
+          5790
+        ],
+        "field_display_date": "June 20, 2023",
+        "path": {
+          "alias": "#how-transit-access-affects-job-search"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-28",
+      "attributes": {
+        "drupal_internal__nid": 1027,
+        "title": "Evaluating a Community Health Worker Program",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "June 5, 2023",
+        "path": {
+          "alias": "#evaluating-a-community-health-worker-program"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-29",
+      "attributes": {
+        "drupal_internal__nid": 1028,
+        "title": "Medical Debt and Household Financial Health",
+        "eyebrow": "Brief",
+        "content_type": "brief",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "May 25, 2023",
+        "path": {
+          "alias": "#medical-debt-and-household-financial-health"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-30",
+      "attributes": {
+        "drupal_internal__nid": 1029,
+        "title": "The State of Affordable Housing Preservation",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "May 7, 2023",
+        "path": {
+          "alias": "#the-state-of-affordable-housing-preservation"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-31",
+      "attributes": {
+        "drupal_internal__nid": 1030,
+        "title": "Apprenticeship Growth in Nontraditional Sectors",
+        "eyebrow": "Fact Sheet",
+        "content_type": "fact_sheet",
+        "field_research_areas": [
+          5771,
+          5790
+        ],
+        "field_display_date": "April 23, 2023",
+        "path": {
+          "alias": "#apprenticeship-growth-in-nontraditional-sectors"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-32",
+      "attributes": {
+        "drupal_internal__nid": 1031,
+        "title": "Local Climate Resilience Spending Tracker",
+        "eyebrow": "Data Tool",
+        "content_type": "data_tool",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "April 13, 2023",
+        "path": {
+          "alias": "#local-climate-resilience-spending-tracker"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-33",
+      "attributes": {
+        "drupal_internal__nid": 1032,
+        "title": "Why Data Disaggregation Matters for Policy",
+        "eyebrow": "Blog Post",
+        "content_type": "blog_post",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "March 27, 2023",
+        "path": {
+          "alias": "#why-data-disaggregation-matters-for-policy"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-34",
+      "attributes": {
+        "drupal_internal__nid": 1033,
+        "title": "Building Trust in Community-Engaged Research",
+        "eyebrow": "Brief",
+        "content_type": "brief",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "March 14, 2023",
+        "path": {
+          "alias": "#building-trust-in-community-engaged-research"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-35",
+      "attributes": {
+        "drupal_internal__nid": 1034,
+        "title": "Panel: The Future of Fair Housing Enforcement",
+        "eyebrow": "Event",
+        "content_type": "event",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "March 5, 2023",
+        "path": {
+          "alias": "#panel-the-future-of-fair-housing-enforcement"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-36",
+      "attributes": {
+        "drupal_internal__nid": 1035,
+        "title": "Wage Growth for Frontline Workers",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771,
+          5790
+        ],
+        "field_display_date": "February 17, 2023",
+        "path": {
+          "alias": "#wage-growth-for-frontline-workers"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-37",
+      "attributes": {
+        "drupal_internal__nid": 1036,
+        "title": "Understanding Homeownership Rates Among Young Adults",
+        "eyebrow": "Fact Sheet",
+        "content_type": "fact_sheet",
+        "field_research_areas": [
+          5771,
+          5780
+        ],
+        "field_display_date": "February 5, 2023",
+        "path": {
+          "alias": "#understanding-homeownership-rates-among-young-adults"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-38",
+      "attributes": {
+        "drupal_internal__nid": 1037,
+        "title": "Three Takeaways From New Poverty Estimates",
+        "eyebrow": "Blog Post",
+        "content_type": "blog_post",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "January 17, 2023",
+        "path": {
+          "alias": "#three-takeaways-from-new-poverty-estimates"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-39",
+      "attributes": {
+        "drupal_internal__nid": 1038,
+        "title": "Pathways Into Public Sector Jobs",
+        "eyebrow": "Brief",
+        "content_type": "brief",
+        "field_research_areas": [
+          5771,
+          5790
+        ],
+        "field_display_date": "January 2, 2023",
+        "path": {
+          "alias": "#pathways-into-public-sector-jobs"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-40",
+      "attributes": {
+        "drupal_internal__nid": 1039,
+        "title": "Rural Hospital Closures and Access to Care",
+        "eyebrow": "Research Report",
+        "content_type": "research_report",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "December 22, 2022",
+        "path": {
+          "alias": "#rural-hospital-closures-and-access-to-care"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-41",
+      "attributes": {
+        "drupal_internal__nid": 1040,
+        "title": "What Happens When Pandemic Supports End",
+        "eyebrow": "Blog Post",
+        "content_type": "blog_post",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "December 4, 2022",
+        "path": {
+          "alias": "#what-happens-when-pandemic-supports-end"
+        }
+      }
+    },
+    {
+      "type": "index--latest_work",
+      "id": "sample-42",
+      "attributes": {
+        "drupal_internal__nid": 1041,
+        "title": "Federal Spending on Children Explorer",
+        "eyebrow": "Data Tool",
+        "content_type": "data_tool",
+        "field_research_areas": [
+          5771
+        ],
+        "field_display_date": "November 20, 2022",
+        "path": {
+          "alias": "#federal-spending-on-children-explorer"
+        }
+      }
+    }
+  ]
+}

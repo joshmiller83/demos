@@ -1,0 +1,188 @@
+/**
+ * Global Typographical Styles
+ */
+@layer components {
+  .ligatures-none {
+    font-variant-ligatures: none;
+  }
+  .base {
+    @apply text-base font-sans font-normal leading-normal normal-case text-black;
+  }
+
+  .base-bold {
+    @apply text-base font-sans font-normal leading-normal normal-case text-black font-bold;
+  }
+
+  .caption {
+    @apply text-sm font-sans font-normal leading-normal normal-case italic text-gray-900;
+  }
+
+  .date {
+    @apply text-sm font-sans font-normal leading-normal normal-case text-gray-800;
+  }
+
+  .display {
+    @apply text-4xl font-sans font-bold leading-tight normal-case text-black;
+  }
+
+  .link {
+    @apply inline-flex text-xl leading-snug font-sans normal-case no-underline text-primary-a-500 font-bold;
+  }
+
+  a.link:hover {
+    text-decoration: underline 1.25px;
+    text-underline-offset: 0.125em;
+  }
+
+  .eyebrow {
+    @apply text-sm font-sans font-normal leading-normal uppercase;
+  }
+
+  .eyebrow-with-background {
+    @apply text-sm bg-primary-b-500 text-white font-serif-alt font-normal leading-normal uppercase inline-block px-1.5;
+  }
+
+  .paragraph-small {
+    @apply text-lg font-sans font-normal leading-normal normal-case;
+  }
+
+  .paragraph-big {
+    @apply text-2xl font-sans-alt font-normal leading-normal normal-case ligatures-none;
+  }
+
+  .paragraph-section {
+    @apply text-lg italic text-neutral-800;
+  }
+
+  .paragraph {
+    @apply text-lg font-sans font-normal leading-normal normal-case text-gray-900;
+  }
+
+  .small {
+    @apply text-sm font-sans font-normal leading-normal normal-case text-black;
+  }
+
+  .small-bold {
+    @apply text-sm font-sans leading-normal font-bold;
+  }
+
+  .small-italic {
+    @apply text-sm font-sans leading-normal italic;
+  }
+
+  .medium {
+    @apply text-base font-sans font-semibold leading-normal text-white tracking-widest;
+  }
+
+  .hero-text {
+    @apply text-5xl font-sans font-light leading-tight normal-case text-gray-900;
+  }
+
+  .universal {
+    @apply font-sans-alt text-lg font-semibold leading-6 ligatures-none;
+  }
+
+  .heading-block {
+    @apply text-4xl font-sans font-bold;
+  }
+
+  /* Headings 1 - 6 Default */
+  .heading-1,
+  h1 {
+    @apply text-4xl font-sans-alt font-bold normal-case ligatures-none;
+    line-height: 44px;
+  }
+
+  .heading-2,
+  h2 {
+    @apply text-3.5xl font-sans-alt font-bold normal-case leading-10 ligatures-none;
+  }
+
+  .heading-3,
+  h3 {
+    @apply text-2.5xl font-sans-alt font-bold normal-case leading-9 ligatures-none;
+  }
+
+  .heading-3-alt,
+  h3 {
+    @apply text-2.5xl font-sans-alt font-light normal-case leading-9 ligatures-none;
+  }
+
+  .heading-4,
+  h4 {
+    @apply text-2xl font-sans-alt font-bold leading-8 ligatures-none;
+  }
+
+  .heading-5,
+  h5 {
+    @apply text-xl font-sans-alt font-bold leading-7 ligatures-none;
+  }
+
+  .heading-6,
+  h6 {
+    @apply text-lg font-sans-alt font-bold leading-6 ligatures-none;
+  }
+
+  .side-heading {
+    @apply text-xl font-sans-alt font-medium leading-none uppercase ligatures-none;
+  }
+
+  .app-header-link {
+    @apply text-2xl font-sans font-extralight leading-none;
+  }
+
+  /* Components Media Queries */
+  @screen md {
+    .paragraph-big {
+      @apply text-4xl;
+    }
+
+    .paragraph-hero-text {
+      @apply text-3xl;
+    }
+
+    .paragraph {
+      @apply text-xl leading-relaxed;
+    }
+    .display {
+      @apply text-6xl leading-tight;
+    }
+    .heading-block {
+      @apply text-4.5xl;
+    }
+    .heading-1,
+    h1 {
+      @apply text-5.75xl;
+    }
+    .heading-2,
+    h2 {
+      @apply text-4.5xl;
+    }
+    .heading-3,
+    h3 {
+      @apply text-4xl leading-11;
+    }
+    .heading-3-alt,
+    h3 {
+      @apply text-4xl leading-11;
+    }
+    .heading-4,
+    h4 {
+      @apply text-2.5xl;
+    }
+    .heading-5,
+    h5 {
+      @apply text-2xl leading-8;
+    }
+    .heading-6,
+    h6 {
+      @apply text-xl;
+    }
+    .side-heading {
+      @apply text-3xl leading-none;
+    }
+    .app-header-link {
+      @apply text-3xl leading-snug;
+    }
+  }
+}

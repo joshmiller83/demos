@@ -1,0 +1,396 @@
+/**
+ * @file
+ * CSS for Links.
+ *
+ * This file adds link styling via Tailwind @apply directives.
+ */
+
+/*TODO: replace with global import*/
+@tailwind base;
+@import './../../global/_typography.css';
+
+:host {
+  @apply inline-flex relative;
+}
+
+:host([variant='sub-nav-secondary']) {
+  @apply w-full;
+}
+
+:host([dropdown='static']) {
+  @apply block;
+}
+
+[disabled] {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.active {
+  .menu-link-arrow {
+    * {
+      @apply transform -rotate-90;
+    }
+  }
+}
+
+/*
+ * Primary Link Styles
+ *
+ */
+
+a[external-link] {
+  .link__icon {
+    @apply ml-0;
+  }
+}
+
+a:hover {
+  text-decoration: underline 1.25px;
+  text-underline-offset: 0.125em;
+}
+
+a.link:hover {
+  text-decoration: underline 1.25px;
+  text-underline-offset: 0.125em;
+}
+
+a.arrow {
+  @apply text-base transition-all duration-200 font-bold;
+
+  &:hover {
+    @apply relative no-underline text-primary-a-500;
+    transform: translateX(8px);
+  }
+
+  & lbj-icon {
+    @apply mx-0 mr-2 text-primary-a-500;
+  }
+}
+
+.link__icon {
+  @apply mx-2 mt-px w-3;
+}
+
+/*
+ * Content Link - Resets to Paragraph Text Style
+ *
+ */
+
+.content {
+  @apply text-lg font-sans font-normal leading-normal normal-case;
+}
+
+.content:hover {
+  text-decoration: underline 1.25px;
+  text-underline-offset: 0.125em;
+}
+
+/*
+ * Navigation Link Styles
+ *
+ */
+
+[class*='nav-primary-'] {
+  @apply inline-flex text-xl font-sans-alt font-medium leading-none uppercase;
+  font-variant-ligatures: none;
+}
+
+.nav-primary-light {
+  @apply text-white flex items-center;
+}
+
+.nav-primary-dark {
+  @apply text-black leading-6;
+  /* Design System Override */
+  padding-bottom: 2px;
+}
+
+.nav-primary-dark:hover {
+  @apply no-underline text-primary-a-500 shadow-border-primary-a;
+}
+
+.nav-primary-bumblebee {
+  @apply text-black shadow-border-yellow pb-2;
+}
+
+.nav-primary-bumblebee:hover {
+  @apply no-underline;
+}
+
+[class*='nav-secondary-'] {
+  @apply inline-flex text-lg font-sans font-bold normal-case no-underline cursor-pointer;
+  /* Design System Override */
+  padding-bottom: 2px;
+}
+
+.nav-secondary-dark,
+.nav-secondary-dual-color {
+  @apply leading-loose;
+}
+
+.nav-secondary-dual-color:hover,
+.nav-secondary-dark:hover {
+  @apply no-underline text-primary-a-500 shadow-border-primary-a;
+}
+
+.nav-secondary-bumblebee:hover,
+.nav-secondary-bumblebee--active {
+  @apply no-underline shadow-border-yellow pb-2;
+}
+
+/*
+ * Footer Nav Link Styles
+ *
+*/
+.nav-footer {
+  @apply font-sans text-sm font-bold leading-normal text-white;
+  color: var(--text-color, var(--white));
+}
+
+.nav-footer--alt {
+  @apply font-sans text-sm font-bold leading-normal text-primary-c mb-5;
+}
+
+.nav-footer--modern {
+  @apply base text-white;
+}
+
+.nav-footer--modern-small {
+  @apply font-sans text-sm font-light leading-normal text-white;
+}
+
+.nav-footer--alt-normal {
+  @apply font-normal;
+}
+
+.nav-footer--small {
+  @apply font-sans text-sm text-primary-c font-medium;
+}
+
+.nav-footer:hover,
+.nav-footer--alt:hover {
+  text-decoration: underline 1.25px;
+  text-underline-offset: 0.125em;
+}
+
+/*
+ * Hero Link Styles
+ *
+*/
+.hero {
+  @apply font-sans text-xl font-bold leading-normal text-white;
+}
+/*
+* Sub Nav
+*/
+.sub-nav {
+  @apply font-sans text-lg font-bold leading-loose text-gray-800;
+}
+
+.sub-nav-secondary {
+  @apply font-sans text-lg font-bold w-full transition-all duration-200 py-4;
+
+  &:hover {
+    @apply text-primary-a-500 no-underline;
+  }
+}
+
+/*
+ * Pagination Link Styles
+ *
+ */
+
+.pagination {
+  @apply inline-block text-gray-800 text-lg;
+}
+
+.pagination--active {
+  @apply text-primary-a-500;
+}
+
+.pagination--inactive {
+  @apply text-gray-500;
+}
+
+/*
+ * Tag Link Styles
+ *
+ */
+
+.tag {
+  @apply inline-flex py-1 px-2 border border-gray-500 rounded-lg text-sm;
+}
+
+/*
+ * Tag Large Link Styles
+ *
+ */
+.tag-large {
+  @apply inline-flex py-1 px-2 border border-gray-500 rounded-lg text-sm font-bold;
+}
+
+@screen md {
+  .tag-large {
+    @apply text-base py-2 px-4;
+  }
+}
+
+/*
+ * Source Heading Link Styles
+ *
+ */
+.source-heading-link {
+  @apply inline-flex py-1 px-3 border border-gray-500 rounded-lg text-sm font-bold;
+
+  &:hover {
+    @apply bg-primary-a-500 text-white no-underline;
+  }
+}
+
+/*
+ * Task Link Styles
+ *
+ */
+
+.task {
+  @apply inline-block border py-1 px-3;
+}
+
+.task--active {
+  @apply border-primary-a-500 bg-primary-a-500 text-white;
+}
+
+.task--inactive {
+  @apply border-white text-primary-a-500;
+}
+
+.task--inactive:hover {
+  @apply border-gray-200 bg-gray-200;
+}
+
+/* This class is used on color-block  */
+.side-heading-link {
+  @apply text-2xl font-sans-alt font-medium leading-7 uppercase;
+  font-variant-ligatures: none;
+}
+@screen lg {
+  .side-heading-link {
+    @apply text-3xl leading-9;
+  }
+}
+
+/* link uses in breadcrumbs */
+a.eyebrow {
+  @apply text-gray-800;
+}
+
+:host(.mobile-menu-home-link) {
+  a {
+    @apply text-sm gap-1;
+  }
+}
+
+:host(.legal-link) {
+  a {
+    @apply text-base;
+    text-decoration: underline 1.25px;
+    text-underline-offset: 6px;
+
+    &:hover {
+      @apply no-underline;
+    }
+  }
+}
+
+.dropdown__arrow {
+  @apply transform rotate-90 w-2;
+}
+
+a:has(.dropdown__arrow) {
+  @apply flex items-center gap-1;
+}
+
+.link-dropdown {
+  min-width: 200px;
+
+  &.floating {
+    @apply absolute z-10 transition-all duration-100;
+    top: calc(100% + 8px);
+
+    &[aria-hidden] {
+      @apply opacity-0 pointer-events-none invisible;
+    }
+  }
+
+  &.static {
+    &[aria-hidden] {
+      @apply hidden;
+    }
+  }
+}
+
+.menu-link-arrow {
+  * {
+    @apply transition-transform duration-200;
+  }
+}
+
+.small-primary {
+  @apply text-sm text-primary-a-700;
+}
+
+.nav-utility-primary,
+.nav-utility-primary-small {
+  @apply text-sm font-sans font-normal leading-normal normal-case text-primary-b-800;
+
+  &.active {
+    @apply text-primary-a-700;
+  }
+}
+
+.nav-utility-secondary {
+  @apply text-sm uppercase font-bold;
+  letter-spacing: 1.5px;
+
+  &.active {
+    @apply text-primary-a-700;
+  }
+}
+
+.nav-secondary-dual-color {
+  @apply transition-all duration-200 text-xl font-sans-alt font-bold leading-6 relative shadow-none;
+  font-variant-ligatures: none;
+
+  &::before {
+    @apply absolute left-0 w-0 h-1 bg-secondary-b-500 transition-all duration-300;
+    bottom: -10px;
+    height: 6px;
+    content: '';
+  }
+
+  &.active,
+  &:hover {
+    @apply text-primary-a-500 shadow-none;
+
+    &::before {
+      @apply w-full;
+    }
+    /* box-shadow: 0 0.25rem 0 0 var(--secondary-b-500); */
+  }
+}
+
+.nav-secondary-dual-color--active-menu {
+  @apply text-primary-a-500 shadow-none;
+
+  &::before {
+    @apply absolute left-0 w-0 h-1 bg-secondary-b-500 transition-all duration-300;
+    bottom: -10px;
+    height: 6px;
+    content: '';
+  }
+
+  &::before {
+    @apply w-full;
+  }
+  /* box-shadow: 0 0.25rem 0 0 var(--secondary-b-500); */
+}

@@ -1,0 +1,193 @@
+@tailwind base;
+
+@import '../../global/_button.css';
+
+:host {
+  @apply inline-flex;
+}
+
+:host([full-width]) {
+  @apply w-full;
+
+  button,
+  a {
+    @apply w-full;
+  }
+}
+
+/* 
+  IMPORTANT: The font size for buttons needs to be updated to 20px specifically for the "urban" variant 
+  as part of the elevate update. This change should not impact the global button styles or the button 
+  styles of other theme variants. Ensure that this update is scoped correctly to avoid unintended 
+  style overrides in other contexts.
+*/
+button[mode='urban'],
+a[mode='urban'] {
+  @apply text-xl;
+  line-height: normal;
+}
+
+button {
+  @apply gap-2;
+}
+
+.button__text {
+  @apply mx-auto;
+}
+
+.button__icon__left {
+  @apply mr-2 mt-px h-4 w-4 self-center;
+}
+
+.button__icon {
+  @apply ml-2 mt-px h-4 w-4 self-center;
+}
+
+.icon--size.icon--size--md .button__icon,
+.icon--size.icon--size--md .button__icon__left,
+.icon--size.icon--size--lg .button__icon,
+.icon--size.icon--size--lg .button__icon__left,
+.icon--size.icon--size--xl .button__icon,
+.icon--size.icon--size--xl .button__icon__left,
+.icon--size.icon--size--xxl .button__icon,
+.icon--size.icon--size--xxl .button__icon__left {
+  @apply self-auto;
+}
+.icon--size.icon--size--lg .button__icon,
+.icon--size.icon--size--lg .button__icon__left,
+.icon--size.icon--size--xl .button__icon,
+.icon--size.icon--size--xl .button__icon__left,
+.icon--size.icon--size--xxl .button__icon,
+.icon--size.icon--size--xxl .button__icon__left {
+  @apply -mt-0.7;
+}
+
+.icon--size.icon-right .button__icon {
+  @apply ml-2;
+}
+.icon--size.icon-right.icon--size--md .button__icon {
+  @apply ml-2 mr-2;
+}
+.icon--size.icon-right.icon--size--lg .button__icon,
+.icon--size.icon-right.icon--size--xl .button__icon,
+.icon--size.icon-right.icon--size--xxl .button__icon {
+  @apply ml-3 mr-4;
+}
+
+.icon--size.icon--size--md .button__icon__left {
+  @apply mr-5;
+}
+.icon--size.icon-left.icon--size--lg .button__icon__left {
+  @apply mr-7;
+}
+.icon--size.icon-left.icon--size--xl .button__icon__left {
+  @apply mr-9;
+}
+.icon--size.icon-left.icon--size--xxl .button__icon__left {
+  @apply mr-14;
+}
+
+.button--xl {
+  @apply py-5 px-6;
+}
+
+:host([size='xl']),
+.button--xl {
+  @apply w-full;
+}
+
+.icon-only .button__icon__left,
+.icon-only .button__icon {
+  @apply mr-0 ml-0;
+}
+
+.button--nav-link {
+  @apply p-0 py-6 normal-case text-base transition-all duration-200 ease-in-out relative cursor-pointer font-sans-alt;
+
+  &::after {
+    @apply absolute w-full h-0 bg-primary-a-500 bottom-0 left-0 transition-all duration-200 ease-in-out;
+    content: '';
+  }
+
+  &[aria-expanded],
+  &:hover {
+    @apply text-primary-a-500;
+
+    &::after {
+      @apply h-1;
+    }
+  }
+
+  &[aria-expanded] {
+    & lbj-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  lbj-icon {
+    @apply relative transition-transform duration-200 ease-in-out;
+  }
+
+  lbj-icon {
+    height: fit-content !important;
+    width: fit-content !important;
+  }
+}
+
+.button--mobile-nav-link {
+  @apply p-0 pb-4 normal-case text-xl font-sans-alt transition-all duration-300 ease-in-out cursor-pointer w-full relative flex justify-between;
+
+  &::after {
+    @apply absolute left-0 w-0 h-1 bg-primary-a-500 transition-all duration-300 ease-in-out;
+    bottom: -4px;
+    content: '';
+  }
+
+  &[aria-expanded],
+  &:hover {
+    &::after {
+      @apply w-full;
+    }
+  }
+
+  .button__text {
+    @apply m-0;
+  }
+
+  lbj-icon {
+    color: #696969;
+  }
+}
+
+:host(.cta-btn),
+:host(.utility-link-button) {
+  .button {
+    width: 100%;
+  }
+}
+
+:host(.sticky-header-button) {
+  .button {
+    @apply text-sm;
+  }
+}
+
+:host(.alt-dark) {
+  .button {
+    @apply bg-primary-a-700;
+
+    &:hover {
+      @apply bg-primary-a-800;
+    }
+  }
+}
+
+:host([is-breakout='true']),
+.button-breakout {
+  @apply w-full;
+}
+
+a[title-case],
+button[title-case] {
+  text-transform: capitalize;
+}

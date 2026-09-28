@@ -1,0 +1,74 @@
+@import 'global.css';
+
+:root {
+  --transparent: transparent;
+  --current-color: currentColor;
+
+  --primary-a-100: #cfe8f3;
+  --primary-a-200: #a2d4ec;
+  --primary-a-300: #73bfe2;
+  --primary-a-500: #1696d2;
+  --primary-a-700: #12719e;
+  --primary-a-800: #0a4c6a;
+  --primary-a-900: #062635;
+
+  --primary-b-100: #f5f5f5;
+  --primary-b-200: #ececec;
+  --primary-b-300: #e3e3e3;
+  --primary-b-400: #dcdbdb;
+  --primary-b-500: #d2d2d2;
+  --primary-b-600: #adabac;
+  --primary-b-700: #9d9d9d;
+  --primary-b-800: #696969;
+  --primary-b-900: #353535;
+
+  --primary-c: #000;
+
+  --primary-d: #fff;
+
+  --secondary-a-500: #ee008b;
+
+  --secondary-b-50: #fffaec;
+  --secondary-b-100: #feedd2;
+  --secondary-b-200: #fff2cf;
+  --secondary-b-300: #f6e05e;
+  --secondary-b-500: #fdbf11;
+
+  --tertiary-a-500: #55b748;
+  --tertiary-a-700: #2f855a;
+
+  --tertiary-b-500: #5d80a3;
+
+  --neutral-100: #f5f5f5;
+  --neutral-200: #ececec;
+  --neutral-300: #e3e3e3;
+  --neutral-400: #dcdbdb;
+  --neutral-500: #d2d2d2;
+  --neutral-600: #adabac;
+  --neutral-700: #9d9d9d;
+  --neutral-800: #696969;
+  --neutral-900: #353535;
+
+  --gradient-100: #cfe8f300;
+  --gradient-200: #cfe8f333;
+  --gradient-300: #bedce9;
+
+  --status-fail-500: #c53030;
+
+  --black: #000;
+  --white: #fff;
+
+  --white-gradient-100: #ffffff00;
+  --white-gradient-200: #ffffff66;
+  --white-gradient-300: #ffffffe6;
+
+  --pink-100: #fff5f7;
+  --pink-200: #fed7e2;
+  --pink-300: #fbb6ce;
+  --pink-400: #f687b3;
+  --pink-500: #ed64a6;
+  --pink-600: #d53f8c;
+  --pink-700: #b83280;
+  --pink-800: #97266d;
+  --pink-900: #702459;
+}

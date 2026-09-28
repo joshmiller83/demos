@@ -1,0 +1,170 @@
+/**
+ * Global Button Styles
+ */
+@layer components {
+  .button {
+    @apply inline-flex text-center whitespace-no-wrap align-middle font-sans text-lg leading-tight font-bold uppercase no-underline justify-center transition-all duration-100 items-center;
+  }
+
+  .button--sm {
+    @apply py-2 px-3;
+  }
+
+  .button--md {
+    @apply py-3 px-4;
+  }
+
+  .button--lg {
+    @apply py-4 px-6;
+  }
+
+  .button--primary {
+    @apply bg-primary-a-500 text-white;
+  }
+
+  .button--primary:hover {
+    @apply bg-primary-a-700;
+  }
+
+  .button--primary-dark {
+    @apply bg-black text-white border-black;
+
+    &.elevate {
+      &:hover {
+        background-color: var(--donate-btn-hover-color, #12719e);
+        color: white;
+        border-color: transparent;
+      }
+    }
+  }
+
+  .button--primary-dark:hover {
+    @apply border-black bg-transparent text-black;
+  }
+
+  .button--secondary,
+  .button--secondary-transparent,
+  .button--secondary-no-border {
+    @apply bg-white text-primary-a-500 border border-primary-a-500;
+  }
+
+  .button--secondary:hover,
+  .button--secondary-transparent:hover {
+    @apply bg-primary-a-500 text-white;
+  }
+
+  .button--secondary-dark {
+    @apply border-black bg-transparent text-black border;
+  }
+
+  .button--secondary-dark:hover {
+    @apply bg-black text-white;
+  }
+  .button--secondary-no-border {
+    @apply border-none;
+  }
+
+  .button--secondary-transparent,
+  .button--secondary-no-border {
+    @apply bg-transparent;
+  }
+
+  .button--tertiary {
+    @apply bg-secondary-b-500 text-black;
+  }
+
+  .button--tertiary:hover {
+    @apply bg-black text-white;
+  }
+
+  .button--white,
+  .button--white-dark {
+    @apply bg-transparent text-white border border-white;
+  }
+
+  .button--white:hover {
+    @apply bg-primary-a-500 text-white;
+  }
+
+  .button--white-dark:hover {
+    @apply border-black bg-transparent text-black border;
+  }
+
+  .button--primary-blue-mid {
+    @apply bg-primary-a-700 text-white;
+
+    &:hover {
+      @apply bg-primary-a-800;
+    }
+  }
+
+  .button--primary-blue-dark {
+    @apply bg-primary-a-800 text-white;
+
+    &:hover {
+      @apply bg-primary-a-900;
+    }
+  }
+}
+
+.button {
+  &.elevate {
+    &:hover {
+      background-color: var(--donate-btn-hover-color, #12719e);
+      color: white;
+      border-color: transparent;
+    }
+  }
+
+  &.button--normal-case {
+    @apply normal-case;
+  }
+
+  &.button--lower-case {
+    @apply lowercase;
+  }
+
+  &.button--capital-case {
+    @apply capitalize;
+  }
+
+  .button--normal-case {
+    @apply normal-case;
+  }
+
+  .button--lower-case {
+    @apply lowercase;
+  }
+
+  .button--capital-case {
+    @apply capitalize;
+  }
+}
+
+/* Deprecated variant, use button--primary instead */
+.button--primary-blue {
+  @apply bg-blue-500 text-white;
+}
+
+.button--primary-blue:hover {
+  @apply bg-blue-700;
+}
+
+/* Deprecated variant, use button--secondary instead */
+.button--secondary-blue {
+  @apply bg-white text-blue-500 border border-blue-500;
+}
+
+.button--secondary-blue:hover {
+  @apply bg-blue-500 text-white;
+}
+
+.button--disabled {
+  @apply bg-gray-500 text-white pointer-events-none cursor-not-allowed;
+}
+
+.button--secondary-utility-link {
+  @apply font-sans-alt text-sm;
+  letter-spacing: 1.7px;
+  font-variant-ligatures: none;
+}

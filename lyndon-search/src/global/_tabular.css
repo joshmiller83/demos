@@ -1,0 +1,25 @@
+/**
+ * Global Table styles.
+ */
+@layer base {
+  table {
+    @apply table-auto border-collapse text-sm;
+  }
+
+  thead {
+    @apply border-b border-black;
+  }
+
+  th {
+    @apply text-right pb-3 pt-2 px-3 font-bold align-bottom;
+  }
+
+  td {
+    @apply text-right py-3 px-3 border-b border-gray-500 font-normal;
+  }
+
+  th:first-child,
+  td:first-child {
+    @apply text-left;
+  }
+}

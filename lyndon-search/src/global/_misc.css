@@ -1,0 +1,25 @@
+/**
+ * Global Misc Component Styles
+ */
+@layer components {
+  /* Disabled class styles */
+  .disabled {
+    @apply bg-gray-600 text-white border-none opacity-50 cursor-not-allowed no-underline;
+  }
+
+  /* Increase specificity for disabled property */
+  .disabled[disabled] {
+    @apply disabled;
+  }
+
+  /* Consistent Block Spacing for All Components */
+  .component-wrapper {
+    @apply pb-12;
+  }
+
+  @screen md {
+    .component-wrapper {
+      @apply pb-16;
+    }
+  }
+}

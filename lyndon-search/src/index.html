@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lyndon Search Results</title>
+    <meta
+      name="description"
+      content="lbj-simple-search, a Stencil web component for faceted, paginated search results, running against a mock Drupal Search API backend."
+    />
+
+    <link rel="stylesheet" href="/lyndon-search/global.css" />
+    <!-- The mock must wrap window.fetch before the component loads. -->
+    <script src="/lyndon-search/demo/mock-jsonapi.js"></script>
+    <script type="module" src="/lyndon-search/build/lyndon.esm.js"></script>
+    <script nomodule src="/lyndon-search/build/lyndon.js"></script>
+
+    <style>
+      .demo-frame {
+        border: 1px solid var(--primary-b-400);
+        border-top: 6px solid var(--primary-a-500);
+      }
+      .pipeline li::marker {
+        font-weight: 700;
+        color: var(--primary-a-700);
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <div class="max-w-5xl mx-auto px-4 py-10">
+      <p class="small mb-2"><a href="/">demos.joshnliz.com</a></p>
+      <h1 class="mb-4">Search results component</h1>
+      <p class="paragraph-big">
+        <code>&lt;lbj-simple-search&gt;</code> is a Stencil web component I built for Urban Institute's Lyndon design system. It shows faceted, paginated
+        search results from a Drupal Search API Solr index. Below, the original component runs against a mock of that API.
+      </p>
+
+      <div class="demo-frame px-4 py-6 md:px-8 my-8">
+        <lbj-simple-search
+          headline="Latest Content: Race and equity"
+          solrindex="/jsonapi/index/latest_work"
+          filtercol="field_research_areas"
+          filtercolval="5771"
+          facetcol="content_type"
+          max="6"
+          columns="three"
+        ></lbj-simple-search>
+      </div>
+      <p class="small text-gray-800">
+        The results are sample records created for this demo. They are not real publications, and their links go nowhere.
+      </p>
+
+      <h2 class="mt-12 mb-4">Try it</h2>
+      <ul>
+        <li>Pick a content type from <strong>Filter by Content</strong>. The counts come from the facet metadata.</li>
+        <li>Type a word such as <em>housing</em> or <em>data</em> into the search box and press Enter.</li>
+        <li>Page through the results with <strong>Previous</strong> / <strong>Next</strong>, then use <strong>Reset</strong> to go back to the start.</li>
+      </ul>
+
+      <h2 class="mt-12 mb-4">How it worked in production</h2>
+      <ol class="pipeline">
+        <li>
+          Drupal's Search API indexed content into Solr. The <code>jsonapi_search_api</code> module exposed it as
+          <code>/jsonapi/index/latest_work</code>, and <code>jsonapi_search_api_facets</code> added facet counts in <code>meta.facets</code>.
+        </li>
+        <li>
+          An event subscriber (<code>lyndon_sidekick</code>'s <code>JsonApiOnResponse</code>) altered each response. It added a per-node eyebrow,
+          appended subtitles to titles, and formatted the display date for readers.
+        </li>
+        <li>
+          A Drupal block plugin placed the web component on a page and set its filter column, facet column, and page size from editor
+          configuration.
+        </li>
+        <li>
+          The component builds the JSON:API query from its attributes (<code>filter[…]</code>, <code>filter[fulltext]</code>,
+          <code>page[limit]</code>, <code>page[offset]</code>). It renders results as <code>&lt;lbj-lede&gt;</code> cards and handles faceting, keyword search,
+          and pagination on the client.
+        </li>
+      </ol>
+      <p>
+        In this demo, a small script wraps <code>window.fetch</code> and answers those same JSON:API requests from a static JSON file. That lets the
+        component run unchanged on a static host.
+      </p>
+
+      <h2 class="mt-12 mb-4">Source</h2>
+      <p>
+        Component and mock backend:
+        <a href="https://github.com/joshmiller83/demos/tree/main/lyndon-search">github.com/joshmiller83/demos</a>. More Drupal work from the same
+        project: <a href="https://drupal.joshnliz.com">drupal.joshnliz.com</a>.
+      </p>
+      <p class="small text-gray-800">
+        Lyndon is MIT licensed. Urban's licensed web fonts are not included, so Lato and Jost stand in.
+      </p>
+    </div>
+  </body>
+</html>

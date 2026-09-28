@@ -1,0 +1,95 @@
+/**
+ * Global form styles.
+ */
+@layer base {
+  /* Global form "base" styles. */
+  select {
+    @apply w-full h-10 pl-3 pr-6 block border border-gray-500 border-solid text-base appearance-none text-gray-800;
+  }
+
+  textarea {
+    @apply text-left align-middle w-full py-3 px-4 block border border-gray-500 rounded-none text-base appearance-none text-lg leading-normal;
+  }
+
+  textarea::placeholder {
+    @apply text-gray-800;
+  }
+}
+
+@layer components {
+  /* Global form compoent styles. */
+  .form-select {
+    position: relative;
+  }
+
+  .form-select::after {
+    content: '';
+    background: var(--dropdown-blue);
+    @apply absolute text-blue-500 h-4 w-4 transform -translate-y-2 pointer-events-none right-3 top-5;
+  }
+
+  .input {
+    @apply text-base font-sans font-normal leading-normal normal-case appearance-none bg-white border border-gray-500 rounded-none py-3 px-4;
+  }
+
+  .input--email,
+  .input--number,
+  .input--password,
+  .input--search,
+  .input--tel,
+  .input--text,
+  .input--url {
+    @apply text-gray-800 w-full;
+  }
+
+  .input--checkbox,
+  .input--radio {
+    @apply p-0 align-middle select-none flex-shrink-0 h-4 w-4 text-blue-500;
+    background-origin: border-box;
+    color-adjust: exact;
+  }
+
+  .input--radio {
+    border-radius: 100%;
+  }
+
+  .input--checkbox:focus,
+  .input--radio:focus {
+    box-shadow: 0 0 0 2px rgba(22, 150, 210, 0.5);
+    outline: none;
+  }
+
+  .input--checkbox:checked,
+  .input--checkbox:indeterminate,
+  .input--radio:checked,
+  .input--radio:indeterminate {
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .input--checkbox:checked,
+  .input--checkbox:indeterminate {
+    background-image: var(--check-blue);
+  }
+
+  .input--radio:checked {
+    background-image: var(--radio-blue);
+  }
+
+  .input--color {
+    @apply p-0;
+  }
+
+  .input--image {
+    @apply p-0 border-none;
+  }
+
+  .input--search {
+    background-image: var(--search-black);
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    background-position: right center;
+    background-origin: content-box;
+  }
+}
