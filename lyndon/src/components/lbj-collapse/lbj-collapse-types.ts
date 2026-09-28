@@ -1,0 +1,16 @@
+export type CollapseVariant =
+  | 'default'
+  | 'button'
+  | 'bumblebee'
+  | 'plus'
+  | 'plus-gray'
+  | 'plus-circle'
+  | 'plus-line'
+  | 'link'
+  | 'background'
+  | 'background-alt'
+  | 'chevron'
+  | 'collapsible-link'
+  | 'light-blue'
+  | 'light-yellow'
+  | 'light-gray';

@@ -1,0 +1,534 @@
+/**
+ * @file
+ * CSS for Collapse.
+ *
+ * This file adds link styling via Tailwind @apply directives.
+ */
+
+/*TODO: replace with global import*/
+@tailwind base;
+
+:host {
+  display: block;
+}
+
+:host([modifier='elevate']) {
+  /* @apply mb-4; */
+  border-bottom: 1px solid var(--primary-b-500) !important;
+
+  summary {
+    @apply cursor-pointer py-4 mb-0 text-xl leading-8 font-semibold transition-colors duration-200 relative;
+
+    &::before {
+      @apply absolute left-0 bg-secondary-b-500 w-0 transition-all duration-500;
+      content: '';
+      bottom: -1px;
+      height: 2px;
+    }
+
+    &:hover {
+      @apply text-primary-a-500;
+
+      &::before {
+        @apply w-full;
+      }
+    }
+  }
+}
+
+/**
+ * Default Button Variant--overriding the browser.
+ */
+
+.summary {
+  @apply w-full;
+}
+
+.summary--default {
+  list-style: none;
+}
+
+.details--default .summary--default::-webkit-details-marker {
+  @apply hidden;
+}
+
+.details--default .summary--default::-webkit-details-marker {
+  @apply hidden;
+}
+
+.details--default .summary--default:after {
+  content: var(--dropdown-blue);
+  @apply align-middle text-base leading-normal my-1 ml-2 w-4 h-4 float-right;
+}
+
+.details--default[open] .summary--default:after {
+  content: var(--minus-black);
+}
+
+/**
+ * Button Variant Styles
+ */
+.summary--button {
+  list-style: none;
+  @apply w-auto inline-block bg-blue-500 text-white text-center whitespace-no-wrap align-middle font-sans text-lg font-bold uppercase no-underline py-3 px-4;
+}
+
+/* Chrome does not recognize list-style: none.  */
+.details--button .summary--button::-webkit-details-marker {
+  @apply hidden;
+}
+
+.details--button .summary--button:after {
+  content: var(--chevron-right-white);
+  @apply align-middle text-base leading-normal my-1 ml-2 w-4 h-4 float-right;
+}
+
+.details--button[open] .summary--button:after {
+  transform: rotate(90deg);
+}
+
+/**
+ * Bumblebee Variant Styles
+ */
+.details--bumblebee {
+  @apply flex flex-wrap;
+  flex-direction: column;
+}
+
+.summary--bumblebee {
+  list-style: none;
+  @apply text-xl font-sans-alt font-medium leading-none uppercase border-b border-gray-600 justify-between text-black;
+  font-variant-ligatures: none;
+}
+
+.details--bumblebee slot[name='summary']::slotted(*) {
+  @apply pb-3 shadow-border-yellow inline-block;
+}
+
+/* Chrome does not recognize list-style: none.  */
+.details--bumblebee .summary--bumblebee::-webkit-details-marker {
+  @apply hidden;
+}
+
+.details--bumblebee .summary--bumblebee:after {
+  content: var(--plus-black);
+  @apply align-middle text-base leading-normal my-1 ml-2 w-4 h-4 float-right;
+}
+
+.details--bumblebee[open] .summary--bumblebee:after {
+  content: var(--minus-black);
+}
+
+/* Styles for Plus variant  */
+.summary--plus,
+.summary--plus-line {
+  list-style: none;
+  @apply mb-6;
+}
+
+@screen md {
+  .summary--plus,
+  .summary--plus-line {
+    @apply mb-8;
+  }
+}
+
+.details--plus .summary--plus::-webkit-details-marker,
+.details--plus .summary--plus-line::-webkit-details-marker {
+  @apply hidden;
+}
+
+.details--plus .summary--plus:after,
+.details--plus-line .summary--plus-line:after {
+  content: var(--plus-black);
+  @apply align-middle text-base leading-normal my-1 ml-2 w-4 h-4 float-right;
+}
+
+.details--plus-line[open] .summary--plus-line:after,
+.details--plus-line[open] .summary--plus-line:after,
+.details--plus[open] .summary--plus:after {
+  content: var(--minus-black);
+}
+
+.details--plus-gray {
+  &[open] {
+    .summary--plus-gray:after {
+      content: var(--minus-gray);
+    }
+  }
+
+  .summary--plus-gray {
+    display: block;
+
+    &::-webkit-details-marker {
+      @apply hidden;
+    }
+
+    &::after {
+      content: var(--plus-gray);
+      @apply align-middle text-lg leading-normal my-1 ml-2 float-right;
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+/* Styles for Plus Line variant */
+.summary--plus-line {
+  @apply border-b border-solid border-neutral-500 pb-3 pr-4.5;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+
+.details--plus-line .summary--plus-line:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+/* Styles for Plus Circle variant  */
+.summary--plus-circle {
+  list-style: none;
+  @apply mb-6;
+}
+
+@screen md {
+  .summary--plus-circle {
+    @apply mb-8;
+  }
+}
+
+.details--plus-circle .summary--plus-circle::-webkit-details-marker {
+  @apply hidden;
+}
+
+.details--plus-circle .summary--plus-circle:after {
+  content: var(--plus-circle);
+  @apply align-middle text-base leading-normal mb-1 mr-5 w-6 h-6 float-right;
+  margin-top: -0.7rem;
+}
+
+.details--plus-circle[open] {
+  @apply mb-4;
+}
+
+.details--plus-circle[open] .summary--plus-circle:after {
+  content: var(--minus-circle);
+}
+
+/**
+ * Link Variant Styles
+ */
+.summary--link {
+  @apply inline-block text-blue-500 font-sans text-lg font-bold no-underline;
+}
+
+/* Hide Safari marker */
+.details--link .summary--link::-webkit-details-marker {
+  @apply hidden;
+}
+
+/* Background variant styles */
+.details--background {
+  @apply bg-primary-b-500 border-b-2 border-solid border-tertiary-b-500;
+}
+
+.details--background[open] {
+  @apply pb-6 px-7 border-0;
+}
+
+:host(:last-of-type) .details--background {
+  @apply border-0;
+}
+
+.details--background[open] .summary--background {
+  @apply bg-primary-b-500 px-0;
+}
+
+.summary--background {
+  @apply bg-primary-c text-white font-black uppercase text-lg py-6 px-7 cursor-pointer;
+  list-style: none;
+}
+
+@screen md {
+  .details--background[open],
+  .summary--background {
+    @apply px-15;
+  }
+}
+
+.summary--background::-webkit-details-marker {
+  @apply hidden;
+}
+
+.summary--background::after {
+  content: var(--chevron-right-white);
+  @apply align-middle text-base leading-normal my-1 ml-2 w-4 h-4 float-right transform rotate-90 transition-transform ease-in duration-200;
+}
+
+.details--background[open] .summary--background::after {
+  @apply transform -rotate-90;
+}
+
+.details--background slot[name='content'] {
+  @apply text-white;
+}
+
+/* Background alt variant styles */
+.details--background-alt {
+  @apply bg-neutral-300;
+}
+
+.details--background-alt[open] {
+  @apply pb-6;
+}
+
+.details--background-alt[open] .summary--background-alt {
+  @apply bg-neutral-300;
+}
+
+.summary--background-alt {
+  @apply bg-neutral-700 text-black font-black uppercase text-xl py-6 px-7 cursor-pointer;
+  list-style: none;
+}
+
+.summary--background-alt::-webkit-details-marker {
+  @apply hidden;
+}
+
+.details--background-alt slot[name='content'] {
+  @apply text-black;
+}
+
+/* Styles for chevron variant  */
+.summary--chevron {
+  list-style: none;
+  @apply mb-3;
+}
+
+.summary--chevron ::slotted(lbj-title) {
+  @apply inline-block;
+  max-width: calc(100% - 1.5rem);
+}
+
+.details--chevron {
+  @apply border-b border-neutral-500;
+}
+
+.details--chevron[open] {
+  @apply mb-0 border-b-0;
+}
+
+.details--chevron .summary--chevron::-webkit-details-marker {
+  @apply hidden;
+}
+
+.details--chevron .summary--chevron:after {
+  content: var(--chevron-right-black);
+  @apply align-middle text-base leading-normal my-1 ml-2 w-4 h-4 float-right transform rotate-90;
+}
+
+.details--chevron[open] .summary--chevron:after {
+  @apply transform -rotate-90;
+}
+
+@screen md {
+  .summary--chevron {
+    @apply mb-0;
+  }
+
+  .summary--chevron ::slotted(lbj-title) {
+    @apply block max-w-full;
+  }
+
+  .details--chevron {
+    @apply border-b-0;
+  }
+
+  .details--chevron .summary--chevron:after {
+    content: none;
+  }
+}
+
+/* Styles for collapsible-link variant  */
+.summary--collapsible-link {
+  @apply px-8 py-5 list-none cursor-pointer;
+}
+
+.details--collapsible-link .summary--collapsible-link::-webkit-details-marker {
+  @apply hidden;
+}
+
+.details--collapsible-link .summary--collapsible-link:after {
+  @apply align-middle text-base leading-normal my-1 ml-2 w-4 h-4 float-right;
+
+  content: var(--plus-black);
+}
+
+.details--collapsible-link[open] .summary--collapsible-link:after {
+  content: var(--minus-black);
+}
+
+/* Styles for collapsible-link variant - level 1  */
+.details--collapsible-link[data-level='1'] .summary--collapsible-link {
+  @apply bg-primary-b-200 text-xl uppercase font-normal;
+}
+
+.details--collapsible-link[open][data-level='1'] .summary--collapsible-link {
+  @apply bg-primary-b-300 font-extrabold;
+}
+
+/* Styles for collapsible-link variant - level 2  */
+.details--collapsible-link[data-level='2'] .summary--collapsible-link {
+  @apply bg-primary-b-300 font-normal text-lg;
+}
+
+.details--collapsible-link[open][data-level='2'] .summary--collapsible-link {
+  @apply bg-primary-c text-white text-lg;
+}
+
+.details--collapsible-link[open][data-level='2'] .summary--collapsible-link:after {
+  @apply text-white;
+
+  content: var(--minus-white);
+}
+
+/* Light Blue variant styles */
+.details--light-blue {
+  @apply bg-primary-a-100 border-b-2 border-solid border-tertiary-b-500;
+}
+
+.details--light-blue[open] {
+  @apply pb-6 px-7 border-0;
+}
+
+:host(:last-of-type) .details--light-blue {
+  @apply border-0;
+}
+
+.details--light-blue[open] .summary--light-blue {
+  @apply bg-primary-a-100 px-0;
+}
+
+.summary--light-blue {
+  @apply text-black font-black uppercase text-lg py-6 px-7 cursor-pointer flex items-center justify-between;
+  list-style: none;
+}
+
+@screen md {
+  .details--light-blue[open],
+  .summary--light-blue {
+    @apply px-15;
+  }
+}
+
+.summary--light-blue::-webkit-details-marker {
+  @apply hidden;
+}
+
+.summary--light-blue::after {
+  content: var(--plus-black);
+  @apply text-base leading-normal w-4 h-4 flex-shrink-0 transition-transform ease-in duration-200;
+}
+
+.details--light-blue[open] .summary--light-blue::after {
+  content: var(--minus-black);
+}
+
+.details--light-blue slot[name='content'] {
+  @apply text-black;
+}
+
+/* Light Yellow variant styles */
+.details--light-yellow {
+  @apply bg-secondary-b-200 border-b-2 border-solid border-tertiary-b-500;
+}
+
+.details--light-yellow[open] {
+  @apply pb-6 px-7 border-0;
+}
+
+:host(:last-of-type) .details--light-yellow {
+  @apply border-0;
+}
+
+.details--light-yellow[open] .summary--light-yellow {
+  @apply bg-secondary-b-200 px-0;
+}
+
+.summary--light-yellow {
+  @apply bg-secondary-b-200 text-black font-black uppercase text-lg py-6 px-7 cursor-pointer flex items-center justify-between;
+  list-style: none;
+}
+
+@screen md {
+  .details--light-yellow[open],
+  .summary--light-yellow {
+    @apply px-15;
+  }
+}
+
+.summary--light-yellow::-webkit-details-marker {
+  @apply hidden;
+}
+
+.summary--light-yellow::after {
+  content: var(--plus-black);
+  @apply text-base leading-normal my-1 ml-2 w-4 h-4 flex-shrink-0 transition-transform ease-in duration-200;
+}
+
+.details--light-yellow[open] .summary--light-yellow::after {
+  content: var(--minus-black);
+}
+
+.details--light-yellow slot[name='content'] {
+  @apply text-black;
+}
+
+/* light Gray variant styles*/
+.details--light-gray {
+  @apply bg-primary-b-300 border-b-2 border-solid border-tertiary-b-500;
+}
+
+.details--light-gray[open] {
+  @apply pb-6 px-7 border-0;
+}
+
+:host(:last-of-type) .details--light-gray {
+  @apply border-0;
+}
+
+.details--light-gray[open] .summary--light-gray {
+  @apply bg-primary-b-300 px-0;
+}
+
+.summary--light-gray {
+  @apply bg-primary-b-300 text-black font-black uppercase text-lg py-6 px-7 cursor-pointer flex items-center justify-between;
+  list-style: none;
+}
+
+@screen md {
+  .details--light-gray[open],
+  .summary--light-gray {
+    @apply px-15;
+  }
+}
+
+.summary--light-gray::-webkit-details-marker {
+  @apply hidden;
+}
+
+.summary--light-gray::after {
+  content: var(--plus-black);
+  @apply text-base leading-normal my-1 ml-2 w-4 h-4 flex-shrink-0 transition-transform ease-in duration-200;
+}
+
+.details--light-gray[open] .summary--light-gray::after {
+  content: var(--minus-black);
+}
+
+.details--light-gray slot[name='content'] {
+  @apply text-black;
+}

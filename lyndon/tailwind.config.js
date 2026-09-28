@@ -3,7 +3,12 @@
 const tokens = file => require(`./src/tailwind/tokens/urban/${file}`);
 
 module.exports = {
-  purge: false,
+  // Purge utilities (only lbj-person-card's shadow CSS pulls them in) down to
+  // classes actually used in component markup.
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.tsx'],
+  },
   future: {
     removeDeprecatedGapUtilities: true,
   },

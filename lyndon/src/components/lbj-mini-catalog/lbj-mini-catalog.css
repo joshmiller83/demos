@@ -1,0 +1,310 @@
+@import url('../../global/_tabular.css');
+
+@tailwind base;
+
+:host {
+  @apply block;
+}
+
+div.pagination {
+  @apply text-center;
+  font-size: 18px;
+}
+.sub-nav div.pagination {
+  @apply pt-1;
+}
+
+slot[name='title'] {
+  @apply w-full pb-6;
+}
+
+lbj-title.headline {
+  @apply pb-6;
+}
+.results > ul {
+  @apply mt-12;
+}
+.results-wrapper.table {
+  @apply overflow-x-auto max-w-full;
+}
+.results-wrapper.table table {
+  min-width: 750px;
+}
+.results-wrapper.table .table-horizontal-scroll th:first-child,
+.results-wrapper.table .table-horizontal-scroll td:first-child {
+  @apply sticky left-0 bg-primary-b-300;
+  z-index: 9;
+}
+lbj-button.filter-button-is-not-visible {
+  @apply hidden;
+}
+div.filter-wrapper-is-visible {
+}
+div.filter-wrapper-is-not-visible {
+  @apply hidden;
+}
+/* sm: */
+@media (min-width: 460px) {
+}
+/* md: */
+@media (min-width: 765px) {
+  .results.six-col > ul,
+  .results.five-col > ul,
+  .results.four-col > ul,
+  .results.three-col > ul {
+    @apply grid grid-cols-6 gap-10;
+  }
+  .results.two-col > ul {
+    @apply grid grid-cols-4 gap-10;
+  }
+  .explainers {
+    @apply ml-4 mt-0;
+  }
+  /* Making the flex portion only apply at larger screen sizes. */
+  .sub-nav {
+    @apply mt-6 mb-2 flex justify-end;
+  }
+
+  .sub-nav .filter-summary {
+    @apply flex-grow;
+  }
+
+  .sub-nav .render-toggle {
+    @apply flex items-center ml-16;
+  }
+}
+/* lg: */
+@media (min-width: 1024px) {
+  .results.six-col > ul {
+    @apply grid grid-cols-12 gap-10;
+  }
+  .results.five-col > ul {
+    @apply grid grid-cols-10 gap-10;
+  }
+  .results.four-col > ul {
+    @apply grid grid-cols-8 gap-10;
+  }
+}
+
+li.lede {
+  @apply col-span-2 mb-8 pr-2;
+}
+slot[name='headline'] a.lede__headline-link {
+  @apply text-black border-10;
+}
+
+.search-with-icon {
+  padding: 11px 10px 9px 18px;
+  @apply m-0 border border-gray-400 w-auto text-1.5xl relative max-w-sm inline-block order-first;
+  line-height: 0;
+}
+.search-with-icon input.fulltext {
+  @apply w-full pr-6;
+}
+.search-with-icon input.fulltext::placeholder {
+  @apply opacity-100 font-medium text-neutral-800;
+}
+.search-with-icon input.fulltext::-ms-input-placeholder {
+  /* Edge 12 -18 */
+  @apply opacity-100 font-medium text-neutral-800;
+}
+.search-with-icon lbj-icon.search-icon {
+  top: 11px;
+  right: 12px;
+  zoom: 0.85;
+  @apply cursor-pointer absolute;
+}
+
+select.dropdown {
+  padding: 10px 32px 9px 13px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg' fill='%231696D2'%3E%3Cpath d='M45.394 11c1.16 0 1.944.538 2.388 1.614.443 1.077.204 1.951-.649 2.658L25.953 36.36a3.134 3.134 0 01-1.944.639c-.716 0-1.296-.202-1.739-.64L.851 15.273C0 14.565-.206 13.657.203 12.614.647 11.538 1.431 11 2.591 11h42.803z'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: top 11px right 8px;
+  background-size: 18px;
+  @apply w-auto mr-4 border border-gray-400 text-gray-800;
+}
+
+lbj-button.search button {
+  padding-top: 0 !important;
+  @apply -ml-1 -mt-1 px-4;
+}
+
+.reset {
+  @apply block italic text-primary-b-900 ml-1 underline text-center;
+}
+
+lbj-button.search {
+  @apply mr-4;
+}
+lbj-button.next,
+lbj-button.prev {
+  @apply inline-block;
+}
+.icon-only lbj-button button__icon {
+  @apply ml-0;
+}
+lbj-button.next {
+  @apply ml-4;
+}
+lbj-button.prev {
+  @apply mr-4;
+}
+
+.mini-tags {
+  @apply leading-5 mt-2;
+}
+
+.mini-tag {
+  @apply pl-1 pr-1 text-gray-800 inline-block italic mb-1 border-2 border-gray-300 rounded mr-2;
+  zoom: 0.9;
+}
+
+.sub-nav .render-toggle lbj-icon {
+  @apply cursor-pointer ml-2;
+}
+
+.filter-summary .search-item:hover,
+.mini-tag:hover {
+  @apply text-black bg-blue-100 border-blue-100 cursor-pointer;
+}
+.filter-summary > div.search-item:hover .label,
+.filter-summary > div.search-item:hover .remove,
+.filter-summary .search-item .label:hover,
+.mini-tag:hover {
+  @apply text-black cursor-pointer;
+}
+
+.filter-summary .results-count {
+  @apply italic text-gray-800 mt-3;
+}
+.filter-summary .search-item {
+  @apply inline-block p-2 bg-neutral-400 mr-2 my-1 text-black rounded-lg;
+}
+.filter-summary .search-item .remove {
+  @apply font-black pl-4;
+  line-height: 0;
+  font-size: 1.2rem;
+}
+span.highlight {
+  @apply bg-secondary-b-300 inline-block pr-0.5 pl-0.5 text-black;
+}
+.close-filter {
+  @apply cursor-pointer;
+}
+.filter-button {
+  @apply order-last mb-3 mt-5;
+  zoom: 0.9;
+}
+.filter-toggle {
+  position: relative;
+}
+.filter-toggle.filter-expanded .filters {
+  @apply bg-primary-b-100 p-4 border-primary-b-500 mt-2 absolute top-auto left-0;
+  border-width: 1px;
+}
+.filter-toggle .filters,
+.filter-toggle.filter-contracted .filters {
+  @apply hidden;
+}
+.filter-static .filters,
+.filter-toggle.filter-expanded .filters {
+  @apply block;
+}
+.show-selections {
+  @apply mt-6 mb-2 text-center;
+}
+.filter-wrapper-header {
+  @apply flex justify-between items-center mb-6;
+}
+.filter-wrapper-header lbj-title {
+  @apply flex-grow;
+}
+.filter-static .filter-button,
+.filter-static .filter-wrapper-header,
+.filter-static .show-selections,
+.filter-static .reset {
+  @apply hidden;
+}
+.search-input-wrapper {
+  @apply flex flex-col;
+  line-height: 0;
+}
+.filter-dropdowns {
+  @apply mt-6;
+}
+.filter-toggle .filter-dropdowns {
+  @apply mt-0;
+}
+
+/* sm: */
+@media (min-width: 460px) {
+  .search-input-wrapper {
+    @apply flex-row;
+  }
+  .filter-button {
+    @apply inline-block mr-4 align-top order-none my-0;
+  }
+  .search-with-icon {
+    @apply order-none;
+  }
+}
+
+.explainers {
+  @apply inline-block mt-2 not-italic text-primary-b-900;
+}
+.results-wrapper.lede .explainers-summary {
+  @apply border-t-2 border-b-2 border-gray-300 my-6 py-6;
+}
+
+/* Hide alt-inline when the .filter-expanded class is applied. */
+.filter-expanded .alt-inline {
+  @apply hidden;
+}
+/* Hide alt-vertical when the .filter-contracted class is applied. */
+.filter-contracted .alt-vertical {
+  @apply hidden;
+}
+.alt-vertical {
+  @apply mb-4;
+}
+/* Make facet groups inline, but if shown, the lbj-collapse should be block level. */
+.facet-dropdown-group,
+.facet-checkbox-group {
+  @apply inline-block;
+}
+.filter-expanded .facet-dropdown-group,
+.filter-expanded .facet-checkbox-group {
+  @apply block mb-4;
+}
+
+/* Author profile image initials. Copied from `urban-main-site` web/themes/custom/lyndon/assets/css/drupal-overrides.css:622 */
+.user-initials {
+  background-color: var(--primary-a-500);
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+  padding: 2.5rem 0;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  text-align: center;
+}
+.user-initials > a {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+.user-initials > a:hover {
+  text-decoration: none;
+}
+
+.checkbox-wrapper {
+  @apply mb-3;
+}
+.checkbox-wrapper input[type='checkbox'] {
+  @apply mr-2;
+}

@@ -7,7 +7,7 @@ const root = join(import.meta.dirname, '..');
 const site = join(root, '_site');
 
 // Each demo is an npm workspace whose build writes www/<slug>/.
-const demos = ['lyndon-search'];
+const demos = ['lyndon'];
 
 rmSync(site, { recursive: true, force: true });
 cpSync(join(root, 'site'), site, { recursive: true });

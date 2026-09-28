@@ -1,12 +1,12 @@
 {
-  "name": "lyndon-search",
+  "name": "lyndon",
   "private": true,
-  "description": "lbj-simple-search from Urban Institute's Lyndon component library, isolated with a mock Search API backend.",
+  "description": "Components isolated from Urban Institute's Lyndon library (lbj-mini-catalog, lbj-simple-search) with sample data.",
   "license": "MIT",
   "scripts": {
     "start": "node scripts/build-global-css.mjs --out src && stencil build --dev --watch --serve",
     "build": "stencil build && node scripts/build-global-css.mjs",
-    "test": "stencil test --spec"
+    "test": "stencil test --spec && node --test 'test/*.test.mjs'"
   },
   "devDependencies": {
     "@stencil-community/postcss": "2.2.0",
@@ -15,10 +15,16 @@
     "autoprefixer": "9.8.8",
     "jest": "29.7.0",
     "jest-cli": "29.7.0",
+    "jsdom": "^30.1.1",
     "postcss": "8.3.8",
     "postcss-import": "14.0.2",
     "postcss-nested": "4.2.3",
     "tailwindcss": "1.9.6",
     "typescript": "5.8.3"
+  },
+  "dependencies": {
+    "dompurify": "3.2.6",
+    "fuse.js": "7.1.0",
+    "papaparse": "5.5.3"
   }
 }

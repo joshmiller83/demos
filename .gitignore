@@ -1,6 +1,6 @@
 node_modules/
 _site/
-lyndon-search/www/
-lyndon-search/.stencil/
+lyndon/www/
+lyndon/.stencil/
 .DS_Store
-lyndon-search/src/global.css
+lyndon/src/global.css

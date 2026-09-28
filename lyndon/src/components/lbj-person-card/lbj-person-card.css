@@ -1,0 +1,38 @@
+/* The order of the tailwind and imports are important. */
+@tailwind base;
+@import '../../global/_typography.css';
+@tailwind utilities;
+
+:host {
+  display: block;
+  text-align: center;
+}
+
+slot[name='image'] {
+  @apply h-40 w-40 rounded-full mx-auto mb-4 inline-block overflow-hidden;
+}
+
+@screen lg {
+  slot[name='image'] {
+    @apply mb-6;
+  }
+}
+
+slot[name='position'] {
+  @apply small text-gray-800 pt-2;
+}
+
+@screen lg {
+  slot[name='position'] {
+    @apply pt-3;
+  }
+}
+
+span.highlight {
+  @apply bg-secondary-b-300 inline-block pr-0.5 pl-0.5 text-black;
+}
+
+.person__name-link:hover {
+  text-decoration: underline 1.25px;
+  text-underline-offset: 0.125em;
+}

@@ -1,0 +1,53 @@
+@tailwind base;
+
+:host {
+  @apply inline-block;
+}
+:host(.popover-open) .popover-content {
+  @apply block fixed bg-white border border-primary-b-400 p-8 rounded shadow-lg z-50 max-w-xl text-lg font-sans font-normal leading-normal normal-case text-gray-900 text-left;
+  overflow-y: auto;
+  z-index: 9999;
+  max-height: 90vh;
+}
+.scrollable-content {
+  overflow-y: scroll;
+  width: 90vw;
+  max-width: 840px;
+}
+
+:host(.popover-open) .backdrop {
+  @apply fixed flex items-center justify-center;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  backdrop-filter: blur(2px);
+  /* Safari */
+  -webkit-backdrop-filter: blur(2px);
+}
+.popover-content > lbj-icon {
+  @apply absolute cursor-pointer right-3 top-3 text-primary-b-700;
+  z-index: 10000;
+}
+.popover-content > lbj-icon:focus {
+  @apply text-primary-b-900 outline-none;
+}
+
+:host a {
+  @apply text-primary-a-500 cursor-pointer inline-block;
+}
+
+@media (min-width: 765px) {
+  :host(.popover-open) .popover-content {
+    @apply p-12;
+  }
+}
+a.mini_tag {
+  @apply pl-1 pr-1 text-primary-a-800 inline-block italic mb-1 border-2 border-primary-a-300 rounded mr-2;
+  zoom: 0.9;
+}
+a.mini_tag:hover {
+  @apply text-black bg-primary-a-100 border-primary-a-100 cursor-pointer;
+}

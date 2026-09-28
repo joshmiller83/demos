@@ -1,0 +1,17 @@
+title,geography,url,description,source,format,topic,date
+Rent Burden Estimates,County,#rent-burden-county,Share of renter households paying more than 30 and 50 percent of income on rent.,American Community Survey,CSV;XLSX,Housing,2024-06-01
+Rent Burden Estimates,Tract,#rent-burden-tract,Tract-level version of the county file with margins of error.,American Community Survey,CSV,Housing,2024-06-01
+Eviction Filings,County,#eviction-filings,Monthly eviction case filings compiled from court records.,State court systems,CSV;API,Housing,2024-05-15
+Neighborhood Opportunity Index,Tract,#opportunity-index,"Composite index of school, job, transit and health indicators.",Multiple sources,CSV;XLSX;Shapefile,Neighborhoods,2024-04-30
+Debt in Collections,County,#debt-collections,Share of residents with any debt or medical debt in collections.,Credit bureau sample,CSV;XLSX,Wealth,2024-04-10
+Debt in Collections,State,#debt-collections-state,State summaries of the county file.,Credit bureau sample,CSV,Wealth,2024-04-10
+Child Care Supply,County,#child-care-supply,Licensed child care slots per 100 children under five.,State licensing agencies,CSV,Children and families,2024-03-18
+Broadband Subscription Rates,Tract,#broadband-rates,Households with a broadband subscription of any type.,American Community Survey,CSV;Shapefile,Neighborhoods,2024-03-01
+Summer Youth Employment Enrollment,City,#syep-enrollment,Enrollment and completion by age for four city programs.,City program records,XLSX,Workforce,2024-02-12
+Frontline Worker Wages,Metro area,#frontline-wages,Median hourly wages for frontline occupations adjusted for inflation.,Occupational Employment Statistics,CSV;API,Workforce,2024-01-22
+Health Insurance Coverage,State,#coverage-state,Uninsured rates by age and income.,Current Population Survey,CSV;XLSX,Health,2023-12-08
+Health Insurance Coverage,County,#coverage-county,County estimates of the uninsured rate.,Small Area Health Insurance Estimates,CSV,Health,2023-12-08
+Food Insecurity Among Students,State,#student-food-insecurity,Survey estimates of food insecurity among college students.,Student survey,XLSX,Health,2023-10-20
+Small Business Loan Approvals,Tract,#small-business-loans,Approval rates and median loan size by neighborhood income.,Lender disclosures,CSV,Wealth,2023-09-05
+Transit Job Access,Tract,#transit-job-access,Jobs reachable within 45 minutes by transit.,Transit schedules and job counts,CSV;Shapefile,Workforce,2023-08-14
+Retirement Plan Access,State,#retirement-access,Share of private-sector workers with an employer retirement plan.,Survey of Income and Program Participation,CSV,Wealth,2023-07-01

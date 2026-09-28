@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lyndon Mini Catalog</title>
+    <meta
+      name="description"
+      content="lbj-mini-catalog turns a CSV into a searchable, filterable, paginated catalog in the browser. Try the presets or bring your own CSV."
+    />
+
+    <link rel="stylesheet" href="/lyndon/global.css" />
+    <script type="module" src="/lyndon/build/lyndon.esm.js"></script>
+    <script nomodule src="/lyndon/build/lyndon.js"></script>
+    <script src="/lyndon/vendor/papaparse.min.js" defer></script>
+    <script src="/lyndon/vendor/purify.min.js" defer></script>
+    <script src="/lyndon/demo/mini-catalog/prepare-csv.js" defer></script>
+    <script src="/lyndon/demo/mini-catalog/catalog.js" defer></script>
+
+    <style>
+      .demo-frame {
+        border: 1px solid var(--primary-b-400);
+        border-top: 6px solid var(--primary-a-500);
+        scroll-margin-top: 1rem;
+      }
+      .presets {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1.5rem 0 1rem;
+      }
+      .preset,
+      .action {
+        border: 1px solid var(--primary-a-500);
+        border-radius: 999px;
+        padding: 0.35rem 0.9rem;
+        font-size: 0.95rem;
+        color: var(--primary-a-700);
+        background: var(--primary-d);
+        cursor: pointer;
+      }
+      .preset:hover,
+      .action:hover {
+        background: var(--primary-a-100);
+      }
+      .preset[aria-pressed='true'],
+      .action.primary {
+        background: var(--primary-a-500);
+        color: var(--primary-d);
+      }
+      .preset:focus-visible,
+      .action:focus-visible,
+      .csv-text:focus-visible {
+        outline: 3px solid var(--primary-a-300);
+        outline-offset: 2px;
+      }
+      .preset-blurb {
+        min-height: 4.5rem;
+      }
+      .code-block {
+        background: var(--primary-b-100);
+        border-left: 4px solid var(--primary-a-500);
+        padding: 1rem;
+        overflow-x: auto;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        max-height: 22rem;
+      }
+      .code-block code {
+        color: var(--primary-b-900);
+      }
+      .panels {
+        display: grid;
+        gap: 2rem;
+      }
+      .panels > section {
+        min-width: 0;
+      }
+      @media (min-width: 1024px) {
+        .panels {
+          grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+        }
+      }
+      .csv-text {
+        width: 100%;
+        min-height: 18rem;
+        font-family: Menlo, Monaco, Consolas, monospace;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        padding: 0.75rem;
+        border: 1px solid var(--primary-b-600);
+        white-space: pre;
+        overflow-wrap: normal;
+        overflow-x: auto;
+      }
+      .byo-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+      .file-label {
+        position: relative;
+      }
+      .file-label input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+      .file-label:focus-within {
+        outline: 3px solid var(--primary-a-300);
+        outline-offset: 2px;
+      }
+      #byo-status {
+        margin-top: 0.75rem;
+        min-height: 1.5rem;
+      }
+      #byo-status.is-error {
+        color: #b3261e;
+        font-weight: 700;
+      }
+      .pipeline li::marker {
+        font-weight: 700;
+        color: var(--primary-a-700);
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-10">
+      <p class="small mb-2"><a href="/">demos.joshnliz.com</a> / <a href="/lyndon/">Lyndon</a></p>
+      <h1 class="mb-4">Mini catalog: CSV in, catalog out</h1>
+      <p class="paragraph-big">
+        <code>&lt;lbj-mini-catalog&gt;</code> is a Stencil web component I built for Urban Institute's Lyndon design system. Point it at a CSV and it
+        renders a catalog you can search, filter and page through. To publish a new library, directory or data catalog, an editor only had to upload
+        a new CSV; nobody touched code.
+      </p>
+
+      <h2 class="mt-10 mb-2">Pick a preset</h2>
+      <p>Each preset is the same component with a different CSV and different attributes.</p>
+      <div id="presets" class="presets" role="group" aria-label="Catalog presets"></div>
+      <p id="preset-blurb" class="preset-blurb" aria-live="polite"></p>
+      <p class="small">CSV: <a id="csv-link" href="#"></a></p>
+
+      <div id="catalog" class="demo-frame px-4 py-6 md:px-8 my-6"></div>
+      <p class="small text-gray-800">All records, people and bios are fictional sample data made for this demo.</p>
+
+      <div class="panels mt-10">
+        <section aria-labelledby="markup-heading">
+          <h2 id="markup-heading" class="mb-2">The markup</h2>
+          <p>This is everything the page needs. In Drupal, a block form wrote these attributes.</p>
+          <pre class="code-block"><code id="markup"></code></pre>
+        </section>
+        <section aria-labelledby="byo-heading">
+          <h2 id="byo-heading" class="mb-2">Bring your own CSV</h2>
+          <p>
+            Edit the preset's CSV below or load one of your own, then render it with the current preset's settings. The first row is the header; use
+            <code>;</code> to put several values in one cell. Everything stays in your browser.
+          </p>
+          <label for="csv-text" class="sr-only">CSV contents</label>
+          <textarea id="csv-text" class="csv-text" spellcheck="false"></textarea>
+          <div class="byo-actions">
+            <button id="byo-render" type="button" class="action primary">Render this CSV</button>
+            <span class="action file-label">Load a .csv file<input id="byo-file" type="file" accept=".csv,text/csv" aria-label="Load a CSV file" /></span>
+            <button id="byo-download" type="button" class="action">Download</button>
+            <button id="byo-reset" type="button" class="action">Reset</button>
+          </div>
+          <p id="byo-status" role="status"></p>
+        </section>
+      </div>
+
+      <h2 class="mt-12 mb-4">How it worked in production</h2>
+      <ol class="pipeline">
+        <li>
+          Editors placed a <strong>Mini Catalog</strong> block with Layout Builder. The block form grouped the component's 64 attributes into tabs
+          (data sources, buttons, UI text, configuration, data processing, title and description), and it wrote each saved setting straight onto the
+          element as an attribute of the same name.
+        </li>
+        <li>
+          The CSV came from one of three places: a file uploaded in the form, a URL (with token support), or a Drupal View whose rows were pushed
+          into <code>drupalSettings</code> and read by the component through <code>toggle_csv_local</code>.
+        </li>
+        <li>
+          In the browser, the component fetches and parses the CSV with PapaParse and derives filters from the columns. It searches with Fuse.js
+          and renders each row in the chosen mode using other Lyndon components: ledes, cards, person cards, popovers and collapses.
+        </li>
+      </ol>
+      <p>
+        Here, the “Bring your own CSV” panel adds one step before the component. A visitor's CSV is parsed, its headers are normalized and every
+        cell is sanitized. It is then handed to the component as a <code>blob:</code> URL, so the original fetch-and-parse pipeline still does the
+        rendering.
+      </p>
+
+      <h2 class="mt-12 mb-4">Source</h2>
+      <p>
+        Component, sample CSVs and demo code:
+        <a href="https://github.com/joshmiller83/demos/tree/main/lyndon">github.com/joshmiller83/demos</a>. Also see the
+        <a href="/lyndon/search/">search results component</a> and more Drupal work at <a href="https://drupal.joshnliz.com">drupal.joshnliz.com</a>.
+      </p>
+      <p class="small text-gray-800">Lyndon is MIT licensed. Urban's licensed web fonts are not included, so Lato and Jost stand in.</p>
+    </div>
+  </body>
+</html>

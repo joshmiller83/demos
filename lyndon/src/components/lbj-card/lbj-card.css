@@ -1,0 +1,131 @@
+/**
+ * @file
+ * CSS for Cards.
+ *
+ * This file adds link styling via Tailwind @apply directives.
+ */
+@tailwind base;
+
+:host {
+  /*display: block;*/
+  height: var(--sliderCardHeight);
+  background: var(--sliderCardBackground);
+  display: flex;
+  flex-direction: column;
+}
+
+::slotted([slot='image']) {
+  @apply w-full mb-4;
+}
+
+::slotted([slot='image']) img {
+  @apply w-full mb-4;
+}
+
+.card,
+.card-content {
+  height: var(--sliderCardHeight);
+  display: flex;
+  flex-direction: column;
+}
+
+lbj-title {
+  @apply pb-3;
+}
+
+lbj-title[variant='eyebrow-with-background'] {
+  @apply pb-0;
+}
+
+@screen lg {
+  lbj-title[variant='heading-1'] {
+    @apply pb-4;
+  }
+}
+
+::slotted([slot='body']) {
+  @apply pb-3;
+}
+
+::slotted(.lbj-impact-carousel-overlay[slot='image']) {
+  margin-bottom: var(--sliderCardImageMargin);
+  position: relative;
+}
+
+::slotted(.lbj-impact-carousel-overlay[slot='image'])::before {
+  @apply absolute inset-0 opacity-75;
+  content: '';
+  background: #12719e;
+}
+
+/* Hero Card */
+.hero__card-container {
+  @apply text-left grid cursor-pointer h-full;
+  grid-template-rows: min-content;
+  box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+.hero__card-container .hero__card-content {
+  @apply bg-white px-8 pt-4 pb-6 font-sans-alt;
+  font-variant-ligatures: none;
+}
+
+.hero__card-container ::slotted([slot='image']) {
+  @apply pb-0 w-full object-cover m-0;
+  max-height: 230px;
+}
+
+.hero__card-container .hero__card-title {
+  @apply flex gap-2 items-baseline font-bold;
+}
+
+.hero__card-container .hero__card-title h3 {
+  @apply text-lg;
+}
+
+.hero__card-container .hero__card-eyebrow {
+  @apply uppercase  text-sm leading-normal tracking-wider text-gray-800;
+}
+
+/* Research Card */
+.research__card-container {
+  @apply grid gap-6 pb-4 border-gray-600 h-full font-sans-alt;
+  font-variant-ligatures: none;
+  grid-template-columns: 100px 1fr;
+}
+
+.research__card-container {
+  @apply text-lg;
+}
+
+@screen md {
+  /* Hero Featured */
+  .hero__card-container.-hero-featured {
+    @apply grid gap-10 grid-cols-2 w-full;
+    box-shadow: none;
+  }
+
+  .hero__card-container.-hero-featured .hero__card-content {
+    @apply -mt-40;
+    height: fit-content;
+    grid-column: 2/3;
+  }
+
+  .hero__card-container .hero__card-title h3 {
+    @apply text-xl font-bold;
+  }
+
+  .hero__card-container.-hero-featured ::slotted([slot='image']) {
+    @apply h-full object-cover;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    max-height: 380px;
+    padding-right: 25%;
+  }
+
+  /* Research Card */
+  .research__card-container {
+    @apply pl-4 pb-0 border-b-0 border-l;
+    grid-template-columns: 100px 1fr;
+  }
+}

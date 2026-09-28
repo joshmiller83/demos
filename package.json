@@ -7,7 +7,7 @@
     "node": ">=22.0.0"
   },
   "workspaces": [
-    "lyndon-search"
+    "lyndon"
   ],
   "scripts": {
     "build": "node scripts/assemble.mjs",

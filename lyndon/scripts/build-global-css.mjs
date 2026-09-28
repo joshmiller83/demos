@@ -13,7 +13,7 @@ const require = createRequire(import.meta.url);
 const root = join(import.meta.dirname, '..');
 const input = join(root, 'src/global/global-urban.css');
 // `--out src` writes next to index.html for the dev server; the default is the www build.
-const outDir = process.argv.includes('--out') ? join(root, process.argv[process.argv.indexOf('--out') + 1]) : join(root, 'www/lyndon-search');
+const outDir = process.argv.includes('--out') ? join(root, process.argv[process.argv.indexOf('--out') + 1]) : join(root, 'www/lyndon');
 const output = join(outDir, 'global.css');
 
 const config = {
