@@ -6,6 +6,7 @@ Working front-end pieces from past projects, isolated so they run in a browser w
 | --- | --- |
 | [Mini catalog](https://demos.joshnliz.com/lyndon/mini-catalog/) | `<lbj-mini-catalog>` renders a CSV as a catalog you can search, filter and page through. Five presets, plus a bring-your-own-CSV panel. |
 | [Search results](https://demos.joshnliz.com/lyndon/search/) | `<lbj-simple-search>` shows faceted, paginated results from a Drupal Search API index, here backed by a mocked JSON:API endpoint. |
+| [Upward Mobility dashboard](https://demos.joshnliz.com/umf-dashboard/) | Write-up of the Drupal side of Urban's [Upward Mobility data dashboard](https://upward-mobility.urban.org/dashboard): the JSON API, the editor forms, and how the React web components consume them. Static page in `site/umf-dashboard/`. |
 
 ## Running locally
 

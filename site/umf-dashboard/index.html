@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upward Mobility Dashboard</title>
+    <meta
+      name="description"
+      content="How a Drupal module fed the Upward Mobility data dashboard: a cached JSON API, editor forms that controlled presentation, and web components that read both."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #fff;
+        --surface: #f5f5f5;
+        --text: #1a1a1a;
+        --muted: #5c5c5c;
+        --rule: #dcdbdb;
+        --accent: #12719e;
+        --accent-soft: #cfe8f3;
+        --editor: #fdbf11;
+        --editor-soft: #fff2cf;
+        --drupal: #1696d2;
+        --drupal-soft: #cfe8f3;
+        --browser: #55b748;
+        --browser-soft: #dcedd9;
+        --code-bg: #f5f5f5;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #111;
+          --surface: #1c1c1c;
+          --text: #eee;
+          --muted: #a8a8a8;
+          --rule: #333;
+          --accent: #73bfe2;
+          --accent-soft: #10303f;
+          --editor-soft: #3a3108;
+          --drupal-soft: #0f2e3d;
+          --browser-soft: #16301a;
+          --code-bg: #1c1c1c;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 18px/1.65 Lato, system-ui, sans-serif;
+      }
+      main {
+        max-width: 50rem;
+        margin: 0 auto;
+        padding: 3rem 16px 4rem;
+      }
+      a {
+        color: var(--accent);
+      }
+      .crumb {
+        font-size: 0.9rem;
+        margin: 0 0 1rem;
+      }
+      h1 {
+        font-size: 2.4rem;
+        line-height: 1.15;
+        margin: 0 0 1rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+        margin: 3rem 0 0.75rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--rule);
+      }
+      h3 {
+        font-size: 1.15rem;
+        margin: 1.75rem 0 0.5rem;
+      }
+      .lede {
+        font-size: 1.2rem;
+        color: var(--muted);
+      }
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin: 1.5rem 0;
+      }
+      .cta a {
+        display: inline-block;
+        padding: 0.55rem 1.1rem;
+        border: 2px solid var(--accent);
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+      }
+      .cta a.primary {
+        background: var(--accent);
+        color: var(--bg);
+      }
+      .role {
+        background: var(--surface);
+        border-left: 4px solid var(--accent);
+        padding: 0.9rem 1.1rem;
+        font-size: 1rem;
+      }
+      code {
+        font-family: Menlo, Monaco, Consolas, monospace;
+        font-size: 0.85em;
+        background: var(--code-bg);
+        padding: 0.1em 0.3em;
+        border-radius: 3px;
+        overflow-wrap: anywhere;
+      }
+      pre {
+        background: var(--code-bg);
+        padding: 1rem;
+        overflow-x: auto;
+        font-size: 0.8rem;
+        line-height: 1.5;
+        border-radius: 4px;
+      }
+      pre code {
+        background: none;
+        padding: 0;
+        font-size: inherit;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.95rem;
+      }
+      th,
+      td {
+        text-align: left;
+        vertical-align: top;
+        padding: 0.5rem 0.6rem;
+        border-bottom: 1px solid var(--rule);
+      }
+      th {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: var(--muted);
+      }
+
+      /* Architecture diagram */
+      .arch {
+        display: grid;
+        gap: 0.75rem;
+        margin: 1.5rem 0;
+      }
+      @media (min-width: 760px) {
+        .arch {
+          grid-template-columns: 1fr auto 1.3fr auto 1.2fr;
+          align-items: stretch;
+        }
+      }
+      .lane {
+        border-radius: 8px;
+        padding: 0.9rem;
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+      .lane h3 {
+        margin: 0 0 0.5rem;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .lane ul {
+        margin: 0;
+        padding-left: 1.1rem;
+      }
+      .lane li {
+        margin-bottom: 0.35rem;
+      }
+      .lane.editor {
+        background: var(--editor-soft);
+        border-top: 5px solid var(--editor);
+      }
+      .lane.drupal {
+        background: var(--drupal-soft);
+        border-top: 5px solid var(--drupal);
+      }
+      .lane.browser {
+        background: var(--browser-soft);
+        border-top: 5px solid var(--browser);
+      }
+      .arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-align: center;
+      }
+      .arrow::before {
+        content: '↓';
+        font-size: 1.6rem;
+        line-height: 1;
+      }
+      @media (min-width: 760px) {
+        .arrow::before {
+          content: '→';
+        }
+      }
+      .arrow span {
+        display: none;
+      }
+      .side-note {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-top: -0.5rem;
+      }
+
+      /* Setting-to-pixel chain */
+      .chain {
+        list-style: none;
+        padding: 0;
+        margin: 1.25rem 0;
+        counter-reset: step;
+      }
+      .chain li {
+        counter-increment: step;
+        position: relative;
+        padding: 0.6rem 0.8rem 0.6rem 3rem;
+        margin: 0 0 0.5rem;
+        border-radius: 6px;
+        background: var(--surface);
+        font-size: 0.95rem;
+      }
+      .chain li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0.75rem;
+        top: 0.6rem;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #fff;
+        background: var(--drupal);
+      }
+      .chain li.e::before {
+        background: var(--editor);
+        color: #000;
+      }
+      .chain li.b::before {
+        background: var(--browser);
+      }
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .legend span::before {
+        content: '';
+        display: inline-block;
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 50%;
+        margin-right: 0.35rem;
+        vertical-align: -0.1rem;
+      }
+      .legend .le::before {
+        background: var(--editor);
+      }
+      .legend .ld::before {
+        background: var(--drupal);
+      }
+      .legend .lb::before {
+        background: var(--browser);
+      }
+      footer {
+        margin-top: 3rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--rule);
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="crumb"><a href="/">demos.joshnliz.com</a></p>
+      <h1>Upward Mobility data dashboard</h1>
+      <p class="lede">
+        A public dashboard of mobility-from-poverty metrics for about 3,100 US counties and 480 cities. Drupal serves metadata through a cached JSON
+        API. Editors control the dashboard's wording and behavior through forms, and a React front end, shipped as web components, reads both.
+      </p>
+      <div class="cta">
+        <a class="primary" href="https://upward-mobility.urban.org/dashboard">Open the live dashboard</a>
+        <a href="https://upward-mobility.urban.org/data-results">Data results page</a>
+      </div>
+      <p class="role">
+        <strong>My part:</strong> I built the Drupal side in a custom module, <code>umf_dashboard</code>. That covers the content model, the JSON
+        API and its caching, the Layout Builder blocks and sort forms editors use, and the tooling that moves content between environments. The
+        dashboard team built the React application. The write-up covers the contract between the two: what the API returns, what editors can
+        change, and how the front end applies it.
+      </p>
+
+      <h2 id="architecture">Architecture at a glance</h2>
+      <div class="arch" role="img" aria-label="Editors configure Drupal through forms. Drupal serves a JSON API and renders custom elements whose attributes carry block settings. The browser loads web components that call the API and read static CSV data.">
+        <div class="lane editor">
+          <h3>Editors</h3>
+          <ul>
+            <li>Node forms for pillars, predictors and metrics</li>
+            <li>Sort pages that set display order</li>
+            <li>Layout Builder block forms for text, links and the guided tour</li>
+          </ul>
+        </div>
+        <div class="arrow"><span>saves</span></div>
+        <div class="lane drupal">
+          <h3>Drupal: <code>umf_dashboard</code></h3>
+          <ul>
+            <li>Content model of pillar → predictor → metric, built with Paragraphs and taxonomy</li>
+            <li>JSON endpoints under <code>/umf_dashboard/…</code> with a permanent cache that content saves invalidate by tag</li>
+            <li>Block plugins that render <code>&lt;explore-widget …&gt;</code> and similar elements, with settings as attributes</li>
+          </ul>
+        </div>
+        <div class="arrow"><span>serves</span></div>
+        <div class="lane browser">
+          <h3>Browser</h3>
+          <ul>
+            <li>React app registered as six custom elements</li>
+            <li>Reads its settings from the element's attributes and its content from the API</li>
+            <li>Joins in the numbers from static CSVs and renders a Mapbox map, d3 charts and tables</li>
+          </ul>
+        </div>
+      </div>
+      <p class="side-note">
+        Drupal never serves the numbers themselves. The metric values are precomputed CSVs from the research team's own data pipeline, pinned by
+        version with Composer. Drupal describes the data (labels, units, chart rules, source text) and the browser joins the two.
+      </p>
+
+      <h2 id="api">1. The API layer</h2>
+      <p>
+        Six read-only JSON routes, handled by one controller. Content is addressed by a stable string ID (<code>field_umf_id</code>), not by node ID,
+        so URLs survive re-imports between environments.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Route</th>
+              <th>Returns</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>/umf_dashboard/pillars/all</code></td>
+              <td>All pillars in editor-defined order, each with colors, icon, links and a slim list of its predictors and metrics. The front end builds its navigation and color theme from this.</td>
+            </tr>
+            <tr>
+              <td><code>/umf_dashboard/predictor/{id}</code></td>
+              <td>One predictor with full metric definitions: variables, units, subgroup trees, chart settings, dynamic-text templates and conditional source rules.</td>
+            </tr>
+            <tr>
+              <td><code>/umf_dashboard/subgroup_labels</code></td>
+              <td>A map from the data's machine names to display labels (for example <code>black-non-hispanic</code> → “Black, non-Hispanic”).</td>
+            </tr>
+            <tr>
+              <td><code>/umf_dashboard/pillar/{id}</code>, <code>/predictors/all</code>, <code>/metric/{id}</code></td>
+              <td>Single-item and list views, used for debugging and linked from the edit forms.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Shape of a metric</h3>
+      <pre><code>{
+  "id": "JuvenileArrests",
+  "label": "Juvenile arrests per 100,000 juveniles",
+  "unit_type": "number_decimal",
+  "variables": [{
+    "id": "rate_juv_arrest",
+    "subgroups": {
+      "race-ethnicity": { "_parent_label": "Race/ethnicity", "hispanic": "Hispanic", "…": "…" },
+      "all": { "_parent_label": "None", "all": "All" }
+    }
+  }],
+  "dynamicText": "In {selectedYear}, there were {rate_juv_arrest} juvenile arrests for every 100,000 juveniles in {locationId}.",
+  "source": "… (Time period: {selectedYear-4}-{selectedYear})",
+  "chartSettings": { "ignore_years": { "CT": 2022 } },
+  "conditionalSources": [{ "conditions": { "isAllAvailableYears": true }, "action": "replace", "text": "…" }]
+}</code></pre>
+
+      <h3>Typed settings from plain form fields</h3>
+      <p>
+        Chart behavior is stored as simple key/value Paragraphs, so editors could add a setting without a schema change. On the way out, the API
+        converts each value to its real type. Numeric strings become numbers, <code>true</code>, <code>false</code> and <code>null</code> become their
+        literals, and anything in braces is decoded as JSON. An editor typing <code>{"CT":2022}</code> produces a real object in
+        <code>chartSettings.ignore_years</code>, and the front end can hide Connecticut's 2022 data without a deploy.
+      </p>
+
+      <h3>Caching</h3>
+      <p>Responses are cached in Drupal's cache backend with no expiry, invalidated by the cache tags for the metric, predictor and pillar content types. Saving any of those nodes clears every API response, so editors see their change on the next request. There is no time-to-live to tune.</p>
+      <p>Responses include an edit link only when the current user can edit that content. That makes the payload role-dependent, so the cache key includes the user's roles.</p>
+
+      <h2 id="forms">2. What editors control</h2>
+      <p>There is no single settings page. Editors control the dashboard in three places, each matched to how often it changes.</p>
+
+      <h3>Block forms: the wording and the tour</h3>
+      <p>
+        The dashboard pages are Layout Builder pages that hold five custom blocks: results, explore, search, standalone search and tour button. Each
+        block form exposes the text its component shows, from 13 to about 55 fields per block:
+      </p>
+      <ul>
+        <li>tab labels and tooltips</li>
+        <li>warning dialogs (such as comparing cities with counties)</li>
+        <li>empty-state messages</li>
+        <li>link targets</li>
+        <li>which page the search sends visitors to</li>
+        <li>a guided tour of up to 20 steps, each with its text, the element it points at, and its placement</li>
+      </ul>
+      <p>
+        When the page renders, the block turns its saved configuration into HTML attributes on one custom element. The front end treats each
+        attribute as an override of a built-in default, so a field left blank never breaks the page. Block settings are stored in the page's
+        layout, so changes to the wording are revisioned like any other content edit. Inside the Layout Builder editor, the explore and search blocks
+        show a readable summary of their settings instead of booting the full app.
+      </p>
+      <pre><code>&lt;explore-widget
+  select-widget-title="Explore a predictor"
+  map-tab-label="Map"
+  distribution-tab-label="Distribution"
+  geography-toggle-tooltip="The map is only available for counties"
+  …
+&gt;&lt;/explore-widget&gt;</code></pre>
+
+      <h3>Content forms: the data dictionary</h3>
+      <p>Each piece of content controls one part of the dashboard:</p>
+      <ul>
+        <li>
+          <strong>Pillar:</strong> sets its name, icon and base, light and dark colors. The front end turns the colors into CSS variables that theme
+          every card, border and label for that pillar.
+        </li>
+        <li><strong>Predictor:</strong> holds its descriptions, calls to action and list of metrics.</li>
+        <li><strong>Metric:</strong> holds the rest:
+          <ul>
+            <li>unit format and variables</li>
+            <li>subgroup taxonomy</li>
+            <li>a dynamic-text template (<code>{selectedYear}</code>, <code>{locationId}</code>, any data column, and arithmetic such as <code>{selectedYear-4}</code>)</li>
+            <li>chart settings: color ramp direction, axis range, hiding the map or distribution view with a message, per-state year suppression</li>
+            <li>conditional source rules that append or replace citation text when, for example, a city is selected or all years are shown</li>
+          </ul>
+        </li>
+      </ul>
+      <p>The metric, predictor and pillar edit forms show where the item sits in the hierarchy, with links to edit its parents, open its API output, and reorder its siblings.</p>
+
+      <h3>Sort forms: order</h3>
+      <p>
+        Three admin pages set the display order: pillars, predictors within a pillar, and metrics within a predictor. They write a sort weight on
+        each node, and the save invalidates the cached API responses, so the new order appears on the next page load.
+      </p>
+
+      <h2 id="front-end">3. The front end those forms drive</h2>
+      <p>The dashboard team built the React and TypeScript application. It connects to Drupal in three ways:</p>
+      <ul>
+        <li>
+          <strong>Web components as the boundary.</strong> The app registers six custom elements (such as <code>&lt;search-widget&gt;</code>,
+          <code>&lt;explore-widget&gt;</code> and <code>&lt;data-results-page&gt;</code>). To Drupal they are ordinary markup that a block can place, and the same
+          components run unchanged in the team's component workbench.
+        </li>
+        <li>
+          <strong>Settings merged over defaults.</strong> Attributes become component props that override typed defaults. Pillar colors from the
+          API become CSS variables, and each metric's chart settings steer its visualization.
+        </li>
+        <li>
+          <strong>Metadata from the API, numbers from files.</strong> Query caching deduplicates API calls, and per-location and per-variable CSVs
+          are fetched only for what is on screen.
+        </li>
+      </ul>
+      <p>What visitors can do:</p>
+      <ul>
+        <li>search up to six counties or cities</li>
+        <li>explore any predictor on a county choropleth map or a national distribution chart</li>
+        <li>compare places with dot plots and trend lines, filtered by year and subgroup, with confidence intervals</li>
+        <li>switch any chart to a table</li>
+        <li>share the exact view (every control is stored in the URL)</li>
+        <li>export PNGs and filtered CSVs</li>
+        <li>follow the guided tour that editors configured</li>
+      </ul>
+
+      <h2 id="end-to-end">One setting, end to end</h2>
+      <p>This is how an editor's change to one metric reaches the map, with no deploy involved:</p>
+      <div class="legend" aria-hidden="true"><span class="le">Editor</span><span class="ld">Drupal</span><span class="lb">Browser</span></div>
+      <ol class="chain">
+        <li class="e">An editor adds the chart setting <code>colorDirection</code> = <code>darkToLight</code> to a metric and saves.</li>
+        <li>The save invalidates the metric cache tag, which clears every cached API response.</li>
+        <li>On the next request, the API rebuilds the predictor payload and converts the setting into <code>chartSettings.colorDirection</code>.</li>
+        <li class="b">The explore widget fetches the predictor and reverses its color palette.</li>
+        <li class="b">It maps precomputed natural-breaks bins onto the reversed palette, and Mapbox recolors every county.</li>
+      </ol>
+      <p>A wording change takes a shorter path: block form → page layout → attribute on the element → component prop → the label on screen.</p>
+
+      <h2 id="lessons">What I'd do differently</h2>
+      <ul>
+        <li>
+          <strong>Type the contract.</strong> Attribute names were written by hand on both sides, and a few drifted apart. The tour's arrow
+          placement, for example, never reached the UI. Generating the block form fields and the component prop list from one schema would have
+          caught that.
+        </li>
+        <li>
+          <strong>Tag every source.</strong> Subgroup labels are cached under the metric, predictor and pillar tags but not their own, so editing
+          them waits on an unrelated save.
+        </li>
+        <li>
+          <strong>Finish the caching story.</strong> The API cache is solid, but the blocks kept a development-time <code>max-age: 0</code>, and asset
+          cache-busting relied on bumping a library version by hand.
+        </li>
+      </ul>
+
+      <footer>
+        Josh Miller · <a href="/">more demos</a> · <a href="https://portfolio.joshnliz.com">portfolio</a> ·
+        <a href="https://drupal.joshnliz.com">Drupal modules</a>. The dashboard was built at the Urban Institute for its Upward Mobility from Poverty
+        project, and this page describes my part of it.
+      </footer>
+    </main>
+  </body>
+</html>
