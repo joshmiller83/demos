@@ -7,6 +7,7 @@ Working front-end pieces from past projects, isolated so they run in a browser w
 | [Mini catalog](https://demos.joshnliz.com/lyndon/mini-catalog/) | `<lbj-mini-catalog>` renders a CSV as a catalog you can search, filter and page through. Five presets, plus a bring-your-own-CSV panel. |
 | [Search results](https://demos.joshnliz.com/lyndon/search/) | `<lbj-simple-search>` shows faceted, paginated results from a Drupal Search API index, here backed by a mocked JSON:API endpoint. |
 | [Upward Mobility dashboard](https://demos.joshnliz.com/umf-dashboard/) | Write-up of the Drupal side of Urban's [Upward Mobility data dashboard](https://upward-mobility.urban.org/dashboard): the JSON API, the editor forms, and how the React web components consume them. Static page in `site/umf-dashboard/`. |
+| [Wild Birds Unlimited MCP concept](https://demos.joshnliz.com/wbu-mcp/) | Animated pitch for an MCP server that answers AI assistants from a bird store chain's own systems. A connect step and twelve tools play out as chats, each with a customer at a different store across the US and Canada, and each ending in an action the customer asked for. Sample data, not affiliated with WBU. Static page in `site/wbu-mcp/`; add `?still` to the URL for a no-animation view. |
 
 ## Running locally
 
@@ -26,6 +27,8 @@ To work on the Lyndon components with live reload, run `npm start -w lyndon`.
 - `.github/workflows/deploy.yml` tests, builds and publishes `_site/` to GitHub Pages on every push to `main`.
 
 To add a demo, create a workspace with a `build` script, add it to `workspaces` in `package.json` and to the `demos` list in `scripts/assemble.mjs`, then link it from `site/index.html`.
+
+A demo that's only static files doesn't need a workspace. Put it in `site/<slug>/`, which is served at `/<slug>/`, and link it from `site/index.html`.
 
 ## lyndon/
 

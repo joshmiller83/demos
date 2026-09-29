@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WBU MCP Concept</title>
+    <meta
+      name="description"
+      content="A concept demo of an MCP server for Wild Birds Unlimited: twelve tools that let AI assistants answer with live, store-level information and capture customer contacts along the way."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Kalam:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="birds.js" defer></script>
+    <script src="scenes.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="wrap masthead-row">
+        <a class="mark" href="/" aria-label="All demos"><span id="mark-bird"></span><span>Wild Birds Unlimited MCP <span class="muted">concept</span></span></a>
+        <span class="disclaimer">Concept demo with sample data. Not affiliated with Wild Birds Unlimited, Inc.</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro wrap">
+        <h1>Put the local bird store inside every AI answer.</h1>
+        <div class="intro-copy">
+          <p class="lede">
+            People already ask AI assistants about backyard birds. This concept connects those assistants to Wild Birds Unlimited stores across
+            the US and Canada: twelve tools for things the web can’t answer in real time, like today’s hours, what’s on the shelf, and what staff
+            saw at the feeder this morning. Customers connect once with their WBU account, and every hold, RSVP and booking after that goes to
+            their local store.
+          </p>
+          <p class="aside">
+            MCP, the Model Context Protocol, is the open standard assistants like ChatGPT and Claude use to connect to outside services. With a WBU
+            MCP server, they ask WBU directly instead of guessing from old web pages.
+          </p>
+        </div>
+      </section>
+
+      <section class="stage wrap" id="demo" aria-label="Animated demo">
+        <nav class="rail" aria-label="Tools">
+          <ul id="rail"></ul>
+        </nav>
+
+        <div class="deck">
+          <div class="deck-bar">
+            <div class="scene-heading">
+              <h2 id="scene-name"></h2>
+              <p class="scene-sub"><span class="where" id="scene-where"></span><span id="scene-blurb" class="muted"></span></p>
+            </div>
+            <ol class="phases" id="phases" aria-label="Steps">
+              <li>Customer asks</li>
+              <li>AI calls WBU</li>
+              <li>WBU answers</li>
+              <li>WBU captures</li>
+            </ol>
+            <div class="controls">
+              <button type="button" class="icon-btn" id="prev" aria-label="Previous tool" title="Previous tool"></button>
+              <button type="button" class="icon-btn" id="replay" aria-label="Replay this tool" title="Replay this tool"></button>
+              <button type="button" class="icon-btn" id="next" aria-label="Next tool" title="Next tool"></button>
+              <button type="button" class="tour-btn" id="tour" aria-pressed="false"></button>
+            </div>
+          </div>
+
+          <div class="deck-body">
+            <div class="chat" id="chat">
+              <div class="chat-head">
+                <strong>Assistant</strong>
+                <span class="connector" id="connector"><span id="connector-bird"></span>Wild Birds Unlimited <i class="dot" aria-hidden="true"></i><span class="muted" id="connector-state">connected</span></span>
+              </div>
+              <div class="messages" id="messages" aria-live="polite"></div>
+              <div class="composer">
+                <div class="composer-field" id="composer" aria-hidden="true"></div>
+                <span class="send" id="send" aria-hidden="true"></span>
+              </div>
+              <div class="cursor" id="cursor" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26"><path d="M5 3l14 8-6.2 1.6L10 19z" fill="#1e2a2f" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" /></svg>
+              </div>
+
+              <div class="up-next" id="up-next" hidden>
+                <div class="up-next-scrim" data-stay></div>
+                <section class="up-next-card" aria-label="What WBU captured, and the next tool">
+                  <div>
+                    <h3>WBU captured</h3>
+                    <ul class="cap-list" id="up-next-list"></ul>
+                    <p class="up-next-delta" id="up-next-delta"></p>
+                  </div>
+                  <div class="up-next-row">
+                    <span class="up-next-icon" id="up-next-icon"></span>
+                    <div class="up-next-text">
+                      <span class="muted" id="up-next-when"></span>
+                      <strong id="up-next-name"></strong>
+                      <span class="muted" id="up-next-blurb"></span>
+                    </div>
+                    <div class="up-next-actions">
+                      <button type="button" class="btn btn-quiet" data-stay>Stay here</button>
+                      <button type="button" class="up-next-play" id="up-next-play"><span class="up-next-fill"></span><span id="up-next-play-label"></span></button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <aside class="behind" aria-label="Behind the chat">
+              <div class="wire" id="wire">
+                <div class="node node-ai">Customer’s AI assistant</div>
+                <div class="link" id="link-a"><span class="packet"></span></div>
+                <div class="node node-mcp" id="mcp-node">
+                  <span>WBU MCP server</span>
+                  <code id="mcp-tool"></code>
+                </div>
+                <div class="link" id="link-b"><span class="packet"></span></div>
+                <ul class="sources" id="sources" aria-label="WBU systems"></ul>
+              </div>
+
+              <div class="panel-block request" id="request">
+                <h3>Request to WBU</h3>
+                <p class="request-auth" id="request-auth"></p>
+                <pre><code id="request-code"></code></pre>
+                <p class="request-status" id="request-status"></p>
+              </div>
+
+              <p class="note" id="note"></p>
+
+              <div class="panel-block captured">
+                <h3>What WBU captured</h3>
+                <ul class="cap-list" id="captured"></ul>
+              </div>
+
+              <div class="ledger" aria-label="Captured this session">
+                <span class="ledger-label">This session</span>
+                <span><strong id="led-accounts">0</strong> accounts linked</span>
+                <span><strong id="led-visits">0</strong> store visits</span>
+                <span><strong id="led-signals">0</strong> interests</span>
+              </div>
+            </aside>
+
+            <div class="ask" id="ask" hidden aria-hidden="true">
+              <div class="ask-scrim" id="ask-scrim"></div>
+              <div class="ask-inner">
+                <p class="ask-who" id="ask-who">Jamie, near Carmel, Indiana, asks an AI assistant</p>
+                <p class="ask-text" id="ask-text"><span class="typed"></span><span class="rest"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="toolset wrap" aria-labelledby="toolset-title">
+        <h2 id="toolset-title">The twelve tools</h2>
+        <p class="toolset-intro">
+          Each tool answers from a WBU system that search engines can’t see, for the customer’s own store. Each result offers something the
+          customer can act on, like a hold, an RSVP or a booked consult, so WBU learns about visits and interests without asking for anything
+          extra.
+        </p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Tool</th>
+                <th scope="col">A customer asks</th>
+                <th scope="col">Only WBU knows</th>
+                <th scope="col">WBU gets</th>
+              </tr>
+            </thead>
+            <tbody id="toolset"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="today wrap" aria-labelledby="today-title">
+        <h2 id="today-title">Where this works today</h2>
+        <div class="today-grid">
+          <div>
+            <h3>Claude and ChatGPT</h3>
+            <p>
+              Both show WBU’s cards and forms right in the chat, using the MCP Apps standard they adopted in January 2026. Customers add WBU from
+              each assistant’s directory, or the assistant suggests it when a question fits.
+            </p>
+          </div>
+          <div>
+            <h3>Gemini</h3>
+            <p>
+              The Gemini app connects to MCP servers for personal accounts in the US, in English, added by URL. It answers in text rather than
+              cards, and asks the customer to confirm any action, like a hold or an RSVP.
+            </p>
+          </div>
+          <div>
+            <h3>What WBU can collect</h3>
+            <p>
+              Customers sign in once, when they connect. ChatGPT’s rules require collecting only what a tool needs and ban apps built mainly to
+              advertise, so every action here is one the customer asked for: no coupons for emails, no newsletters.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <p>
+        A concept by Josh Miller. Not affiliated with or endorsed by Wild Birds Unlimited, Inc. Every store, person, price, event and sighting on
+        this page is sample data.
+      </p>
+      <p><a href="/">More demos</a></p>
+    </footer>
+  </body>
+</html>
