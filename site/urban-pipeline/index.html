@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Urban Pipeline Demo</title>
+    <meta
+      name="description"
+      content="A three-minute animated re-enactment of Urban Pipeline, a Drupal module that compared a Workday employee export with author bios, queued each difference for approval, and saved approved changes as draft revisions."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scenes.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="top wrap">
+      <a href="/">All demos</a>
+      <a href="https://github.com/joshmiller83/drupal-modules/tree/main/urban_pipeline">Module source</a>
+    </header>
+
+    <main>
+      <section class="intro wrap">
+        <h1>How a Workday export became reviewed author bios</h1>
+        <p class="lede">
+          Urban Pipeline is a Drupal module I built at the Urban Institute. It compared the HR system's employee export with the author bios on
+          urban.org, queued every difference for a person to approve, and saved approved changes as drafts for editors to publish. It needs
+          Urban's site and a real Workday file to run, so this is a re-enactment drawn from its code, with made-up people.
+        </p>
+      </section>
+
+      <section class="player wrap" aria-label="Animated demo">
+        <div class="stage" id="stage">
+          <div class="scene-head">
+            <span class="scene-num" id="scene-num"></span>
+            <h2 id="scene-title"></h2>
+          </div>
+          <div class="scene" id="scene"></div>
+          <div class="caption" id="caption" aria-live="polite">
+            <p id="caption-text"></p>
+            <code id="caption-code"></code>
+          </div>
+
+          <div class="poster" id="poster">
+            <div class="poster-card">
+              <p class="poster-kicker">Urban Pipeline</p>
+              <p class="poster-title">Ten short scenes, from XML upload to published bio.</p>
+              <button type="button" class="play-big" id="play-big">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" /></svg>
+                <span>Play the demo <span class="muted" id="poster-length"></span></span>
+              </button>
+              <a class="poster-alt" href="?still">Or step through it without animation</a>
+            </div>
+          </div>
+
+          <div class="poster outro" id="outro" hidden>
+            <div class="poster-card">
+              <p class="poster-kicker">That's the pipeline</p>
+              <p class="poster-title">Workday stayed the source of truth, and a person approved every change.</p>
+              <div class="outro-links">
+                <a href="https://github.com/joshmiller83/drupal-modules/tree/main/urban_pipeline">Read the module on GitHub</a>
+                <a href="https://drupal.joshnliz.com/#pipeline">Code walkthrough</a>
+              </div>
+              <button type="button" class="btn" id="replay">Watch again</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls" id="controls">
+          <button type="button" class="ctl" id="prev" aria-label="Previous scene" title="Previous scene (←)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 6h2v12H7zM19 6v12l-9-6z" /></svg>
+          </button>
+          <button type="button" class="ctl ctl-play" id="play" aria-label="Play" title="Play or pause (space)">
+            <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" /></svg>
+            <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /></svg>
+          </button>
+          <button type="button" class="ctl" id="next" aria-label="Next scene" title="Next scene (→)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6h2v12h-2zM5 6v12l9-6z" /></svg>
+          </button>
+          <div class="scrub" id="scrub" role="slider" tabindex="0" aria-label="Demo position" aria-valuemin="0"></div>
+          <span class="time" id="time"></span>
+        </div>
+
+        <ol class="chapters" id="chapters" aria-label="Scenes"></ol>
+      </section>
+
+      <section class="notes wrap">
+        <div>
+          <h2>What's real here</h2>
+          <p>
+            The screens, matching rules, action names, table columns and class names all come from the module's code. The people, the XML file,
+            the reviewer's decisions and the dates are invented. The Drupal admin screens are simplified.
+          </p>
+        </div>
+        <div>
+          <h2>Where to read more</h2>
+          <p>
+            The cleaned-up module is on <a href="https://github.com/joshmiller83/drupal-modules/tree/main/urban_pipeline">GitHub</a>, and the
+            <a href="https://drupal.joshnliz.com/#pipeline">code walkthrough</a> explains the source, destination and queue classes with excerpts.
+            <a href="?still" id="mode-link">Step through the scenes without animation</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap foot">
+      Josh Miller. <a href="https://portfolio.joshnliz.com">Portfolio</a>, <a href="https://drupal.joshnliz.com">Drupal modules</a>,
+      <a href="/">more demos</a>.
+    </footer>
+  </body>
+</html>

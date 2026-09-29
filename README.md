@@ -8,6 +8,7 @@ Working front-end pieces from past projects, isolated so they run in a browser w
 | [Search results](https://demos.joshnliz.com/lyndon/search/) | `<lbj-simple-search>` shows faceted, paginated results from a Drupal Search API index, here backed by a mocked JSON:API endpoint. |
 | [Upward Mobility dashboard](https://demos.joshnliz.com/umf-dashboard/) | Write-up of the Drupal side of Urban's [Upward Mobility data dashboard](https://upward-mobility.urban.org/dashboard): the JSON API, the editor forms, and how the React web components consume them. Static page in `site/umf-dashboard/`. |
 | [Wild Birds Unlimited MCP concept](https://demos.joshnliz.com/wbu-mcp/) | Animated pitch for an MCP server that answers AI assistants from a bird store chain's own systems. A connect step and twelve tools play out as chats, each with a customer at a different store across the US and Canada, and each ending in an action the customer asked for. Sample data, not affiliated with WBU. Static page in `site/wbu-mcp/`; add `?still` to the URL for a no-animation view. |
+| [Urban Pipeline](https://demos.joshnliz.com/urban-pipeline/) | Animated re-enactment of the `urban_pipeline` Drupal module: Workday XML upload, record matching, queue items, review and execution with Views Bulk Operations, and draft revisions. Built from the module's code with invented people. Static page in `site/urban-pipeline/`; add `?still` for a no-animation view. |
 
 ## Running locally
 
