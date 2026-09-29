@@ -58,6 +58,36 @@
       body: '#232323', belly: '#f3f3ef', wing: '#1f1f1f', wingSpots: '#ffffff', tail: '#1f1f1f',
       head: '#f3f3ef', cap: '#1c1c1c', nape: '#d22b2b', eyeStripe: '#1c1c1c', beak: '#2a2a2a', beakType: 'chisel',
     },
+    paintedBunting: {
+      name: 'Painted Bunting',
+      latin: 'Passerina ciris',
+      body: '#5f9e3b', belly: '#d8342c', wing: '#4f8a33', tail: '#6b3a2e', head: '#3456c4',
+      bib: '#d8342c', eyeRing: '#d8342c', beak: '#8a8f93', beakType: 'cone',
+    },
+    annas: {
+      name: 'Anna’s Hummingbird',
+      latin: 'Calypte anna',
+      body: '#4f8c5a', belly: '#c9cfc4', wing: '#5b6b5f', tail: '#3f6e4e', head: '#c2185b',
+      bib: '#d81b60', beak: '#1c1c1c', beakType: 'needle',
+    },
+    rufous: {
+      name: 'Rufous Hummingbird',
+      latin: 'Selasphorus rufus',
+      body: '#c8692a', belly: '#f3e6d6', wing: '#6d5a48', tail: '#b55d23', head: '#c8692a',
+      bib: '#e04a26', beak: '#1c1c1c', beakType: 'needle',
+    },
+    oregonJunco: {
+      name: 'Dark-eyed Junco',
+      latin: 'Junco hyemalis oreganus',
+      body: '#8a6a4f', belly: '#f2f1ec', wing: '#7a5d44', tail: '#3f3a36', head: '#262626',
+      bib: '#262626', beak: '#efc9c0', beakType: 'cone',
+    },
+    goldenCrowned: {
+      name: 'Golden-crowned Sparrow',
+      latin: 'Zonotrichia atricapilla',
+      body: '#8a6d4d', belly: '#bdbbb4', wing: '#7b5c3e', wingBars: '#eee6d6', tail: '#6e5238',
+      head: '#8f8d87', cap: '#1f1c19', crown: '#e4b52a', beak: '#6f6a63', beakType: 'cone',
+    },
     whiteThroat: {
       name: 'White-throated Sparrow',
       latin: 'Zonotrichia albicollis',
@@ -112,6 +142,9 @@
     if (s.crownStripe) {
       p.push(`<path clip-path="${clipH}" d="M71 32 C78 26 90 25 99 30 M76 36 C82 33 90 33 97 35" stroke="${s.crownStripe}" stroke-width="2.4" stroke-linecap="round" fill="none"/>`);
     }
+    if (s.crown) {
+      p.push(`<path clip-path="${clipH}" d="M73 31 C79 26 88 25 96 29" stroke="${s.crown}" stroke-width="3.4" stroke-linecap="round" fill="none"/>`);
+    }
     if (s.eyeStripe) {
       p.push(`<path clip-path="${clipH}" d="M72 42 C80 38 90 38 99 40 M78 49 C84 47 90 47 96 45" stroke="${s.eyeStripe}" stroke-width="2.6" stroke-linecap="round" fill="none"/>`);
     }
@@ -121,9 +154,12 @@
     p.push(`<path d="${BEAKS[s.beakType]}" fill="${s.beak}"/>`);
     if (s.beakType === 'cone') p.push('<path d="M96 40 L109 40" stroke="rgba(0,0,0,.28)" stroke-width=".8"/>');
     if (s.lore) p.push(`<circle cx="95" cy="34" r="2" fill="${s.lore}"/>`);
+    if (s.eyeRing) p.push(`<circle cx="89" cy="37" r="3.6" fill="${s.eyeRing}"/>`);
     p.push('<circle cx="89" cy="37" r="2.4" fill="#141414"/><circle cx="89.8" cy="36.2" r=".8" fill="#fff"/>');
 
     const h = Math.round((size * 100) / 120);
-    return `<svg class="bird" viewBox="0 0 120 100" width="${size}" height="${h}" role="img" aria-label="${label || s.name}">${p.join('')}</svg>`;
+    // Pass label: '' for a decorative bird.
+    const a11y = label === '' ? 'aria-hidden="true"' : `role="img" aria-label="${label || s.name}"`;
+    return `<svg class="bird" viewBox="0 0 120 100" width="${size}" height="${h}" ${a11y}>${p.join('')}</svg>`;
   };
 })();
