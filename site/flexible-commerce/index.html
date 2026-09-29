@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flexible Drupal Commerce</title>
+    <meta
+      name="description"
+      content="Five Drupal Commerce problems Josh Miller worked through at Commerce Guys and Acro Media: taxonomy, pricing, currency, multiple carts and Organic Groups. Each has a small working model to try and links to the public work behind it."
+    />
+    <link rel="canonical" href="https://demos.joshnliz.com/flexible-commerce/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#f4e4e0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#151a2b" media="(prefers-color-scheme: dark)" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="top wrap">
+      <a href="/">All demos</a>
+      <a href="https://github.com/joshmiller83/demos/tree/main/site/flexible-commerce">Source</a>
+    </header>
+
+    <main>
+      <section class="hero wrap">
+        <div class="hero-text">
+          <h1>Flexible Drupal Commerce</h1>
+          <p class="sub">Five problems I worked through</p>
+          <p class="lede">
+            Drupal Commerce doesn't hand you a fixed store. It hands you entities, fields, Views, and Rules (later, event subscribers), and you
+            build the store the merchant actually has. Over about ten years at Commerce Guys and Acro Media, I spent most of my time helping
+            people use that flexibility on hard problems.
+          </p>
+          <p>
+            Each problem ends up touching the parts of ecommerce that make projects expensive: taxes, shipping, payment, and fulfillment. Every
+            example links to something public I wrote or a drupal.org issue I'm credited on, so you can check the work. Each one also has a short
+            story to play with. In the stories, <span class="key admin">blue panels</span> are behind the counter and
+            <span class="key store">green panels</span> are what shoppers see.
+          </p>
+        </div>
+        <img
+          class="plate"
+          src="/plates/flexible-commerce.svg"
+          width="600"
+          height="400"
+          fetchpriority="high"
+          alt="A merchant's checklist feeds a machine whose window shows a category tree, beside a gear and two overlapping coins. A price-tagged box flies from its spout into one of two shopping carts parked outside a shop with a striped awning."
+        />
+      </section>
+
+      <nav class="index wrap" aria-label="The five problems">
+        <ul>
+          <li>
+            <a href="#taxonomy"><span class="fit"><span class="fit-in" data-fit="taxonomy">Taxonomy</span></span><span class="gist">A 40,000-product catalog people can actually browse</span></a>
+          </li>
+          <li>
+            <a href="#pricing"><span class="fit"><span class="fit-in" data-fit="pricing">Pricing</span></span><span class="gist">When the price on the order isn't the price on the product</span></a>
+          </li>
+          <li>
+            <a href="#currency"><span class="fit"><span class="fit-in" data-fit="currency">Currency</span></span><span class="gist">Selling across borders without rewriting the catalog</span></a>
+          </li>
+          <li>
+            <a href="#carts"><span class="fit"><span class="fit-in" data-fit="carts">Multiple carts</span></span><span class="gist">The “bug” that's really a marketplace feature</span></a>
+          </li>
+          <li>
+            <a href="#groups"><span class="fit"><span class="fit-in" data-fit="groups">Organic Groups</span></span><span class="gist">Selling access, not just products</span></a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Taxonomy -->
+      <section class="problem" id="taxonomy" aria-labelledby="taxonomy-title">
+        <header class="p-head wrap">
+          <h2 id="taxonomy-title">Taxonomy</h2>
+          <p class="gist">A 40,000-product catalog people can actually browse</p>
+        </header>
+        <div class="p-body wrap">
+          <div class="prose">
+            <p>
+              <strong>The problem.</strong> In September 2014 a site builder
+              <a href="https://drupalcommerce.org/discussions/16060/navigating-drupal-commerce-products">posted on drupalcommerce.org</a> that he
+              had imported close to 40,000 fastener products. Each had a type, a category, and a sub-category: about 40 types, 1,300 categories,
+              and 8,000 sub-categories. He wanted drill-down navigation (Bolts, then Stainless Steel Bolts, then Metric Stainless Steel Bolts)
+              without building a View per category and without Apache Solr yet.
+            </p>
+            <p>
+              <strong>What I recommended.</strong> Put a single hierarchical taxonomy on the products and build one View that shows either child
+              terms or products, depending on how far down you are. That left two jobs:
+            </p>
+            <ol>
+              <li>
+                Tagging 40,000 products. I suggested a Views Bulk Operations view that selects products by matching criteria, plus a small Rules
+                component per term that adds that term to a product. Run the components as bulk operations and the site tags itself.
+              </li>
+              <li>
+                One View for the whole tree. I recorded two videos: one for a single hierarchical vocabulary, and one that treats separate
+                vocabularies as levels of the hierarchy.
+              </li>
+            </ol>
+            <p>A month later another store builder replied that the hierarchical Views approach worked for his 150-category catalog.</p>
+            <p>
+              <strong>Why it matters.</strong> Taxonomy in Commerce isn't only navigation. The same terms can drive pricing rules, discounts,
+              tax classes, and product feeds. My later <a href="https://www.drupal.org/project/autotrader_csv">Autotrader CSV</a> module, for
+              example, <a href="https://new.drupal.org/contribution-record/10391687">creates the vocabulary Autotrader's feed requires</a> on
+              install and <a href="https://new.drupal.org/contribution-record/10391544">maps to Autotrader's category IDs</a>.
+            </p>
+            <p>
+              Related: an earlier
+              <a href="https://drupalcommerce.org/questions/8960/how-do-i-build-product-catalog-using-kickstart-2">Q&amp;A answer on building a catalog in Kickstart 2</a>
+              (Aug 2013), where I offered the menu system as a simpler alternative to taxonomy plus Search API.
+            </p>
+          </div>
+          <div class="bench" data-bench="taxonomy" aria-label="Taxonomy story: find the bolt">
+            <p class="bench-fallback">This story needs JavaScript.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing -->
+      <section class="problem" id="pricing" aria-labelledby="pricing-title">
+        <header class="p-head wrap">
+          <h2 id="pricing-title">Pricing</h2>
+          <p class="gist">When the price on the order isn't the price on the product</p>
+        </header>
+        <div class="p-body wrap">
+          <div class="prose">
+            <p>
+              Pricing is where merchants' real business rules show up: tiered quantity discounts, role-based prices, orders keyed in by staff,
+              and prices that need to hold still while a customer checks out. I've worked on this from both the documentation side and the code
+              side.
+            </p>
+            <p>
+              <strong>Order admin and cart recalculation (Commerce 1.x).</strong> In December 2014 I wrote up
+              <a href="https://drupalcommerce.org/blog/31149/commerce-1x-new-features">three order management features</a> for store
+              administrators:
+            </p>
+            <ul>
+              <li>
+                <em>Apply pricing rules</em> re-runs product pricing rules on an existing order. It resets product prices and throws away custom
+                prices typed in on the edit form, so it has to be used on purpose.
+              </li>
+              <li>
+                <em>Simulate checkout completion</em> fires the checkout completion events for orders built in the back office, which may change
+                order status and send email.
+              </li>
+              <li>
+                <em>Shopping cart refresh</em> settings control how often cart prices are recalculated, separately for the order's owner and for
+                administrators. Recalculating on every page load is flexible but slow; the default holds prices for 15 seconds.
+              </li>
+            </ul>
+            <p>
+              <strong>Quantity pricing (Commerce 2.x).</strong> I maintain
+              <a href="https://www.drupal.org/project/commerce_quantity_pricing">Commerce Quantity Pricing</a>. The key design fix was
+              <a href="https://new.drupal.org/contribution-record/10343557">moving pricing into order item adjustments instead of a presave hook</a>,
+              so discounts show up as line-level adjustments that tax and reporting can see. I also added
+              <a href="https://new.drupal.org/contribution-record/10343543">a fallback when no tier is set</a>.
+            </p>
+            <p>
+              <strong>Other pricing credits.</strong> In Commerce core I'm credited on
+              <a href="https://new.drupal.org/contribution-record/10460231">a fixed-amount-off offer for orders</a> (2017),
+              <a href="https://new.drupal.org/contribution-record/10494067">using the calculator for quantity math</a> (2016), and a fix where
+              <a href="https://new.drupal.org/contribution-record/10491002">an adjustment amount was wrongly required on every order</a>. I also
+              maintain <a href="https://www.drupal.org/project/commerce_order_total">Commerce Order Sub-total</a>, where I added
+              <a href="https://new.drupal.org/contribution-record/10515496">Commerce Discount support</a>.
+            </p>
+            <p>
+              <strong>Where tax comes in.</strong> Every one of these touches tax. A discount applied before tax gives a different total than one
+              applied after. On a QuickBooks Online integration I'm credited on
+              <a href="https://new.drupal.org/contribution-record/10389333">re-pulling tax rates from QuickBooks</a> so the store and the
+              accounting system agreed.
+            </p>
+          </div>
+          <div class="bench" data-bench="pricing" aria-label="Pricing stories">
+            <p class="bench-fallback">This story needs JavaScript.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Currency -->
+      <section class="problem" id="currency" aria-labelledby="currency-title">
+        <header class="p-head wrap">
+          <h2 id="currency-title">Currency</h2>
+          <p class="gist">Selling across borders without rewriting the catalog</p>
+        </header>
+        <div class="p-body wrap">
+          <div class="prose">
+            <p>
+              Commerce Guys hired me in 2012 to
+              <a href="https://drupalcommerce.org/blog/3094/drupalcommerceorg-redesign-progress">revamp the site builder documentation</a> on
+              drupalcommerce.org. The user guide's <a href="https://drupalcommerce.org/user-guide/currency-conversion">Currency Conversion</a> and
+              <a href="https://drupalcommerce.org/user-guide/shopping-cart-and-multicurrency">Shopping Cart and Multi-Currency</a> pages come from
+              that effort.
+            </p>
+            <p><strong>How it works in Commerce 1.x.</strong> Core handles a narrow but useful case. You enable extra currencies, then write a product pricing rule that:</p>
+            <ol>
+              <li>Checks the line item's unit price currency (so only, say, USD prices pass through).</li>
+              <li>Multiplies the amount by a fixed exchange rate (the guide used 0.76 EUR per USD).</li>
+              <li>Converts the unit price to the new currency code.</li>
+            </ol>
+            <p>
+              The product data never changes; the cart and product page show converted prices. Core also handles mixed-currency orders by
+              converting line items to the site's default currency, or to the first line item's currency if the default isn't on the order. For
+              live exchange rates, the guide points to <a href="https://drupal.org/project/commerce_multicurrency">Commerce Multicurrency</a>.
+            </p>
+            <p>
+              The guide says plainly that the static-rate exercise has a limited use case. The point was to teach pricing rules, since every
+              serious store ends up living in them.
+            </p>
+            <p>
+              <strong>Commerce 2.x.</strong> Currency moved into the store and price field configuration. In
+              <a href="https://www.drupal.org/project/commerce_quantity_pricing">Commerce Quantity Pricing</a> I'm credited on
+              <a href="https://new.drupal.org/contribution-record/10319732">using the site's available currencies instead of only USD and CAD</a>,
+              which mattered for stores outside North America.
+            </p>
+            <p>
+              <strong>Where tax and payment come in.</strong> Currency usually travels with a billing location. That changes which tax applies
+              and which payment gateway can settle the money, which is why multi-currency work rarely stays a pricing-only problem.
+            </p>
+          </div>
+          <div class="bench" data-bench="currency" aria-label="Currency story: sell your dollar catalog in euros">
+            <p class="bench-fallback">This story needs JavaScript.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Multiple carts -->
+      <section class="problem" id="carts" aria-labelledby="carts-title">
+        <header class="p-head wrap">
+          <h2 id="carts-title">Multiple carts</h2>
+          <p class="gist">The “bug” that's really a marketplace feature</p>
+        </header>
+        <div class="p-body wrap">
+          <div class="prose">
+            <p>
+              This is the best example of a small question turning into taxes, payment, and fulfillment. In May 2020 I wrote
+              <a href="https://www.acrocommerce.com/article/multiple-ecommerce-shopping-carts-in-drupal-commerce">Multiple ecommerce shopping carts in Drupal Commerce</a>
+              for Acro Media because many people evaluating Commerce 2.x want to either get rid of the extra carts or check out with all of them
+              at once.
+            </p>
+            <p>
+              <strong>Why there are two carts.</strong> The post walks through reproducing it: add something to the cart as a logged-in user,
+              log out, add something as anonymous, then log back in. You now have two carts. Commerce 2.x shows them by design, because the system
+              won't delete a customer's cart. Under the hood, Commerce 2.x keeps
+              <a href="https://drupalcommerce.org/blog/42419/commerce-2x-stories-stores">one active cart per order type and store</a> (Bojan
+              Zivanovic's 2015 post explains the store model).
+            </p>
+            <p><strong>Trade-offs I laid out.</strong></p>
+            <div class="table-wrap">
+              <table class="trade">
+                <thead>
+                  <tr>
+                    <th scope="col">Keeping multiple carts helps</th>
+                    <th scope="col">Keeping multiple carts costs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Customers never lose a cart</td>
+                    <td>Customers may have to check out more than once</td>
+                  </tr>
+                  <tr>
+                    <td>A marketplace with many sellers can build on it</td>
+                    <td>Payment and fulfillment have to be handled per cart or per vendor</td>
+                  </tr>
+                  <tr>
+                    <td>Different checkout flows for digital, recurring, and shipped items</td>
+                    <td>The cart dropdown and cart page have to show more than one cart and checkout button</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              <strong>If you want one cart.</strong> Two contrib modules solve it:
+              <a href="https://www.drupal.org/project/commerce_combine_carts">Commerce Combine Carts</a> and
+              <a href="https://www.drupal.org/project/commerce_cart_advanced">Commerce Cart Advanced</a> (maintained by my Acro colleague Dimitris
+              Bozelos).
+            </p>
+            <p>
+              <strong>If you want one checkout across many stores.</strong> This is the Etsy or Amazon model. Bojan's advice was a custom form
+              that acts like a checkout flow but changes several orders at once. The code isn't the only problem. I listed the business questions
+              that decide whether it's worth doing:
+            </p>
+            <ul>
+              <li><strong>Fulfillment:</strong> each store should only see its own items.</li>
+              <li><strong>Order management:</strong> split orders change totals and confuse customers and support staff.</li>
+              <li><strong>Payment:</strong> either one site-wide gateway plus payouts to sellers, or separate gateway credentials per store.</li>
+              <li>
+                <strong>Taxes:</strong> tax rules would need to be set up and maintained per store, and services like
+                <a href="https://www.drupal.org/project/commerce_avatax">Avalara AvaTax</a> work per store and can cost too much for small sellers.
+              </li>
+            </ul>
+            <p>
+              <strong>Related code.</strong> I maintain <a href="https://www.drupal.org/project/commerce_wishlist">Commerce Wishlist</a>, which
+              reuses the add-to-cart pattern. I <a href="https://new.drupal.org/contribution-record/10494206">built the scaffolding that mirrors add-to-cart</a>
+              and <a href="https://new.drupal.org/contribution-record/10493557">the add-to-wishlist button</a> in 2016. In Commerce core I'm
+              credited on <a href="https://new.drupal.org/contribution-record/10592951">the Shopping Cart block</a> and on
+              <a href="https://new.drupal.org/contribution-record/10318054">clarifying <code>emptyCart()</code> vs. <code>removeOrderItem()</code></a>
+              in the CartManager.
+            </p>
+          </div>
+          <div class="bench" data-bench="carts" aria-label="Multiple carts story: Sam’s second cart">
+            <p class="bench-fallback">This story needs JavaScript.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Organic Groups -->
+      <section class="problem" id="groups" aria-labelledby="groups-title">
+        <header class="p-head wrap">
+          <h2 id="groups-title">Organic Groups</h2>
+          <p class="gist">Selling access, not just products</p>
+        </header>
+        <div class="p-body wrap">
+          <div class="prose">
+            <p>
+              <strong>The problem.</strong> A site builder named Mike asked how buying a product could add the customer to an Organic Group, the
+              pattern behind paid courses, member communities, and gated content. It came from the
+              <a href="http://www.drupalcommerce.org/questions/10798/how-subscribe-customer-organic-group">drupalcommerce.org Q&amp;A</a>, and in
+              November 2013 I answered it with a video and a post,
+              <a href="https://drupalcommerce.org/blog/10809/selling-organic-groups-using-drupal-commerce">Selling Organic Groups using Drupal Commerce</a>.
+            </p>
+            <p><strong>The approach.</strong> No custom module, just site building:</p>
+            <ol>
+              <li>Add a product reference field to the Organic Group content type, and have each group reference its product.</li>
+              <li>Trigger a rule on “After an order is first paid in full.”</li>
+              <li>Loop over the order's line items.</li>
+              <li>For each one, a Rules component finds the product display that references the line item's product.</li>
+              <li>A second component checks whether that display is an Organic Group, and if so, adds the customer as a member.</li>
+            </ol>
+            <p>I published the exported rules so people could import them rather than click them together.</p>
+            <p>
+              <strong>What the community added.</strong> A commenter pointed out an edge case: with anonymous checkout, the user account is
+              created at checkout completion, after the “paid in full” event fires, so there's no user to add yet. His fix was to trigger on
+              checkout completion, check that the balance is zero, and order the rules so account creation runs first. He also covered bundles,
+              like selling group 1 and group 2 together for less than separately. That's the kind of detail that decides whether a membership
+              store works in production.
+            </p>
+            <p>
+              <strong>Related work.</strong> I'm credited on a fix to
+              <a href="https://new.drupal.org/contribution-record/10566648">Role Expire's Rules action</a>, another way to sell time-limited
+              access, and my drupal.org profile lists me on the documentation guide for
+              <a href="https://www.drupal.org/docs/extending-drupal/contributed-modules/contributed-module-archive/contrib-modules-for-building-the-site-functionality/social-networking-and-collaboration/organic-groups/organic-groups-related-18">Subgroups for Organic Groups</a>.
+            </p>
+          </div>
+          <div class="bench" data-bench="groups" aria-label="Organic Groups story: Pat buys a course">
+            <p class="bench-fallback">This story needs JavaScript.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Credits -->
+      <section class="credits wrap" id="credits" aria-labelledby="credits-title">
+        <h2 id="credits-title">The code behind it</h2>
+        <p class="credits-intro">
+          I have <a href="https://new.drupal.org/user/315047/contribution-records?field_is_sa_value=0">288 issue credits on drupal.org</a> and
+          <a href="https://www.drupal.org/u/joshmiller">maintain about 30 projects</a>, most of them in the Commerce ecosystem. The table pulls
+          out the ones that deal with shipping, tax, pricing, and order handling, the areas where the five problems above end up.
+        </p>
+        <div class="filter" data-credit-filter hidden></div>
+        <div class="table-wrap">
+          <table class="credit-table" data-credits>
+            <thead>
+              <tr>
+                <th scope="col">Area</th>
+                <th scope="col">Project</th>
+                <th scope="col">Credit</th>
+                <th scope="col" class="num">Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-area="Shipping">
+                <td>Shipping</td>
+                <td><a href="https://www.drupal.org/project/commerce_shipping">Commerce Shipping</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10313993">Create order shipment field through bundle field definition</a></td>
+                <td class="num">2025</td>
+              </tr>
+              <tr data-area="Shipping">
+                <td>Shipping</td>
+                <td><a href="https://www.drupal.org/project/commerce_ups">Commerce UPS</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10469067">Support ShipConfirm and ShipAccept APIs</a></td>
+                <td class="num">2017</td>
+              </tr>
+              <tr data-area="Shipping">
+                <td>Shipping</td>
+                <td><a href="https://www.drupal.org/sandbox/joshmiller/2765639">Commerce Stacking Dimensions</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10493582">Work out how many full packages an order needs from a default package size</a></td>
+                <td class="num">2016</td>
+              </tr>
+              <tr data-area="Shipping">
+                <td>Shipping</td>
+                <td>Commerce Stacking Dimensions</td>
+                <td><a href="https://new.drupal.org/contribution-record/10501403">Adjust order volume for products that stack</a></td>
+                <td class="num">2016</td>
+              </tr>
+              <tr data-area="Shipping">
+                <td>Shipping</td>
+                <td><a href="https://www.drupal.org/project/commerce_google_customer_reviews">Commerce Google Customer Reviews</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10432352">Shipping estimate that skips weekends</a></td>
+                <td class="num">2017</td>
+              </tr>
+              <tr data-area="Tax">
+                <td>Tax</td>
+                <td><a href="https://www.drupal.org/project/commerce_qbo_ui">Commerce QuickBooks Online UI</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10389333">Re-pull taxes from QBO</a></td>
+                <td class="num">2018</td>
+              </tr>
+              <tr data-area="Pricing">
+                <td>Pricing</td>
+                <td><a href="https://www.drupal.org/project/commerce_quantity_pricing">Commerce Quantity Pricing</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10343557">Pricing should adjust line items, not hook into presave</a></td>
+                <td class="num">2019</td>
+              </tr>
+              <tr data-area="Currency">
+                <td>Currency</td>
+                <td>Commerce Quantity Pricing</td>
+                <td><a href="https://new.drupal.org/contribution-record/10319732">Use the site's available currencies, not only USD and CAD</a></td>
+                <td class="num">2019</td>
+              </tr>
+              <tr data-area="Pricing">
+                <td>Pricing</td>
+                <td><a href="https://www.drupal.org/project/commerce">Commerce Core</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10460231">Fixed amount off offer for orders</a></td>
+                <td class="num">2017</td>
+              </tr>
+              <tr data-area="Cart">
+                <td>Cart</td>
+                <td>Commerce Core</td>
+                <td><a href="https://new.drupal.org/contribution-record/10592951">Shopping cart block</a></td>
+                <td class="num">2016</td>
+              </tr>
+              <tr data-area="Cart">
+                <td>Cart</td>
+                <td><a href="https://www.drupal.org/project/commerce_wishlist">Commerce Wishlist</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10494206">Scaffolding to mimic add-to-cart</a></td>
+                <td class="num">2016</td>
+              </tr>
+              <tr data-area="Orders">
+                <td>Orders</td>
+                <td><a href="https://www.drupal.org/project/commerce_fraud">Commerce Fraud</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10497363">Check new orders against previously flagged orders</a></td>
+                <td class="num">2020</td>
+              </tr>
+              <tr data-area="Orders">
+                <td>Orders</td>
+                <td><a href="https://www.drupal.org/project/commerce_pos">Commerce Point of Sale</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10456568">Selling zero and negative quantities</a></td>
+                <td class="num">2017</td>
+              </tr>
+              <tr data-area="Taxonomy">
+                <td>Taxonomy</td>
+                <td><a href="https://www.drupal.org/project/autotrader_csv">Autotrader CSV</a></td>
+                <td><a href="https://new.drupal.org/contribution-record/10391687">Create the vocabulary Autotrader requires on install</a></td>
+                <td class="num">2018</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="next">
+          Shipping is the thread I haven't written a post about yet. Stacking Dimensions, which adjusts an order's volume for products that
+          stack, would make a good next write-up.
+        </p>
+      </section>
+
+      <section class="notes wrap" aria-label="About this page">
+        <div>
+          <h2>What's real here</h2>
+          <p>
+            The write-up, its links and the credits are real. The stories are small JavaScript sketches of the behavior each section describes,
+            not Drupal. The fasteners, prices, stores, people and exchange rates are made up. Each story's “How Drupal does this” note, and any
+            Rules event or contrib module behavior it names, follows the linked post or the module's code.
+          </p>
+        </div>
+        <div>
+          <h2>Sources</h2>
+          <h3>My writing</h3>
+          <ul>
+            <li>
+              <a href="https://drupalcommerce.org/blog/10809/selling-organic-groups-using-drupal-commerce">Selling Organic Groups using Drupal Commerce</a>,
+              drupalcommerce.org, Nov 15, 2013
+            </li>
+            <li>
+              <a href="https://drupalcommerce.org/blog/31149/commerce-1x-new-features">Commerce 1.x enhances cart calculation and order management</a>,
+              drupalcommerce.org, Dec 3, 2014
+            </li>
+            <li>
+              <a href="https://drupalcommerce.org/discussions/16060/navigating-drupal-commerce-products">Navigating Drupal Commerce Products</a>
+              (my reply of Sep 5, 2014), drupalcommerce.org
+            </li>
+            <li>
+              <a href="https://drupalcommerce.org/questions/8960/how-do-i-build-product-catalog-using-kickstart-2">How do I build a product catalog using Kickstart 2?</a>
+              (my answer of Aug 7, 2013), drupalcommerce.org
+            </li>
+            <li>
+              <a href="https://www.acrocommerce.com/article/multiple-ecommerce-shopping-carts-in-drupal-commerce">Multiple ecommerce shopping carts in Drupal Commerce</a>,
+              Acro Commerce, May 12, 2020
+            </li>
+          </ul>
+          <h3>Documentation and context</h3>
+          <ul>
+            <li>
+              <a href="https://drupalcommerce.org/blog/3094/drupalcommerceorg-redesign-progress">DrupalCommerce.org Redesign in Progress</a>,
+              drupalcommerce.org (my hiring to revamp the user guide)
+            </li>
+            <li><a href="https://drupalcommerce.org/user-guide/currency-conversion">Currency Conversion</a>, drupalcommerce.org user guide</li>
+            <li>
+              <a href="https://drupalcommerce.org/user-guide/shopping-cart-and-multicurrency">Shopping Cart and Multi-Currency</a>, drupalcommerce.org
+              user guide
+            </li>
+            <li>
+              <a href="https://drupalcommerce.org/blog/42419/commerce-2x-stories-stores">Commerce 2.x Stories: Stores</a>, Bojan Zivanovic,
+              drupalcommerce.org, Nov 10, 2015
+            </li>
+          </ul>
+          <h3>Credits and projects</h3>
+          <ul>
+            <li><a href="https://www.drupal.org/u/joshmiller">joshmiller on drupal.org</a>, profile and maintained projects</li>
+            <li>
+              <a href="https://new.drupal.org/user/315047/contribution-records?field_is_sa_value=0">Contribution records credited to joshmiller</a>,
+              288 issue credits
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap foot">
+      Josh Miller. <a href="https://portfolio.joshnliz.com">Portfolio</a>, <a href="https://drupal.joshnliz.com">Drupal modules</a>,
+      <a href="/">more demos</a>.
+    </footer>
+  </body>
+</html>

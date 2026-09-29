@@ -13,6 +13,7 @@ Write the demo's line first, in the form "X in, Y out." Draw X on the left, Y on
 | `umf-dashboard.svg` | Editor settings in, public dashboard out. | A clipboard form | A cabinet printed with braces (JSON), wearing a cache tag | A monitor with a tile map, bars and a trend line |
 | `wbu-mcp.svg` | A customer's question in, a hold at the local store out. | A chat bubble | A cable and plug into a birdhouse store, with a cardinal on the wire | A bag of seed with a hold tag |
 | `urban-pipeline.svg` | Workday XML in, reviewed author bios out. | An XML sheet over a funnel | A queue tank and a review valve | A bio card stamped as a draft, and a bucket for ignored items |
+| `flexible-commerce.svg` | A merchant's rules in, a store that follows them out. | A checklist with four rules checked and one open | A machine with a category tree in its window, a gear, and two coins that overprint where one currency becomes another | A price-tagged box flying into one of two carts outside a shop, with a members-only tag on the door |
 
 ## How a plate is printed
 
@@ -40,14 +41,14 @@ The plates imitate a risograph print: two spot inks and a navy key line on color
 
 | Ink | Hex | Used on |
 | --- | --- | --- |
-| Blue | `#2f6bc4` | mini catalog (A), dashboard (B) |
+| Blue | `#2f6bc4` | mini catalog (A), dashboard (B), flexible commerce (B) |
 | Teal | `#1b7fb5` | search (A) |
 | Pink | `#ec6a9c` | mini catalog (B), search (B) |
 | Red | `#e0413b` | WBU (A) |
 | Orange | `#f08a2b` | pipeline (A) |
 | Yellow | `#ffc530` | dashboard (A), WBU (B) |
 | Violet | `#7556c4` | pipeline (B) |
-| Green | `#3fa35b` | not used yet |
+| Green | `#3fa35b` | flexible commerce (A) |
 
 | Stock | Hex | Used on |
 | --- | --- | --- |
@@ -56,7 +57,7 @@ The plates imitate a risograph print: two spot inks and a navy key line on color
 | Lilac | `#e8e3f2` | dashboard |
 | Mint | `#dcede3` | WBU |
 | Peach | `#f7e2d6` | pipeline |
-| Slate | `#e2e7ed` | not used yet |
+| Slate | `#e2e7ed` | flexible commerce |
 
 Multiplying changes an ink on colored paper. Blue and violet turn teal or brown on yellow stocks, and yellow nearly disappears on canary. Give each plate a stock its neighbors on the page don't use, and try the inks on it before drawing much.
 
