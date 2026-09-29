@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <!-- Wild Birds Unlimited MCP concept: a customer's question in, a hold at
+       the local store out. The assistant's question runs down a cable (MCP)
+       into the store, which puts a bag of seed on hold. A cardinal sits on the wire. -->
+  <style>
+    :root { --stock: #dcede3; --a: #e0413b; --b: #ffc530; --k: #1d2340; }
+    .stock { fill: var(--stock); }
+    .pass { mix-blend-mode: multiply; }
+    .a { fill: var(--a); }
+    .b { fill: var(--b); }
+    .kf { fill: var(--k); }
+    .x { fill: #fff; }
+    .ta { fill: url(#ta); }
+    .tb { fill: url(#tb); }
+    .tk { fill: url(#tk); }
+    .k, .k2, .dot { fill: none; stroke: var(--k); stroke-linecap: round; stroke-linejoin: round; }
+    .k { stroke-width: 3; }
+    .k2 { stroke-width: 2; }
+    .dot { stroke-width: 2.4; stroke-dasharray: 0.1 7; }
+    .kx, .kx2 { fill: #fff; stroke: var(--k); stroke-linejoin: round; }
+    .kx { stroke-width: 3; }
+    .kx2 { stroke-width: 2; }
+  </style>
+  <defs>
+    <pattern id="tk" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <circle cx="3" cy="3" r="1.3" style="fill: var(--k)" />
+    </pattern>
+    <pattern id="ta" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--a)" />
+    </pattern>
+    <pattern id="tb" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(75)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--b)" />
+    </pattern>
+
+    <path id="bubble" d="M54 62 H172 Q190 62 190 80 V128 Q190 146 172 146 H88 L62 172 L68 146 H54 Q36 146 36 128 V80 Q36 62 54 62 Z" />
+    <path id="cable" d="M178 144 C190 232 262 254 318 234 C344 225 352 214 364 214" />
+    <rect id="plug" x="362" y="204" width="20" height="20" rx="3" />
+    <path id="house" d="M392 178 L442 132 L492 178 V272 H392 Z" />
+    <path id="roof" d="M378 182 L442 120 L506 182 L496 192 L442 140 L388 192 Z" />
+    <path id="door" d="M429 272 V254 Q429 242 442 242 Q455 242 455 254 V272 Z" />
+    <rect id="pole" x="435" y="272" width="14" height="58" />
+    <path id="bag" d="M500 266 L494 322 Q494 330 502 330 H556 Q564 330 564 322 L558 266 Z" />
+    <rect id="band" x="496" y="252" width="66" height="16" rx="3" />
+    <circle id="label" cx="529" cy="298" r="15" />
+    <path id="tag" d="M0 9 L12 0 L24 9 V34 H0 Z" />
+    <path id="tail" d="M20 -20 L60 2 L53 12 L14 -6 Z" />
+    <path id="crest" d="M-27 -46 Q-22 -64 -5 -72 Q-9 -58 -6 -44 Z" />
+    <path id="bird" d="M-34 -40 C-32 -47 -26 -50 -18 -49 C-8 -48 4 -42 14 -34 C22 -28 28 -20 28 -14 C28 -6 18 2 4 2 C-10 2 -22 -4 -28 -14 C-32 -20 -34 -26 -34 -30 Z" />
+    <path id="mask" d="M-35 -42 Q-42 -34 -39 -26 Q-35 -19 -25 -21 Q-22 -32 -28 -45 Z" />
+    <path id="beak" d="M-33 -39 L-50 -31 L-33 -24 Z" />
+    <path id="wing" d="M-6 -30 C8 -35 22 -27 26 -14 C14 -9 0 -12 -8 -20 Z" />
+  </defs>
+
+  <rect class="stock" width="600" height="400" />
+
+  <g class="pass">
+    <ellipse class="tk" cx="442" cy="335" rx="46" ry="8" />
+    <ellipse class="tk" cx="529" cy="335" rx="42" ry="8" />
+  </g>
+
+  <!-- pass A: cardinal red -->
+  <g class="pass" transform="translate(3 2)">
+    <use href="#plug" class="a" />
+    <use href="#roof" class="a" />
+    <g transform="translate(484 272) rotate(-10)"><use href="#tag" class="a" /></g>
+    <path class="a" d="M529 287 C536 292 536 305 529 310 C522 305 522 292 529 287 Z" />
+    <g transform="translate(280 238)">
+      <use href="#tail" class="a" />
+      <use href="#crest" class="a" />
+      <use href="#bird" class="a" />
+      <use href="#beak" class="a" />
+      <circle class="x" cx="-27" cy="-36" r="2.4" />
+    </g>
+  </g>
+
+  <!-- pass B: goldfinch yellow -->
+  <g class="pass" transform="translate(-2 3)">
+    <use href="#bubble" class="b" />
+    <use href="#cable" style="fill: none; stroke: var(--b); stroke-width: 6" />
+    <use href="#house" class="b" />
+    <use href="#door" class="x" />
+    <use href="#bag" class="tb" />
+    <use href="#band" class="b" />
+    <use href="#label" class="x" />
+    <g transform="translate(280 238)">
+      <use href="#beak" class="b" />
+    </g>
+  </g>
+
+  <!-- key -->
+  <g class="pass">
+    <!-- the customer's question -->
+    <use href="#bubble" class="k" />
+    <path class="k2" d="M58 90 H126 M58 106 H138 M58 122 H104" />
+    <path class="k" d="M153 94 Q153 81 165 81 Q177 81 177 93 Q177 102 168 106 Q165 108 165 114" style="stroke-width: 3.5" />
+    <circle class="kf" cx="165" cy="125" r="3.2" />
+
+    <!-- the MCP cable and plug -->
+    <use href="#cable" style="fill: none; stroke: var(--k); stroke-width: 9; stroke-linecap: round" />
+    <use href="#cable" style="fill: none; stroke: #fff; stroke-width: 3.4; stroke-linecap: round" />
+    <path class="k" d="M382 209 H392 M382 219 H392" />
+    <use href="#plug" class="k" />
+    <path class="k2" d="M368 210 V218" />
+
+    <!-- the store -->
+    <use href="#pole" class="kx" />
+    <use href="#pole" class="tk" />
+    <use href="#house" class="k" />
+    <use href="#roof" class="kx" />
+    <use href="#roof" class="k" />
+    <rect class="kx2" x="388" y="202" width="8" height="24" rx="2" />
+    <circle class="kf" cx="442" cy="198" r="14" />
+    <circle class="kf" cx="442" cy="224" r="3.4" />
+    <use href="#door" class="k2" />
+    <circle class="kf" cx="450" cy="259" r="1.9" />
+
+    <!-- the hold: a bag of seed with a tag -->
+    <use href="#bag" class="k" />
+    <use href="#band" class="kx" />
+    <use href="#band" class="k" />
+    <path class="k2" d="M504 260 H554" />
+    <use href="#label" class="k2" />
+    <path class="k2" d="M529 287 C536 292 536 305 529 310 C522 305 522 292 529 287 Z M529 291 V306" />
+    <path class="k2" d="M497 277 C498 270 499 264 502 260" />
+    <g transform="translate(484 272) rotate(-10)">
+      <use href="#tag" class="kx2" />
+      <circle class="kf" cx="12" cy="9" r="2.3" />
+      <path class="k" d="M6 22 L11 27 L19 17" />
+    </g>
+
+    <!-- the cardinal -->
+    <g transform="translate(280 238)">
+      <use href="#tail" class="kx" />
+      <use href="#crest" class="kx" />
+      <use href="#bird" class="kx" />
+      <use href="#mask" class="kf" />
+      <circle cx="-27" cy="-36" r="2.4" style="fill: #fff" />
+      <use href="#beak" class="k2" />
+      <use href="#wing" class="tk" />
+      <use href="#wing" class="k2" />
+      <path class="k2" d="M-5 1 L-7 7 M5 1 L7 7" />
+      <path class="k2" d="M-11 7 H-2 M1 7 H11" />
+    </g>
+  </g>
+</svg>

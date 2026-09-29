@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <!-- Upward Mobility dashboard: editor settings in, public dashboard out.
+       Editors (yellow) save forms into Drupal (blue), which serves JSON with a
+       cache tag. The browser's dashboard prints in both inks, so it comes out green. -->
+  <style>
+    :root { --stock: #e8e3f2; --a: #ffc530; --b: #2f6bc4; --k: #1d2340; }
+    .stock { fill: var(--stock); }
+    .pass { mix-blend-mode: multiply; }
+    .a { fill: var(--a); }
+    .b { fill: var(--b); }
+    .kf { fill: var(--k); }
+    .x { fill: #fff; }
+    .ta { fill: url(#ta); }
+    .tb { fill: url(#tb); }
+    .tk { fill: url(#tk); }
+    .k, .k2, .dot { fill: none; stroke: var(--k); stroke-linecap: round; stroke-linejoin: round; }
+    .k { stroke-width: 3; }
+    .k2 { stroke-width: 2; }
+    .dot { stroke-width: 2.4; stroke-dasharray: 0.1 7; }
+    .kx, .kx2 { fill: #fff; stroke: var(--k); stroke-linejoin: round; }
+    .kx { stroke-width: 3; }
+    .kx2 { stroke-width: 2; }
+  </style>
+  <defs>
+    <pattern id="tk" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <circle cx="3" cy="3" r="1.3" style="fill: var(--k)" />
+    </pattern>
+    <pattern id="ta" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--a)" />
+    </pattern>
+    <pattern id="tb" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(75)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--b)" />
+    </pattern>
+
+    <rect id="board" x="44" y="126" width="110" height="204" rx="8" />
+    <rect id="paper" x="56" y="144" width="86" height="172" rx="2" />
+    <rect id="cab" x="206" y="152" width="112" height="178" rx="6" />
+    <rect id="panel" x="220" y="168" width="84" height="66" rx="4" />
+    <rect id="frame" x="360" y="108" width="200" height="156" rx="10" />
+    <rect id="screen" x="372" y="120" width="176" height="132" rx="4" />
+    <rect id="base" x="414" y="312" width="92" height="18" rx="5" />
+    <rect id="slip" width="28" height="20" rx="2" />
+    <path id="tag" d="M0 9 L12 0 L24 9 V34 H0 Z" />
+  </defs>
+
+  <rect class="stock" width="600" height="400" />
+
+  <g class="pass">
+    <ellipse class="tk" cx="99" cy="335" rx="64" ry="8" />
+    <ellipse class="tk" cx="262" cy="335" rx="66" ry="8" />
+    <ellipse class="tk" cx="460" cy="335" rx="66" ry="8" />
+  </g>
+
+  <!-- pass A: yellow, the editors -->
+  <g class="pass" transform="translate(3 2)">
+    <use href="#board" class="a" />
+    <use href="#paper" class="x" />
+    <g transform="translate(166 172) rotate(-12)"><use href="#slip" class="a" /></g>
+    <g transform="translate(270 270) rotate(12)"><use href="#tag" class="a" /></g>
+    <rect class="a" x="382" y="132" width="16" height="16" rx="2" />
+    <rect class="a" x="420" y="132" width="16" height="16" rx="2" />
+    <rect class="a" x="439" y="132" width="16" height="16" rx="2" />
+    <rect class="a" x="401" y="151" width="16" height="16" rx="2" />
+    <rect class="a" x="420" y="151" width="16" height="16" rx="2" />
+    <rect class="a" x="458" y="151" width="16" height="16" rx="2" />
+    <rect class="a" x="401" y="170" width="16" height="16" rx="2" />
+    <rect class="a" x="420" y="170" width="16" height="16" rx="2" />
+    <rect class="a" x="458" y="170" width="16" height="16" rx="2" />
+    <rect class="a" x="458" y="189" width="16" height="16" rx="2" />
+    <rect class="a" x="517" y="163" width="9" height="42" rx="1" />
+    <use href="#base" class="a" />
+  </g>
+
+  <!-- pass B: blue, Drupal -->
+  <g class="pass" transform="translate(-2 3)">
+    <rect class="b" x="66" y="211" width="42" height="6" rx="3" />
+    <rect class="b" x="66" y="246" width="32" height="18" rx="9" />
+    <rect class="b" x="66" y="280" width="52" height="20" rx="4" />
+    <use href="#cab" class="b" />
+    <use href="#panel" class="x" />
+    <g transform="translate(270 270) rotate(12)"><use href="#tag" class="x" /></g>
+    <g transform="translate(326 164) rotate(10)"><use href="#slip" class="b" /></g>
+    <rect class="b" x="420" y="132" width="16" height="16" rx="2" />
+    <rect class="tb" x="401" y="132" width="16" height="16" rx="2" />
+    <rect class="b" x="477" y="132" width="16" height="16" rx="2" />
+    <rect class="tb" x="382" y="151" width="16" height="16" rx="2" />
+    <rect class="b" x="439" y="151" width="16" height="16" rx="2" />
+    <rect class="tb" x="477" y="151" width="16" height="16" rx="2" />
+    <rect class="b" x="382" y="170" width="16" height="16" rx="2" />
+    <rect class="b" x="401" y="170" width="16" height="16" rx="2" />
+    <rect class="tb" x="439" y="170" width="16" height="16" rx="2" />
+    <rect class="b" x="458" y="170" width="16" height="16" rx="2" />
+    <rect class="b" x="401" y="189" width="16" height="16" rx="2" />
+    <rect class="tb" x="420" y="189" width="16" height="16" rx="2" />
+    <rect class="b" x="504" y="179" width="9" height="26" rx="1" />
+    <rect class="b" x="530" y="147" width="9" height="58" rx="1" />
+    <rect class="b" x="517" y="163" width="9" height="42" rx="1" />
+  </g>
+
+  <!-- key -->
+  <g class="pass">
+    <!-- the editor's form -->
+    <use href="#board" class="k" />
+    <rect class="kx" x="74" y="114" width="50" height="22" rx="6" />
+    <circle class="kf" cx="99" cy="123" r="3.5" />
+    <use href="#paper" class="k2" />
+    <path class="k2" d="M66 160 H104 M66 200 H98 M66 238 H102" />
+    <rect class="kx2" x="66" y="168" width="66" height="16" rx="3" />
+    <path class="k2" d="M72 176 H104" />
+    <path class="k2" d="M66 214 H132" />
+    <circle class="kx2" cx="108" cy="214" r="7" />
+    <rect class="k2" x="66" y="246" width="32" height="18" rx="9" />
+    <circle class="kx2" cx="89" cy="255" r="6" />
+    <rect class="kx2" x="104" y="246" width="32" height="18" rx="9" />
+    <circle class="kx2" cx="113" cy="255" r="6" />
+    <rect class="k2" x="66" y="280" width="52" height="20" rx="4" />
+
+    <!-- saved settings in flight -->
+    <path class="dot" d="M150 212 C152 180 168 160 190 158 C204 157 214 164 220 174" />
+    <g transform="translate(166 172) rotate(-12)">
+      <use href="#slip" class="kx2" />
+      <path class="k2" d="M6 7 H22 M6 13 H16" />
+    </g>
+
+    <!-- Drupal: JSON API with a cache tag -->
+    <use href="#cab" class="k" />
+    <use href="#panel" class="k" />
+    <path class="k" d="M248 180 Q240 180 240 188 V193 Q240 201 233 201 Q240 201 240 209 V214 Q240 222 248 222" />
+    <path class="k" d="M276 180 Q284 180 284 188 V193 Q284 201 291 201 Q284 201 284 209 V214 Q284 222 276 222" />
+    <path class="k2" d="M253 192 H271 M253 201 H265 M253 210 H271" />
+    <rect class="k2" x="220" y="246" width="84" height="34" rx="3" />
+    <rect class="k2" x="220" y="288" width="84" height="32" rx="3" />
+    <path class="k" d="M252 262 H272 M252 303 H272" />
+    <path class="k2" d="M262 263 L279 280" />
+    <g transform="translate(270 270) rotate(12)">
+      <use href="#tag" class="kx2" />
+      <circle class="kf" cx="12" cy="9" r="2.4" />
+      <path class="k2" d="M6 20 H18 M6 26 H14" />
+    </g>
+
+    <!-- JSON in flight -->
+    <path class="dot" d="M318 204 C320 176 334 156 352 154 C364 153 372 158 378 164" />
+    <g transform="translate(326 164) rotate(10)">
+      <use href="#slip" class="kx2" />
+      <path class="k2" d="M10 4 Q7 4 7 7 V8.5 Q7 10 5 10 Q7 10 7 11.5 V13 Q7 16 10 16 M18 4 Q21 4 21 7 V8.5 Q21 10 23 10 Q21 10 21 11.5 V13 Q21 16 18 16" />
+    </g>
+
+    <!-- the browser: map, bars and a trend -->
+    <use href="#frame" class="tk" />
+    <use href="#screen" class="x" />
+    <use href="#frame" class="k" />
+    <use href="#screen" class="k2" />
+    <path class="k2" d="M500 205 H544" />
+    <path class="k2" d="M382 240 L404 232 L426 236 L448 224 L470 228 L492 218 L514 222 L538 212" />
+    <circle class="kf" cx="404" cy="232" r="2.6" />
+    <circle class="kf" cx="448" cy="224" r="2.6" />
+    <circle class="kf" cx="492" cy="218" r="2.6" />
+    <circle class="kf" cx="538" cy="212" r="2.6" />
+    <rect class="kx" x="448" y="264" width="24" height="50" />
+    <use href="#base" class="k" />
+    <circle class="kf" cx="460" cy="258" r="2.4" />
+  </g>
+</svg>

@@ -3,122 +3,422 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Josh Miller Demos</title>
-    <meta name="description" content="Functional front-end demos by Josh Miller." />
+    <title>Working parts: demos by Josh Miller</title>
+    <meta
+      name="description"
+      content="Front-end pieces from Josh Miller's past projects, isolated so they run in your browser with no backend. Each demo comes with a drawing of what goes in and what comes out."
+    />
+    <link rel="canonical" href="https://demos.joshnliz.com/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <meta name="author" content="Josh Miller" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="demos.joshnliz.com" />
+    <meta property="og:url" content="https://demos.joshnliz.com/" />
+    <meta property="og:title" content="Working parts: demos by Josh Miller" />
+    <meta property="og:description" content="Front-end pieces from past projects, isolated so they run in your browser with no backend." />
+    <meta property="og:image" content="https://demos.joshnliz.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Working parts, demos by Josh Miller, shown as drawings of small machines, one for each demo." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#f4f4f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#151a2b" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      /* The page is printed in the plates' key ink (navy) on plain paper.
+         Colour lives in the plates; everything else stays quiet. */
       :root {
-        --bg: #fff;
-        --text: #1a1a1a;
-        --muted: #5c5c5c;
-        --rule: #e3e3e3;
-        --accent: #12719e;
+        --paper: #f4f4f0;
+        --ink: #1d2340;
+        --ink-2: #4b5068;
+        --rule: #d8d8d0;
+        --focus: #2f6bc4;
+        --display: 'Archivo', system-ui, sans-serif;
+        --text: 'Newsreader', Georgia, serif;
+        --gutter: clamp(16px, 4vw, 48px);
+        color-scheme: light;
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --bg: #111;
-          --text: #eee;
-          --muted: #a8a8a8;
-          --rule: #333;
-          --accent: #73bfe2;
+          --paper: #151a2b;
+          --ink: #ecebe4;
+          --ink-2: #a9aec0;
+          --rule: #2b3148;
+          --focus: #8fb1ee;
+          color-scheme: dark;
         }
       }
       * {
         box-sizing: border-box;
       }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
       body {
         margin: 0;
-        background: var(--bg);
-        color: var(--text);
-        font: 18px/1.6 Lato, system-ui, sans-serif;
-      }
-      main {
-        max-width: 44rem;
-        margin: 0 auto;
-        padding: 4rem 16px;
-      }
-      h1 {
-        font-size: 2.25rem;
-        margin: 0 0 0.5rem;
-      }
-      .intro {
-        color: var(--muted);
-        margin: 0 0 3rem;
-      }
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        border-top: 1px solid var(--rule);
-      }
-      li {
-        border-bottom: 1px solid var(--rule);
-        padding: 1.25rem 0;
+        background: var(--paper);
+        color: var(--ink);
+        font: 400 1.125rem/1.6 var(--text);
+        font-optical-sizing: auto;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
       }
       a {
-        color: var(--accent);
+        color: inherit;
+        text-underline-offset: 0.2em;
+        text-decoration-thickness: 1px;
       }
-      .demo-title {
-        font-size: 1.25rem;
+      :focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+      }
+      .wrap {
+        width: min(1200px, 100% - 2 * var(--gutter));
+        margin-inline: auto;
+      }
+
+      /* Top bar */
+      .top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px 24px;
+        padding-block: 22px;
+        font: 500 0.9375rem/1.4 var(--display);
+      }
+      .top a {
+        text-decoration: none;
+      }
+      .top a:hover {
+        text-decoration: underline;
+      }
+      .me {
         font-weight: 700;
+        font-stretch: 112%;
       }
-      .demo-desc {
-        margin: 0.25rem 0 0;
-        color: var(--muted);
+      .top nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 22px;
+        color: var(--ink-2);
       }
-      footer {
-        margin-top: 3rem;
-        font-size: 0.9rem;
-        color: var(--muted);
+
+      /* Hero: the intro tucks in beside the title's second line, on the same
+         7:5 columns as the lead entry, so the two share a left edge. */
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        column-gap: clamp(28px, 4vw, 56px);
+        padding-block: clamp(36px, 7vw, 92px) clamp(44px, 7vw, 88px);
+      }
+      .title {
+        grid-column: 1 / -1;
+        grid-row: 1 / span 2;
+        margin: 0;
+        font: 800 clamp(3.6rem, 11.5vw - 5px, 9rem)/0.84 var(--display);
+        font-stretch: 125%;
+        letter-spacing: -0.035em;
+      }
+      .title span {
+        display: block;
+      }
+      .intro {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: end;
+        margin: 0;
+        max-width: 34ch;
+        font-size: 1.3125rem;
+        line-height: 1.45;
+        color: var(--ink-2);
+        text-wrap: pretty;
+      }
+
+      /* Demos: one lead, then two columns */
+      .demos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(56px, 7vw, 96px) clamp(28px, 4vw, 56px);
+        padding-bottom: clamp(64px, 9vw, 120px);
+      }
+      .demo {
+        position: relative;
+        display: grid;
+        align-content: start;
+      }
+      .plate {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 24px;
+      }
+      .demo h2 {
+        margin: 0;
+        font: 700 1.625rem/1.1 var(--display);
+        font-stretch: 112%;
+        letter-spacing: -0.01em;
+        text-wrap: balance;
+      }
+      .io {
+        margin: 6px 0 12px;
+        font-size: 1.3125rem;
+        font-style: italic;
+        line-height: 1.35;
+      }
+      .desc {
+        margin: 0;
+        max-width: 36em;
+        color: var(--ink-2);
+        text-wrap: pretty;
+      }
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        margin: 18px 0 0;
+        font: 600 0.9375rem/1.4 var(--display);
+      }
+      .links a:not(.go) {
+        position: relative;
+        z-index: 1;
+        color: var(--ink-2);
+      }
+      .go {
+        text-decoration-thickness: 2px;
+      }
+      /* The main link covers the whole entry, plate included. */
+      .go::after {
+        content: '';
+        position: absolute;
+        inset: -10px;
+      }
+      .demo:hover .go {
+        text-decoration-thickness: 3px;
+      }
+      .go:focus-visible {
+        outline: none;
+      }
+      .go:focus-visible::after {
+        outline: 3px solid var(--focus);
+        border-radius: 4px;
+      }
+
+      .lead {
+        grid-column: 1 / -1;
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        column-gap: clamp(28px, 4vw, 56px);
+        align-items: center;
+      }
+      .lead .plate {
+        margin-bottom: 0;
+      }
+      .lead h2 {
+        font-size: clamp(2rem, 3.6vw, 2.875rem);
+        line-height: 1.02;
+      }
+      .lead .io {
+        margin-top: 10px;
+        font-size: 1.5rem;
+      }
+
+      /* Footer */
+      .foot {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px 32px;
+        padding-block: 28px 56px;
+        border-top: 1px solid var(--rule);
+        font-size: 1rem;
+        color: var(--ink-2);
+      }
+      .foot p {
+        margin: 0;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .plate {
+          filter: brightness(0.93);
+        }
+      }
+      @media (max-width: 900px) {
+        .title {
+          grid-row: 1;
+        }
+        .intro {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          margin-top: 24px;
+        }
+      }
+      @media (max-width: 760px) {
+        .demos {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .lead {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .lead .plate {
+          margin-bottom: 24px;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Demos</h1>
-      <p class="intro">Working front-end pieces from past projects, isolated so you can use them in the browser.</p>
-      <ul>
-        <li>
-          <a class="demo-title" href="/lyndon/mini-catalog/">Mini catalog: CSV in, catalog out</a>
-          <p class="demo-desc">
-            Point a web component at a CSV and get a catalog you can search, filter and page through. Five presets show its modes, and you can
-            edit a CSV or load your own and watch it render.
-          </p>
-        </li>
-        <li>
-          <a class="demo-title" href="/lyndon/search/">Search results component</a>
-          <p class="demo-desc">
-            Faceted, paginated search results from a Drupal Search API index, here running against a mock of the JSON:API endpoint.
-          </p>
-        </li>
-        <li>
-          <a class="demo-title" href="/umf-dashboard/">Upward Mobility data dashboard (write-up)</a>
-          <p class="demo-desc">
-            How a Drupal module fed a public data dashboard: a cached JSON API, editor forms that controlled its wording, order and chart
-            behavior, and React web components that read both. Links to the live dashboard.
-          </p>
-        </li>
-        <li>
-          <a class="demo-title" href="/wbu-mcp/">Wild Birds Unlimited MCP (concept)</a>
-          <p class="demo-desc">
-            An animated pitch for an MCP server that answers AI assistants from a bird store chain's own systems: live hours, shelf counts,
-            events and staff sightings. Twelve tools play out as chats with customers across the US and Canada, from the question to a
-            hold, RSVP or booking. Sample data, not affiliated with Wild Birds Unlimited.
-          </p>
-        </li>
-        <li>
-          <a class="demo-title" href="/urban-pipeline/">Urban Pipeline, played out</a>
-          <p class="demo-desc">
-            A three-minute animated re-enactment of a Drupal module I built at the Urban Institute. It matched a Workday employee export to
-            author bios, queued each difference for review in a bulk-operations view, and saved approved changes as drafts for editors to publish.
-          </p>
-        </li>
-      </ul>
-      <footer>
-        Josh Miller · <a href="https://portfolio.joshnliz.com">portfolio</a> · <a href="https://drupal.joshnliz.com">Drupal modules</a> ·
-        <a href="https://github.com/joshmiller83/demos">source</a>
-      </footer>
+    <header class="top wrap">
+      <a class="me" href="https://portfolio.joshnliz.com">Josh Miller</a>
+      <nav aria-label="Josh Miller's sites">
+        <a href="https://portfolio.joshnliz.com">Portfolio</a>
+        <a href="https://drupal.joshnliz.com">Drupal modules</a>
+        <a href="https://github.com/joshmiller83/demos">Source</a>
+      </nav>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <h1 class="title"><span>Working</span> <span>parts</span></h1>
+        <p class="intro">
+          Front-end pieces from past projects, isolated so they run in your browser with no backend. Each drawing shows what goes in and what
+          comes out.
+        </p>
+      </section>
+
+      <section class="demos" aria-label="Demos">
+        <article class="demo lead">
+          <img
+            class="plate"
+            src="plates/mini-catalog.svg"
+            width="600"
+            height="400"
+            fetchpriority="high"
+            alt="A CSV sheet feeds into a small press. Its rows fly out as index cards into a card catalog drawer with colored divider tabs."
+          />
+          <div>
+            <h2>Mini catalog</h2>
+            <p class="io">CSV in, catalog out.</p>
+            <p class="desc">
+              A Stencil web component I built for the Urban Institute's Lyndon design system. Point it at a CSV and it renders a catalog you can
+              search, filter and page through. Editors at Urban published libraries, directories and data catalogs this way without touching
+              code. Five presets show its modes, and you can edit a CSV or load your own.
+            </p>
+            <p class="links">
+              <a class="go" href="/lyndon/mini-catalog/">Try the mini catalog</a>
+              <a href="https://github.com/joshmiller83/demos/blob/main/lyndon/src/components/lbj-mini-catalog/lbj-mini-catalog.tsx">Component source</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="demo">
+          <img
+            class="plate"
+            src="plates/search.svg"
+            width="600"
+            height="400"
+            loading="lazy"
+            decoding="async"
+            alt="A magnifying glass reads documents as they slide down a ramp and drop into four glass tubes, each filled to a different height."
+          />
+          <div>
+            <h2>Search results</h2>
+            <p class="io">Keywords in, faceted results out.</p>
+            <p class="desc">
+              Faceted, paginated results from a Drupal Search API index. The original Lyndon component runs here against a mock of the JSON:API
+              endpoint.
+            </p>
+            <p class="links">
+              <a class="go" href="/lyndon/search/">Try the search</a>
+              <a href="https://github.com/joshmiller83/demos/tree/main/lyndon">Source</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="demo">
+          <img
+            class="plate"
+            src="plates/umf-dashboard.svg"
+            width="600"
+            height="400"
+            loading="lazy"
+            decoding="async"
+            alt="An editor's clipboard of form settings, a Drupal cabinet serving JSON with a cache tag, and a monitor showing a tile map, bar chart and trend line."
+          />
+          <div>
+            <h2>Upward Mobility data dashboard</h2>
+            <p class="io">Editor settings in, public dashboard out.</p>
+            <p class="desc">
+              How a Drupal module fed a public data dashboard: a cached JSON API, editor forms that set its wording, order and chart behavior, and
+              React web components that read both.
+            </p>
+            <p class="links">
+              <a class="go" href="/umf-dashboard/">Read the write-up</a>
+              <a href="https://upward-mobility.urban.org/dashboard">Live dashboard</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="demo">
+          <img
+            class="plate"
+            src="plates/wbu-mcp.svg"
+            width="600"
+            height="400"
+            loading="lazy"
+            decoding="async"
+            alt="A chat bubble with a question mark runs a cable to a birdhouse store, where a bag of seed carries a hold tag. A cardinal sits on the cable."
+          />
+          <div>
+            <h2>Wild Birds Unlimited MCP (concept)</h2>
+            <p class="io">A customer's question in, a hold at the local store out.</p>
+            <p class="desc">
+              An animated pitch for an MCP server that answers AI assistants from a bird store chain's own systems: live hours, shelf counts,
+              events and staff sightings. Twelve tools play out as chats with customers across the US and Canada. Sample data, not affiliated
+              with Wild Birds Unlimited.
+            </p>
+            <p class="links">
+              <a class="go" href="/wbu-mcp/">Watch the concept</a>
+              <a href="https://github.com/joshmiller83/demos/tree/main/site/wbu-mcp">Source</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="demo">
+          <img
+            class="plate"
+            src="plates/urban-pipeline.svg"
+            width="600"
+            height="400"
+            loading="lazy"
+            decoding="async"
+            alt="A Workday XML sheet pours through a funnel into a tank of queued items. A valve sends approved items on to an author bio stamped as a draft, and ignored ones into a bucket."
+          />
+          <div>
+            <h2>Urban Pipeline</h2>
+            <p class="io">Workday XML in, reviewed author bios out.</p>
+            <p class="desc">
+              A three-minute re-enactment of a Drupal module I built at the Urban Institute. It matched a Workday employee export to author bios,
+              queued each difference for review, and saved approved changes as drafts for editors to publish.
+            </p>
+            <p class="links">
+              <a class="go" href="/urban-pipeline/">Watch the re-enactment</a>
+              <a href="https://github.com/joshmiller83/drupal-modules/tree/main/urban_pipeline">Module source</a>
+            </p>
+          </div>
+        </article>
+      </section>
     </main>
+
+    <footer class="foot wrap">
+      <p>
+        Josh Miller. <a href="https://portfolio.joshnliz.com">Portfolio</a>, <a href="https://drupal.joshnliz.com">Drupal modules</a>,
+        <a href="https://github.com/joshmiller83/demos">source for this site</a>.
+      </p>
+      <p>Set in Archivo and Newsreader. The drawings are SVG, one per demo. No analytics.</p>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <!-- Search results: keywords in, faceted results out.
+       A lens reads each document for the keywords. Matches slide down a ramp
+       and drop into one tube per content type; each stack is a facet count. -->
+  <style>
+    :root { --stock: #f7ecc3; --a: #1b7fb5; --b: #ec6a9c; --k: #1d2340; }
+    .stock { fill: var(--stock); }
+    .pass { mix-blend-mode: multiply; }
+    .a { fill: var(--a); }
+    .b { fill: var(--b); }
+    .kf { fill: var(--k); }
+    .x { fill: #fff; }
+    .ta { fill: url(#ta); }
+    .tb { fill: url(#tb); }
+    .tk { fill: url(#tk); }
+    .k, .k2, .dot { fill: none; stroke: var(--k); stroke-linecap: round; stroke-linejoin: round; }
+    .k { stroke-width: 3; }
+    .k2 { stroke-width: 2; }
+    .dot { stroke-width: 2.4; stroke-dasharray: 0.1 7; }
+    .kx, .kx2 { fill: #fff; stroke: var(--k); stroke-linejoin: round; }
+    .kx { stroke-width: 3; }
+    .kx2 { stroke-width: 2; }
+  </style>
+  <defs>
+    <pattern id="tk" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <circle cx="3" cy="3" r="1.3" style="fill: var(--k)" />
+    </pattern>
+    <pattern id="ta" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--a)" />
+    </pattern>
+    <pattern id="tb" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(75)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--b)" />
+    </pattern>
+    <clipPath id="glass"><circle cx="126" cy="120" r="37" /></clipPath>
+
+    <circle id="lens" cx="126" cy="120" r="48" />
+    <circle id="lens-in" cx="126" cy="120" r="37" />
+    <rect id="handle" x="-9" y="0" width="18" height="78" rx="8" transform="translate(97 152) rotate(42)" />
+    <path id="ramp" d="M176 168 L560 244 V258 L176 182 Z" />
+    <rect id="post" x="186" y="180" width="14" height="152" rx="3" />
+    <path id="t1" d="M242 195 V318 Q242 330 254 330 H270 Q282 330 282 318 V203 Z" />
+    <path id="t2" d="M322 211 V318 Q322 330 334 330 H350 Q362 330 362 318 V219 Z" />
+    <path id="t3" d="M402 227 V318 Q402 330 414 330 H430 Q442 330 442 318 V235 Z" />
+    <path id="t4" d="M482 243 V318 Q482 330 494 330 H510 Q522 330 522 318 V251 Z" />
+    <rect id="s1" x="247" y="263" width="30" height="63" rx="3" />
+    <rect id="s2" x="327" y="299" width="30" height="27" rx="3" />
+    <rect id="s3" x="407" y="245" width="30" height="81" rx="3" />
+    <rect id="s4" x="487" y="290" width="30" height="36" rx="3" />
+    <path id="doc" d="M0 0 H17 L25 8 V32 H0 Z" />
+  </defs>
+
+  <rect class="stock" width="600" height="400" />
+
+  <g class="pass">
+    <ellipse class="tk" cx="382" cy="338" rx="176" ry="8" />
+  </g>
+
+  <!-- pass A: teal -->
+  <g class="pass" transform="translate(3 2)">
+    <use href="#handle" class="a" />
+    <use href="#lens" class="a" />
+    <use href="#lens-in" class="x" />
+    <use href="#ramp" class="a" />
+    <use href="#s1" class="a" />
+    <use href="#s3" class="ta" />
+    <use href="#s4" class="ta" />
+  </g>
+
+  <!-- pass B: pink -->
+  <g class="pass" transform="translate(-2 3)">
+    <rect class="b" x="118" y="102" width="44" height="22" rx="3" clip-path="url(#glass)" />
+    <use href="#s2" class="b" />
+    <use href="#s3" class="b" />
+    <g transform="translate(410 222) rotate(-14)"><rect class="b" x="4" y="12" width="17" height="5" rx="1" /></g>
+  </g>
+
+  <!-- key -->
+  <g class="pass">
+    <!-- lens: the keywords -->
+    <use href="#handle" class="k" />
+    <use href="#lens" class="kx" />
+    <use href="#lens-in" class="k" />
+    <g clip-path="url(#glass)">
+      <rect class="kf" x="122" y="108" width="36" height="10" rx="2" />
+      <path class="k" d="M96 113 H112 M100 136 H150" />
+    </g>
+    <path class="k2" d="M100 96 Q108 86 120 84" />
+
+    <!-- ramp and post -->
+    <use href="#post" class="kx" />
+    <path class="kx" d="M176 332 H212" />
+    <use href="#ramp" class="k" />
+    <path class="k" d="M248 182.3 L276 187.8 M328 198.2 L356 203.7 M408 214 L436 219.5 M488 229.8 L516 235.3" style="stroke-width: 5" />
+
+    <!-- documents on the ramp -->
+    <g transform="translate(206 139) rotate(11.2)">
+      <use href="#doc" class="kx2" />
+      <path class="k2" d="M17 0 V8 H25 M5 15 H19 M5 22 H15" />
+    </g>
+    <g transform="translate(296 157) rotate(11.2)">
+      <use href="#doc" class="kx2" />
+      <path class="k2" d="M17 0 V8 H25 M5 15 H19 M5 22 H17" />
+    </g>
+
+    <!-- tubes: one per content type -->
+    <use href="#s1" class="k2" />
+    <use href="#s2" class="k2" />
+    <use href="#s3" class="k2" />
+    <use href="#s4" class="k2" />
+    <path class="k2" d="M247 272 H277 M247 281 H277 M247 290 H277 M247 299 H277 M247 308 H277 M247 317 H277" />
+    <path class="k2" d="M327 308 H357 M327 317 H357" />
+    <path class="k2" d="M407 254 H437 M407 263 H437 M407 272 H437 M407 281 H437 M407 290 H437 M407 299 H437 M407 308 H437 M407 317 H437" />
+    <path class="k2" d="M487 299 H517 M487 308 H517 M487 317 H517" />
+    <g transform="translate(410 222) rotate(-14)">
+      <use href="#doc" class="kx2" />
+      <path class="k2" d="M17 0 V8 H25 M5 22 H15" />
+    </g>
+    <use href="#t1" class="k" />
+    <use href="#t2" class="k" />
+    <use href="#t3" class="k" />
+    <use href="#t4" class="k" />
+    <path class="k2" d="M250 212 V240 M330 228 V262 M490 262 V276" />
+    <path class="k" d="M560 244 V232" />
+  </g>
+</svg>

@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <!-- Mini catalog: CSV in, catalog out.
+       A CSV feeds into a press. Its rows come out as index cards, and the
+       highlighted column becomes the drawer's divider tabs (the filters). -->
+  <style>
+    :root { --stock: #dce7f3; --a: #2f6bc4; --b: #ec6a9c; --k: #1d2340; }
+    .stock { fill: var(--stock); }
+    .pass { mix-blend-mode: multiply; }
+    .a { fill: var(--a); }
+    .b { fill: var(--b); }
+    .kf { fill: var(--k); }
+    .x { fill: #fff; }
+    .ta { fill: url(#ta); }
+    .tb { fill: url(#tb); }
+    .tk { fill: url(#tk); }
+    .k, .k2, .dot { fill: none; stroke: var(--k); stroke-linecap: round; stroke-linejoin: round; }
+    .k { stroke-width: 3; }
+    .k2 { stroke-width: 2; }
+    .dot { stroke-width: 2.4; stroke-dasharray: 0.1 7; }
+    .kx, .kx2 { fill: #fff; stroke: var(--k); stroke-linejoin: round; }
+    .kx { stroke-width: 3; }
+    .kx2 { stroke-width: 2; }
+  </style>
+  <defs>
+    <pattern id="tk" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <circle cx="3" cy="3" r="1.3" style="fill: var(--k)" />
+    </pattern>
+    <pattern id="ta" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--a)" />
+    </pattern>
+    <pattern id="tb" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(75)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--b)" />
+    </pattern>
+
+    <path id="sheet" d="M128 46 H236 L254 64 V200 H128 Z" />
+    <rect id="col" x="182" y="58" width="38" height="142" />
+    <path id="body" d="M106 214 Q106 200 120 200 H262 Q276 200 276 214 V330 H106 Z" />
+    <rect id="throat" x="120" y="186" width="142" height="18" rx="5" />
+    <circle id="window" cx="191" cy="263" r="35" />
+    <circle id="roll1" cx="191" cy="248" r="14" />
+    <circle id="roll2" cx="191" cy="278" r="14" />
+    <rect id="card" width="48" height="32" rx="3" />
+    <rect id="thumb" x="6" y="7" width="13" height="13" rx="1.5" />
+    <rect id="front" x="392" y="262" width="164" height="76" rx="4" />
+    <rect id="holder" x="457" y="277" width="34" height="17" rx="2" />
+    <path id="tab1" d="M412 250 V232 Q412 226 418 226 H438 Q444 226 444 232 V250 Z" />
+    <path id="tab2" d="M462 254 V236 Q462 230 468 230 H488 Q494 230 494 236 V254 Z" />
+    <path id="tab3" d="M510 258 V240 Q510 234 516 234 H534 Q540 234 540 240 V258 Z" />
+    <g id="comma">
+      <circle r="2.3" style="fill: var(--k)" />
+      <path d="M1.9 0.6 C2 3.2 1 5 -1.3 6.3" style="fill: none; stroke: var(--k); stroke-width: 1.7; stroke-linecap: round" />
+    </g>
+  </defs>
+
+  <rect class="stock" width="600" height="400" />
+
+  <g class="pass">
+    <ellipse class="tk" cx="191" cy="343" rx="106" ry="8" />
+    <ellipse class="tk" cx="474" cy="343" rx="90" ry="8" />
+  </g>
+
+  <!-- pass A: blue -->
+  <g class="pass" transform="translate(3 2)">
+    <rect class="a" x="142" y="66" width="28" height="8" rx="2" />
+    <rect class="a" x="186" y="66" width="28" height="8" rx="2" />
+    <rect class="a" x="230" y="66" width="12" height="8" rx="2" />
+    <use href="#body" class="a" />
+    <use href="#window" class="x" />
+    <use href="#roll1" class="a" />
+    <use href="#roll2" class="a" />
+    <use href="#tab1" class="a" />
+    <use href="#tab3" class="ta" />
+    <use href="#holder" class="a" />
+    <g transform="translate(290 236) rotate(-22)"><use href="#thumb" class="a" /></g>
+    <g transform="translate(408 190) rotate(18)"><use href="#thumb" class="a" /></g>
+  </g>
+
+  <!-- pass B: pink -->
+  <g class="pass" transform="translate(-2 3)">
+    <use href="#col" class="b" />
+    <use href="#throat" class="b" />
+    <use href="#front" class="b" />
+    <use href="#holder" class="x" />
+    <use href="#tab2" class="b" />
+    <use href="#tab3" class="b" />
+    <g transform="translate(346 184) rotate(-4)"><use href="#thumb" class="b" /></g>
+    <g transform="translate(408 190) rotate(18)"><use href="#thumb" class="tb" /></g>
+  </g>
+
+  <!-- key -->
+  <g class="pass">
+    <!-- the CSV -->
+    <use href="#sheet" class="k" />
+    <path class="k2" d="M236 46 V64 H254" />
+    <g class="k2">
+      <path d="M142 92 H170 M186 92 H214 M230 92 H242" />
+      <path d="M142 110 H164 M186 110 H210 M230 110 H242" />
+      <path d="M142 128 H170 M186 128 H206 M230 128 H240" />
+      <path d="M142 146 H160 M186 146 H214 M230 146 H242" />
+      <path d="M142 164 H168 M186 164 H208 M230 164 H238" />
+    </g>
+    <use href="#comma" x="177" y="93" />
+    <use href="#comma" x="221" y="93" />
+    <use href="#comma" x="177" y="111" />
+    <use href="#comma" x="221" y="111" />
+    <use href="#comma" x="177" y="129" />
+    <use href="#comma" x="221" y="129" />
+    <use href="#comma" x="177" y="147" />
+    <use href="#comma" x="221" y="147" />
+    <use href="#comma" x="177" y="165" />
+    <use href="#comma" x="221" y="165" />
+
+    <!-- the press -->
+    <use href="#throat" class="kx" />
+    <path class="k" d="M136 195 H246" />
+    <use href="#body" class="k" />
+    <rect class="kx" x="94" y="328" width="194" height="10" rx="3" />
+    <use href="#window" class="k" />
+    <use href="#roll1" class="k" />
+    <use href="#roll2" class="k" />
+    <circle class="kf" cx="191" cy="248" r="3" />
+    <circle class="kf" cx="191" cy="278" r="3" />
+    <path class="k2" d="M157 263 H225" />
+    <circle class="kf" cx="124" cy="218" r="3" />
+    <circle class="kf" cx="258" cy="218" r="3" />
+    <circle class="kf" cx="124" cy="314" r="3" />
+    <circle class="kf" cx="258" cy="314" r="3" />
+    <path class="k" d="M98 250 L74 226" />
+    <circle class="kx" cx="98" cy="250" r="9" />
+    <circle class="kx" cx="72" cy="224" r="7" />
+    <rect class="kx" x="271" y="274" width="10" height="30" rx="3" />
+
+    <!-- cards in flight -->
+    <path class="dot" d="M292 272 C318 212 372 170 420 176 C446 180 458 196 462 216" />
+    <g transform="translate(290 236) rotate(-22)">
+      <use href="#card" class="kx" />
+      <use href="#thumb" class="k2" />
+      <path class="k2" d="M25 11 H41 M25 18 H36" />
+    </g>
+    <g transform="translate(346 184) rotate(-4)">
+      <use href="#card" class="kx" />
+      <use href="#thumb" class="k2" />
+      <path class="k2" d="M25 11 H41 M25 18 H34" />
+    </g>
+    <g transform="translate(408 190) rotate(18)">
+      <use href="#card" class="kx" />
+      <use href="#thumb" class="k2" />
+      <path class="k2" d="M25 11 H41 M25 18 H38" />
+    </g>
+
+    <!-- the catalog drawer -->
+    <use href="#tab1" class="kx" />
+    <use href="#tab2" class="kx" />
+    <use href="#tab3" class="kx" />
+    <path class="kx" d="M402 262 V244 H546 V262" />
+    <path class="k2" d="M402 250 H546 M402 256 H546" />
+    <use href="#front" class="k" />
+    <use href="#holder" class="k" />
+    <path class="k2" d="M464 285.5 H484" />
+    <circle class="kf" cx="474" cy="304" r="2.6" />
+    <circle class="k" cx="474" cy="314" r="8" />
+  </g>
+</svg>

@@ -23,13 +23,14 @@ To work on the Lyndon components with live reload, run `npm start -w lyndon`.
 
 ## Layout
 
-- `site/` holds the landing page and `CNAME`, copied into `_site/` as-is.
+- `site/` holds the landing page and `CNAME`, copied into `_site/` as-is. Next to the page are `plates/`, one drawing per demo, plus `favicon.svg` and `og.png`, the social preview.
+- `scripts/og.html` is the source for `site/og.png`.
 - Each demo is an npm workspace whose `build` script writes static files to `<workspace>/www/<workspace>/`. `scripts/assemble.mjs` runs each build and copies the output to `_site/<workspace>/`.
 - `.github/workflows/deploy.yml` tests, builds and publishes `_site/` to GitHub Pages on every push to `main`.
 
-To add a demo, create a workspace with a `build` script, add it to `workspaces` in `package.json` and to the `demos` list in `scripts/assemble.mjs`, then link it from `site/index.html`.
+To add a demo, create a workspace with a `build` script, add it to `workspaces` in `package.json` and to the `demos` list in `scripts/assemble.mjs`, then give it an entry and a plate on `site/index.html`. [PLATES.md](PLATES.md) covers how to draw the plate and write the entry.
 
-A demo that's only static files doesn't need a workspace. Put it in `site/<slug>/`, which is served at `/<slug>/`, and link it from `site/index.html`.
+A demo that's only static files doesn't need a workspace. Put it in `site/<slug>/`, which is served at `/<slug>/`, and give it an entry and a plate on `site/index.html`.
 
 ## lyndon/
 

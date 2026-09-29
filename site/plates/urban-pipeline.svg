@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <!-- Urban Pipeline: Workday XML in, reviewed author bios out.
+       Workday data (orange) pours into a queue (violet). A reviewer's valve
+       sends each item on to a bio, saved as a stamped draft, or into the bucket. -->
+  <style>
+    :root { --stock: #f7e2d6; --a: #f08a2b; --b: #7556c4; --k: #1d2340; }
+    .stock { fill: var(--stock); }
+    .pass { mix-blend-mode: multiply; }
+    .a { fill: var(--a); }
+    .b { fill: var(--b); }
+    .kf { fill: var(--k); }
+    .x { fill: #fff; }
+    .ta { fill: url(#ta); }
+    .tb { fill: url(#tb); }
+    .tk { fill: url(#tk); }
+    .k, .k2, .dot { fill: none; stroke: var(--k); stroke-linecap: round; stroke-linejoin: round; }
+    .k { stroke-width: 3; }
+    .k2 { stroke-width: 2; }
+    .dot { stroke-width: 2.4; stroke-dasharray: 0.1 7; }
+    .kx, .kx2 { fill: #fff; stroke: var(--k); stroke-linejoin: round; }
+    .kx { stroke-width: 3; }
+    .kx2 { stroke-width: 2; }
+    .pipe { fill: none; stroke: var(--k); stroke-width: 17; stroke-linecap: butt; stroke-linejoin: round; }
+    .bore { fill: none; stroke: #fff; stroke-width: 10; stroke-linecap: butt; stroke-linejoin: round; }
+    .flow-a, .flow-b { fill: none; stroke-width: 10; stroke-linejoin: round; }
+    .flow-a { stroke: var(--a); }
+    .flow-b { stroke: var(--b); }
+  </style>
+  <defs>
+    <pattern id="tk" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <circle cx="3" cy="3" r="1.3" style="fill: var(--k)" />
+    </pattern>
+    <pattern id="ta" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--a)" />
+    </pattern>
+    <pattern id="tb" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(75)">
+      <circle cx="3" cy="3" r="1.7" style="fill: var(--b)" />
+    </pattern>
+    <clipPath id="frame-clip"><circle cx="498" cy="222" r="19" /></clipPath>
+
+    <path id="sheet" d="M40 44 H132 L150 62 V196 H40 Z" />
+    <path id="funnel" d="M36 186 H154 L106 226 V236 H84 V226 Z" />
+    <path id="p1" d="M95 236 V264 Q95 282 113 282 H208" />
+    <path id="p2" d="M304 282 H336" />
+    <path id="p3" d="M364 282 H378 Q392 282 392 268 V252 Q392 238 406 238 H448" />
+    <path id="p4" d="M350 298 V308" />
+    <rect id="tank" x="206" y="160" width="100" height="150" rx="10" />
+    <rect id="item" width="70" height="16" rx="4" />
+    <circle id="valve" cx="350" cy="282" r="16" />
+    <path id="bucket" d="M330 312 H370 L365 330 H335 Z" />
+    <rect id="back" x="470" y="170" width="96" height="160" rx="6" />
+    <rect id="card" x="448" y="186" width="100" height="144" rx="6" />
+    <rect id="stamp" x="-30" y="-11" width="60" height="22" rx="4" />
+    <g id="lt"><path d="M6 -5 L0 0 L6 5" /></g>
+    <g id="gt"><path d="M0 -5 L6 0 L0 5" /></g>
+  </defs>
+
+  <rect class="stock" width="600" height="400" />
+
+  <g class="pass">
+    <ellipse class="tk" cx="256" cy="335" rx="64" ry="8" />
+    <ellipse class="tk" cx="350" cy="335" rx="26" ry="6" />
+    <ellipse class="tk" cx="506" cy="335" rx="70" ry="8" />
+  </g>
+
+  <!-- pass A: Workday orange -->
+  <g class="pass" transform="translate(3 2)">
+    <rect class="a" x="52" y="58" width="52" height="8" rx="2" />
+    <rect class="a" x="96" y="95" width="26" height="7" rx="2" />
+    <rect class="a" x="96" y="113" width="18" height="7" rx="2" />
+    <rect class="a" x="96" y="131" width="30" height="7" rx="2" />
+    <use href="#funnel" class="ta" />
+    <use href="#p1" class="flow-a" />
+    <use href="#valve" class="a" />
+    <circle class="a" cx="392" cy="252" r="11" />
+    <rect class="a" x="470" y="250" width="56" height="8" rx="2" />
+  </g>
+
+  <!-- pass B: queue violet -->
+  <g class="pass" transform="translate(-2 3)">
+    <use href="#p2" class="flow-b" />
+    <use href="#p3" class="flow-b" />
+    <g transform="translate(221 180)"><use href="#item" class="b" /></g>
+    <g transform="translate(221 203)"><use href="#item" class="b" /></g>
+    <g transform="translate(221 226)"><use href="#item" class="b" /></g>
+    <g transform="translate(221 249)"><use href="#item" class="b" /></g>
+    <g transform="translate(221 272)"><use href="#item" class="tb" /></g>
+    <use href="#bucket" class="tb" />
+    <g transform="translate(498 309) rotate(-7)">
+      <use href="#stamp" style="fill: none; stroke: var(--b); stroke-width: 3" />
+      <rect class="b" x="-20" y="-3.5" width="40" height="7" rx="2" />
+    </g>
+  </g>
+
+  <!-- key -->
+  <g class="pass">
+    <!-- the Workday XML -->
+    <use href="#sheet" class="kx" />
+    <path class="k2" d="M132 44 V62 H150" />
+    <g class="k2">
+      <use href="#lt" x="52" y="80" /><path d="M62 80 H74" /><use href="#gt" x="78" y="80" />
+      <use href="#lt" x="64" y="98" /><path d="M74 98 H84" /><use href="#gt" x="88" y="98" /><use href="#lt" x="126" y="98" /><path d="M134 103 L138 93" /><use href="#gt" x="140" y="98" />
+      <use href="#lt" x="64" y="116" /><path d="M74 116 H84" /><use href="#gt" x="88" y="116" /><use href="#lt" x="118" y="116" /><path d="M126 121 L130 111" /><use href="#gt" x="132" y="116" />
+      <use href="#lt" x="64" y="134" /><path d="M74 134 H84" /><use href="#gt" x="88" y="134" /><use href="#lt" x="128" y="134" /><path d="M136 139 L140 129" /><use href="#gt" x="142" y="134" />
+      <use href="#lt" x="52" y="152" /><path d="M62 157 L66 147 M70 152 H80" /><use href="#gt" x="84" y="152" />
+      <use href="#lt" x="52" y="170" /><path d="M62 170 H74" /><use href="#gt" x="78" y="170" />
+    </g>
+
+    <!-- funnel and the first pipe -->
+    <use href="#funnel" class="kx" />
+    <use href="#funnel" class="ta" style="mix-blend-mode: multiply" />
+    <use href="#p1" class="pipe" />
+    <use href="#p1" class="bore" />
+
+    <!-- the queue tank -->
+    <path class="k" d="M222 310 V330 M290 310 V330" />
+    <use href="#tank" class="kx" />
+    <g transform="translate(221 180)"><use href="#item" class="kx2" /><circle class="kx2" cx="11" cy="8" r="4" /><path class="k2" d="M22 8 H56" /></g>
+    <g transform="translate(221 203)"><use href="#item" class="kx2" /><circle class="kx2" cx="11" cy="8" r="4" /><path class="k2" d="M22 8 H50" /></g>
+    <g transform="translate(221 226)"><use href="#item" class="kx2" /><circle class="kx2" cx="11" cy="8" r="4" /><path class="k2" d="M22 8 H58" /></g>
+    <g transform="translate(221 249)"><use href="#item" class="kx2" /><circle class="kx2" cx="11" cy="8" r="4" /><path class="k2" d="M22 8 H46" /></g>
+    <g transform="translate(221 272)"><use href="#item" class="kx2" /><circle class="kx2" cx="11" cy="8" r="4" /><path class="k2" d="M22 8 H54" /></g>
+    <path class="k2" d="M214 176 V204" />
+    <rect class="kx" x="200" y="152" width="112" height="12" rx="4" />
+    <use href="#tank" class="k" style="fill: none" />
+
+    <!-- review valve, with approve and ignore -->
+    <use href="#p2" class="pipe" />
+    <use href="#p2" class="bore" />
+    <use href="#p3" class="pipe" />
+    <use href="#p3" class="bore" />
+    <use href="#p4" class="pipe" />
+    <use href="#p4" class="bore" />
+    <path class="k" d="M350 266 V252" />
+    <circle class="k" cx="350" cy="240" r="13" />
+    <path class="k2" d="M337 240 H363 M350 227 V253" />
+    <circle class="kf" cx="350" cy="240" r="3" />
+    <use href="#valve" class="k" />
+    <circle class="kx" cx="392" cy="252" r="11" />
+    <path class="k" d="M387 252 L391 256 L398 247" />
+    <use href="#bucket" class="kx" />
+    <use href="#bucket" class="k" style="fill: none" />
+    <path class="k" d="M326 312 H374" />
+    <path class="k2" d="M345 317 L355 325 M355 317 L345 325" />
+
+    <!-- author bios, saved as drafts -->
+    <use href="#back" class="kx" />
+    <use href="#card" class="kx" />
+    <circle class="k2" cx="498" cy="222" r="19" />
+    <g clip-path="url(#frame-clip)">
+      <circle class="k2" cx="498" cy="216" r="7.5" />
+      <path class="k2" d="M482 240 Q498 222 514 240" />
+    </g>
+    <path class="k2" d="M468 272 H528 M468 284 H520" />
+    <g transform="translate(498 309) rotate(-7)">
+      <use href="#stamp" class="k2" style="stroke-dasharray: 3 4" />
+    </g>
+  </g>
+</svg>
